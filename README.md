@@ -72,3 +72,12 @@ Needs Node >= 22.13 and a **persistent disk** (SQLite file at `DB_PATH`). Server
 docker build -t evecoo . && docker run -p 3000:3000 -v evecoo-data:/data evecoo
 ```
 Health check: `GET /api/health`. Before real traffic add rate limiting (see Known Limits).
+
+### Fly.io
+```bash
+fly launch --no-deploy --copy-config   # pick a unique app name
+fly volumes create evecoo_data --size 1 --region fra
+fly deploy
+```
+### Render
+Create a Blueprint from this repo (`render.yaml`): Docker service with a 1 GB disk at `/data`.

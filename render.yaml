@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: evecoo
+    runtime: docker
+    plan: starter          # persistent disks need a paid instance
+    healthCheckPath: /api/health
+    envVars:
+      - key: DB_PATH
+        value: /data/evecoo.db
+    disk:
+      name: evecoo-data
+      mountPath: /data
+      sizeGB: 1
