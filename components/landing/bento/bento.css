@@ -2,7 +2,6 @@
 .sec.alt > .bx-grid { max-width: 1240px; margin-left: auto; margin-right: auto; }
 .bx-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: stretch; }
 .bx-col { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
-.bx-col > .bx-card:last-child { flex: 1; }
 @media (max-width: 960px) { .bx-grid { grid-template-columns: 1fr; } }
 .bx-card { background: #fff; border: 1px solid #EEF1F8; border-radius: 28px; box-shadow: var(--shadow); padding: 14px 14px 28px; overflow: hidden; display: flex; flex-direction: column; }
 .bx-txt { padding: 24px 12px 0; margin-top: auto; }
@@ -26,7 +25,7 @@
 .bx-aq em { font-style: normal; color: #12945A; font-weight: 600; font-size: .74rem; display: inline-flex; align-items: center; gap: 4px; flex: none; }
 
 /* 2 wallet */
-.bx-wallet { position: relative; height: 296px; flex: none; }
+.bx-wallet { position: relative; height: 276px; flex: none; }
 .bx-stack { position: relative; width: 62%; height: 244px; margin: 0 auto; perspective: 900px; }
 .bx-pass { position: absolute; left: 0; right: 0; top: 0; height: 170px; border-radius: 14px; color: #fff; overflow: hidden; box-shadow: 0 -4px 14px rgba(0, 0, 0, .22); transform-origin: 50% 100%; transition: transform .9s var(--ease); will-change: transform; }
 .bx-pass-top { display: flex; justify-content: space-between; padding: 9px 12px 0; position: relative; z-index: 2; }
@@ -55,14 +54,14 @@
 .bx-when { font-size: .72rem; color: var(--muted); white-space: nowrap; }
 
 /* 4 team */
-.bx-team { padding: 2px; display: flex; flex-direction: column; gap: 8px; height: 142px; flex: none; }
+.bx-team { padding: 2px; display: flex; flex-direction: column; gap: 8px; height: 168px; flex: none; }
 .bx-trow { display: flex; align-items: center; gap: 12px; border: 1px solid #EEF1F8; border-radius: 16px; padding: 10px 14px; background: #fff; box-shadow: 0 1px 2px rgba(11, 31, 68, .03); }
 .bx-perms { display: flex; gap: 6px; flex: none; }
 .bx-perms i { font-style: normal; font-size: .68rem; font-weight: 600; padding: 4px 10px; border-radius: 9999px; background: #EFF1F6; color: #9AA3BC; text-decoration: line-through; transition: background .5s var(--ease), color .5s var(--ease); }
 .bx-perms i.on { background: #E8EFFE; color: #044DF2; text-decoration: none; }
 
 /* 5 birthday */
-.bx-bday { height: 238px; display: flex; justify-content: center; overflow: hidden; flex: none; -webkit-mask-image: linear-gradient(#000 80%, transparent); mask-image: linear-gradient(#000 80%, transparent); }
+.bx-bday { height: 216px; display: flex; justify-content: center; overflow: hidden; flex: none; -webkit-mask-image: linear-gradient(#000 80%, transparent); mask-image: linear-gradient(#000 80%, transparent); }
 .bx-bphone { position: relative; width: 242px; height: 300px; margin-top: 16px; border: 6px solid #0B0D14; border-bottom: 0; border-radius: 40px 40px 0 0; background: #fff; text-align: center; flex: none; }
 .bx-bisland { position: absolute; top: 8px; left: 50%; width: 70px; height: 20px; margin-left: -35px; background: #0B0D14; border-radius: 12px; }
 .bx-bclock { display: block; margin-top: 52px; font-size: 3.3rem; font-weight: 600; letter-spacing: -.03em; line-height: 1; color: #0B0D14; }
@@ -79,7 +78,7 @@
 @keyframes bx-fall { 0% { transform: translateY(-14px) rotate(var(--r)); opacity: 0; } 12% { opacity: 1; } 100% { transform: translateY(170px) rotate(calc(var(--r) + 260deg)); opacity: 0; } }
 
 /* 6 nearby */
-.bx-map { position: relative; height: 222px; margin: -14px -14px 0; overflow: hidden; flex: none; }
+.bx-map { position: relative; height: 246px; margin: -14px -14px 0; overflow: hidden; flex: none; }
 .bx-map > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 .bx-pin { position: absolute; left: 50%; top: 40%; width: 44px; height: 44px; margin: -22px; border-radius: 50%; background: #fff; display: grid; place-items: center; box-shadow: 0 6px 20px rgba(4, 77, 242, .3), 0 0 0 5px rgba(4, 77, 242, .12); z-index: 2; animation: bx-bob 3s ease-in-out infinite; }
 @keyframes bx-bob { 50% { transform: translateY(-3px); } }
@@ -94,7 +93,7 @@
 @media (max-width: 460px) {
   .bx-perms i { padding: 4px 7px; font-size: .62rem; }
   .bx-auto { height: 308px; }
-  .bx-team { height: 156px; }
+  .bx-team { height: 182px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .bx-pass, .bx-lrow, .bx-arow, .bx-aq-wrap, .bx-perms i { transition: none; }
