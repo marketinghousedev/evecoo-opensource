@@ -1,0 +1,98 @@
+/* Features: three animated cards */
+.fx-card { padding: 28px 28px 24px; }
+.fx-card h3 { font-size: 1.1875rem; line-height: 1.3; }
+.fx-card p { min-height: 3.4em; }
+.fx-card button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+
+/* card A: wallet carousel */
+.fx-car { height: 392px; display: flex; flex-direction: column; align-items: center; }
+.fx-stage { position: relative; width: 222px; height: 282px; margin-top: 4px; flex: none; }
+.fx-wc {
+  position: absolute; inset: 0; border-radius: 14px; overflow: hidden; padding: 12px 12px 0;
+  display: flex; flex-direction: column; box-shadow: 0 18px 36px rgba(20, 20, 40, .22);
+  transition: transform .8s var(--ease), opacity .6s var(--ease); will-change: transform, opacity;
+}
+.fx-wc.on { transform: none; opacity: 1; }
+.fx-wc.prev { transform: translateX(-46px) scale(.94); opacity: 0; pointer-events: none; }
+.fx-wc.next { transform: translateX(46px) scale(.94); opacity: 0; pointer-events: none; }
+.fx-wc-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.fx-wc-top b { font-size: .95rem; font-weight: 700; letter-spacing: -.01em; }
+.fx-wc-top span { font-size: .58rem; font-weight: 600; text-align: right; display: flex; flex-direction: column; line-height: 1.25; }
+.fx-wc small { display: block; font-size: .4rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; opacity: .6; }
+.fx-wc-art { position: relative; margin: 10px -12px 0; height: 106px; display: flex; align-items: center; justify-content: center; }
+.fx-stamps { display: grid; grid-template-columns: repeat(4, 34px); gap: 8px 8px; justify-content: center; }
+.fx-big { font-size: .85rem; font-weight: 500; opacity: .9; } .fx-big b { font-size: 2.6rem; font-weight: 500; letter-spacing: -.03em; }
+.fx-wc-meta { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; font-size: .55rem; font-weight: 600; line-height: 1.3; padding-top: 8px; }
+.fx-wc-meta small { margin-bottom: 1px; }
+.fx-qr { position: absolute; left: 50%; bottom: 10px; margin-left: -41px; background: #fff; padding: 4px; border-radius: 8px; line-height: 0; z-index: 2; box-shadow: 0 4px 12px rgba(0, 0, 0, .18); }
+.fx-pill { margin-top: 14px; display: inline-flex; align-items: center; gap: 10px; background: #fff; border: 1px solid var(--border); border-radius: 9999px; padding: 6px 8px; font-size: .8rem; font-weight: 600; box-shadow: 0 4px 14px rgba(11, 31, 68, .08); white-space: nowrap; }
+.fx-pill span { display: inline-flex; align-items: center; gap: 8px; }
+.fx-pill button { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; color: #4A5373; transition: background .2s, transform .2s var(--ease); }
+.fx-pill button:hover { background: var(--brand-soft); } .fx-pill button:active { transform: scale(.9); }
+.fx-dots { display: flex; gap: 6px; margin-top: 14px; }
+.fx-dots button { width: 7px; height: 7px; border-radius: 4px; background: #D3D9E7; transition: width .5s var(--ease), background .4s; padding: 0; }
+.fx-dots button.on { width: 20px; background: var(--brand); }
+
+/* card B: lock screen push stack */
+.fx-phone-wrap { height: 392px; position: relative; overflow: hidden; display: flex; justify-content: center; -webkit-mask-image: linear-gradient(#000 86%, transparent); mask-image: linear-gradient(#000 86%, transparent); }
+.fx-phone { position: relative; width: 276px; height: 520px; flex: none; border-radius: 44px 44px 0 0; background: #11141C; padding: 6px; box-shadow: inset 0 0 0 2px #2B2F3D, 0 24px 50px rgba(11, 31, 68, .25); margin-top: 12px; }
+.fx-screen { position: relative; height: 100%; border-radius: 38px 38px 0 0; overflow: hidden; text-align: center; color: #fff; background: radial-gradient(120% 70% at 50% 15%, #5C92FF 0%, #1B45C8 38%, #0A1C62 75%, #081445 100%); }
+.fx-island { position: absolute; top: 10px; left: 50%; width: 92px; height: 26px; margin-left: -46px; background: #000; border-radius: 14px; }
+.fx-status { position: absolute; top: 12px; left: 22px; font-size: .72rem; font-weight: 600; }
+.fx-lock { display: block; margin: 62px auto 0; opacity: .95; }
+.fx-clock { font-size: 4.6rem; font-weight: 300; letter-spacing: -.02em; line-height: 1.02; margin-top: 8px; }
+.fx-date { font-size: .95rem; font-weight: 500; opacity: .95; margin-top: 4px; }
+.fx-notifs { position: absolute; left: 50%; top: 208px; width: 334px; margin-left: -167px; height: 0; }
+.fx-notif {
+  position: absolute; left: 0; right: 0; top: 0; height: 78px; display: flex; gap: 12px; align-items: flex-start; padding: 11px 14px;
+  background: rgba(238, 243, 255, .92); border: 1px solid rgba(255, 255, 255, .7); border-radius: 22px; color: var(--on-surface);
+  box-shadow: 0 10px 28px rgba(8, 20, 80, .28); backdrop-filter: blur(14px);
+  transition: transform .8s var(--ease), opacity .6s var(--ease); will-change: transform, opacity;
+}
+.fx-notif.fresh { animation: fx-in .8s var(--ease) both; }
+@keyframes fx-in { from { opacity: 0; margin-top: -26px; scale: .96; } to { opacity: 1; margin-top: 0; scale: 1; } }
+.fx-app { width: 46px; height: 46px; border-radius: 11px; flex: none; display: grid; place-items: center; font-size: .78rem; font-weight: 800; font-style: italic; letter-spacing: -.04em; }
+.fx-notif > div { flex: 1; min-width: 0; text-align: left; line-height: 1.3; }
+.fx-notif b { display: flex; justify-content: space-between; font-size: .95rem; font-weight: 600; }
+.fx-notif em { font-style: normal; font-weight: 400; font-size: .72rem; color: #6B7391; padding-top: 2px; }
+.fx-notif strong { display: block; font-size: .8rem; font-weight: 500; }
+.fx-notif small { display: block; font-size: .78rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* card C: mini dashboard */
+.fx-dash { height: 392px; background: #EFF2F8; border-radius: 20px; padding: 12px; display: flex; flex-direction: column; gap: 12px; }
+.fx-dash-top { display: grid; grid-template-columns: 1.15fr 1fr; gap: 12px; height: 104px; flex: none; }
+.fx-dash-bot { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; flex: 1; min-height: 0; }
+.fx-tile { background: #fff; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 4px; min-width: 0; box-shadow: 0 1px 2px rgba(11, 31, 68, .04); }
+.fx-ring { flex-direction: row; align-items: center; gap: 10px; padding: 8px 10px; }
+.fx-ring span { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.fx-ring b { font-size: .8rem; font-weight: 600; }
+.fx-ring small, .fx-sub, .fx-lbl { font-size: .62rem; color: var(--muted); line-height: 1.3; }
+.fx-lbl { display: flex; align-items: center; gap: 6px; } .fx-lbl i { width: 6px; height: 6px; border-radius: 50%; background: #12B76A; }
+.fx-num { font-size: 1.9rem; font-weight: 500; line-height: 1.1; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.fx-tag { align-self: flex-start; background: #DDF5E7; color: #12945A; border-radius: 6px; padding: 2px 8px; font-size: .62rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.fx-tag.grey { background: #EEF1F8; color: #4A5373; margin-bottom: 6px; }
+.fx-h { font-size: .72rem; font-weight: 600; }
+.fx-hb { flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; margin-top: 4px; }
+.fx-hb > div { display: grid; grid-template-columns: 38px 1fr; align-items: center; gap: 4px; }
+.fx-hb small { font-size: .6rem; color: #4A5373; }
+.fx-hb i { height: 8px; background: #E8ECF5; border-radius: 4px; display: block; overflow: hidden; }
+.fx-hb u { display: block; height: 100%; border-radius: 4px; transition: width .9s var(--ease), background-color .5s; }
+.fx-vb { flex: 1; display: flex; gap: 5px; align-items: stretch; margin-top: 6px; min-height: 0; }
+.fx-vb > div { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 4px; min-width: 0; }
+.fx-vb u { display: block; width: 100%; border-radius: 3px; transition: height .9s var(--ease), background-color .5s; }
+.fx-vb small { font-size: .52rem; color: #6B7391; }
+
+@media (max-width: 960px) {
+  .fx-card { padding: 24px 20px 20px; }
+  .fx-card p { min-height: 0; }
+}
+@media (max-width: 460px) {
+  .fx-phone { transform: scale(.92); transform-origin: top center; }
+  .fx-dash { padding: 8px; gap: 8px; }
+  .fx-tile { padding: 10px 8px; }
+  .fx-ring svg { width: 52px; height: 52px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fx-wc, .fx-notif, .fx-hb u, .fx-vb u, .fx-dots button { transition: none; }
+  .fx-notif.fresh { animation: none; }
+}
