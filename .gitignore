@@ -9,3 +9,6 @@ reference/
 .env*
 !.env.example
 .claude/
+out/
+public/i18n/
+php/vendor/
