@@ -51,7 +51,6 @@
   .hero h1 { font-size: 38px; }
   .hero h1 br { display: none; }
   .hero h1 .blue { display: block; }
-  .poster-big { min-height: 300px; }
   .hero-sub { font-size: 1.05rem; }
   .hero-sub br { display: none; }
 }
@@ -77,10 +76,6 @@
 /* logos */
 .logos { text-align: center; padding: 40px 0 8px; overflow: hidden; }
 .logos p { font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: #6B7391; margin-bottom: 28px; }
-.logo-row { display: flex; gap: 48px; justify-content: center; padding: 0 24px; flex-wrap: nowrap; overflow: hidden; }
-.lg { font-weight: 700; color: #A5ABBF; font-size: 1.1rem; letter-spacing: .02em; white-space: nowrap; }
-.lg1 { font-family: serif; font-style: italic; } .lg2 { text-transform: uppercase; letter-spacing: .15em; font-size: .9rem; } .lg3 { font-weight: 800; }
-@media (max-width: 760px) { .logo-row { justify-content: flex-start; } }
 
 /* feature cards */
 .cards3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -211,15 +206,8 @@
 .stxt { padding: 22px 14px 0; margin-top: auto; } .stxt h3 { font-size: 1.0625rem; font-weight: 500; margin-bottom: 6px; } .stxt p { color: var(--muted); font-size: .875rem; margin: 0; }
 .svis { padding: 10px; min-height: 170px; display: flex; align-items: center; justify-content: center; }
 .free { position: absolute; left: 16px; top: 16px; z-index: 2; display: inline-flex; align-items: center; gap: 6px; background: #fff; border-radius: 9999px; padding: 6px 14px 6px 8px; font-size: .75rem; font-weight: 600; box-shadow: var(--shadow); } .free .material-symbols-outlined { color: #12B76A; }
-.poster-big { margin: 56px auto 0; width: 72%; min-height: 400px; justify-content: center; background: #F6EFE2; border-radius: 6px; padding: 18px 14px 20px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 4px; box-shadow: 0 20px 40px rgba(11,31,68,.2); color: #2A3A2E; }
-.poster-big .moon { width: 22px; height: 22px; border-radius: 50%; background: #E3B34A; display: block; }
-.poster-big b { font-size: 1.7rem; font-family: serif; font-weight: 700; line-height: 1.1; } .poster-big strong { font-size: 1.5rem; font-family: serif; line-height: 1.1; margin-bottom: 8px; } .poster-big small { font-size: .55rem; }
-.stand { height: 28px; width: 82%; margin: 0 auto 10px; background: linear-gradient(#C99A62, #A97A45); border-radius: 0 0 6px 6px; }
 .wcard.mini { width: 70%; min-width: 160px; }
 .checks { list-style: none; padding: 0; margin: 0; width: 100%; background: #fff; border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow); } .checks li { display: flex; align-items: center; gap: 10px; padding: 10px 16px; font-size: .8rem; font-weight: 600; border-bottom: 1px solid #EEF1F8; } .checks li:last-child { border: 0; } .checks .material-symbols-outlined { color: #12B76A; }
-.chat { flex-direction: column; align-items: stretch; gap: 8px; background: linear-gradient(#fff, #F6F8FC); }
-.bub { border-radius: 12px; padding: 8px 12px; font-size: .75rem; position: relative; max-width: 92%; } .bub small { display: block; text-align: right; font-size: .6rem; color: #7C8398; }
-.bub.out { background: #D6F5BB; align-self: flex-end; } .bub.in { background: #fff; box-shadow: var(--shadow); display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-left: 24px; }
 .s-navy { background: linear-gradient(160deg, #0F2B5C, #081533); color: #fff; padding: 28px; border: 0; justify-content: flex-end; min-height: 220px; box-shadow: var(--shadow-lg); }
 .s-navy .ey { letter-spacing: .12em; text-transform: uppercase; font-size: .68rem; font-weight: 600; opacity: .7; margin-bottom: auto; }
 .s-navy h3 { color: #fff; font-size: 1.5rem; margin: 40px 0 28px; }

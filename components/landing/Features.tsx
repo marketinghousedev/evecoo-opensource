@@ -6,6 +6,9 @@ import { CardCarousel, type CarouselCopy } from './features/CardCarousel';
 import { PushPhone, type PushCopy } from './features/PushPhone';
 import { DashMini, type DashCopy } from './features/DashMini';
 import './features/features.css';
+import './p8.css';
+import { IlloSvg } from '@/components/illustration/IlloSvg';
+import * as wm from './wordmarks';
 
 export function SectionHead({ eyebrow, t1, t2, sub, id, br }: { eyebrow: string; t1: string; t2: string; sub?: string; id?: string; br?: boolean }) {
   return (
@@ -19,12 +22,18 @@ export function SectionHead({ eyebrow, t1, t2, sub, id, br }: { eyebrow: string;
 
 export function Logos() {
   const { t } = useT();
-  const items = Array.from({ length: 10 }, (_, i) => i + 1);
+  const set = (hidden: boolean) => (
+    <ul className="logo-set" aria-hidden={hidden || undefined}>
+      {wm.WORDMARKS.map(([data, key]) => (
+        <li key={key}><IlloSvg data={data} className="wm" title={hidden ? undefined : t(`landing.logos.${key}`)} /></li>
+      ))}
+    </ul>
+  );
   return (
     <section className="logos">
       <p>{t('landing.logos.title')}</p>
-      <div className="logo-row">
-        {items.map((i) => <span key={i} className={`lg lg${i % 4}`}>{t(`landing.logos.l${i}`)}</span>)}
+      <div className="logo-marquee">
+        <div className="logo-track">{set(false)}{set(true)}</div>
       </div>
     </section>
   );
