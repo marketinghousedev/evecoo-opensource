@@ -69,6 +69,16 @@ img, svg { max-width: 100%; }
 .illo { display: inline-block; flex: none; overflow: visible; }
 .illo-lift { filter: var(--illo-shadow); }
 
+/* StampGrid (components/illustration/StampGrid.tsx): N slots, K filled. */
+.stamp-slots { display: grid; grid-template-columns: repeat(auto-fill, var(--stamp-size, 40px)); gap: 8px; justify-content: center; }
+.stamp-slot { position: relative; display: block; width: var(--stamp-size, 40px); height: var(--stamp-size, 40px); }
+.stamp-slot > .illo { width: 100%; height: 100%; display: block; }
+.stamp-slots.is-mono .stamp-slot:not(.is-filled) > .illo { opacity: .3; }
+.stamp-notch-mono { position: absolute; inset: 0; width: 100%; height: 100%; }
+.stamp-slot.is-pop > .illo, .stamp-slot.is-pop > .stamp-notch-mono { animation: stamp-pop 260ms cubic-bezier(.2, .9, .3, 1.2) both; }
+@keyframes stamp-pop { 0% { transform: scale(.4) rotate(-18deg); opacity: .2; } 65% { transform: scale(1.12) rotate(4deg); opacity: 1; } 100% { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .stamp-slot.is-pop > .illo, .stamp-slot.is-pop > .stamp-notch-mono { animation: none; } }
+
 .material-symbols-outlined {
   font-family: 'Material Symbols Outlined';
   font-weight: normal; font-style: normal; font-size: 24px; line-height: 1;

@@ -32,18 +32,9 @@
 .strip {
   position: relative; margin: 12px 14px 4px; padding: 14px 10px;
   border-radius: 16px; background: rgba(255,255,255,.14);
-  display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px 6px; justify-items: center;
   backdrop-filter: blur(2px);
 }
-.dot {
-  width: 100%; max-width: 46px; aspect-ratio: 1; border-radius: 50%;
-  display: grid; place-items: center;
-  border: 2px dashed color-mix(in srgb, var(--ink) 55%, transparent);
-  color: var(--card-color, #044DF2);
-  transition: transform .3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.dotOn { background: var(--ink); border: 2px solid var(--ink); box-shadow: 0 2px 6px rgba(0,0,0,.18); }
-.dot svg { width: 58%; height: 58%; }
+.stamps { gap: 10px 6px; justify-content: space-between; }
 .meta { position: relative; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 10px 20px 18px; font-size: 13px; }
 .meta span:first-child { opacity: .9; }
 .meta span:last-child { font-weight: 600; }

@@ -30,7 +30,7 @@ export function Logos() {
   );
 }
 
-export { StampGrid, QrMock } from './features/shared';
+export { QrMock } from './features/shared';
 
 export function Features() {
   const { t } = useT();

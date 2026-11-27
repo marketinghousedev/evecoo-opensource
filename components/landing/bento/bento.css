@@ -36,7 +36,7 @@
 .bx-pass-art::after { content: ''; position: absolute; inset: 0; background: linear-gradient(transparent 40%, rgba(0, 0, 0, .55)); }
 .bx-pass-art strong, .bx-pass-art small { position: relative; z-index: 1; }
 .bx-pass-art strong { font-size: 2.3rem; font-weight: 500; letter-spacing: -.02em; line-height: 1; font-variant-numeric: tabular-nums; }
-.bx-cup { position: absolute; right: 6px; top: 6px; width: 54%; opacity: .95; }
+.bx-stamps { position: absolute; right: 12px; top: 8px; z-index: 1; gap: 4px; justify-content: end; }
 .bx-wbtns { position: absolute; left: 0; right: 0; bottom: 0; display: flex; gap: 8px; justify-content: center; z-index: 5; }
 .bx-wb { display: inline-flex; align-items: center; gap: 6px; background: #fff; border: 1px solid var(--border); border-radius: 9999px; padding: 7px 14px; font-size: .74rem; font-weight: 500; }
 .bx-wb.dark { background: #000; color: #fff; border-color: #000; }
