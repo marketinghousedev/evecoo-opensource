@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from 'react';
 import { LogoMark } from '../Logo';
+import { IlloSvg } from '@/components/illustration/IlloSvg';
+import { backgroundsHeroField, scenesBeam } from '@/components/illustration/illo-data';
 import { Avatar, AvatarBadge, PersonGlyph } from './avatars';
 import './hero-flow.css';
 
@@ -121,6 +123,48 @@ export function HeroFlow({ copy }: { copy: HeroFlowCopy }) {
       const span = n.lastElementChild as HTMLElement | null;
       if (span && span.textContent !== v) span.textContent = v;
     };
+    const nodeEl = node;
+    // lane-based collision avoidance: chips slide to the nearest free lane around guests, the node and each other
+    const gs = { w: 0, h: 0, k: 1 };
+    const measure = () => {
+      gs.w = el.clientWidth; gs.h = el.clientHeight;
+      gs.k = parseFloat(getComputedStyle(el).getPropertyValue('--k')) || 1;
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    const chipEls = [...cEls, ...lEls];
+    const dy = new Map<HTMLElement, number>();
+    const size = new Map<HTMLElement, [number, number]>();
+    const avoid = (list: { n: HTMLElement; x: number; y: number; o: number }[], guests: Guest[]) => {
+      const placed: [number, number, number, number][] = []; // cx, cy, hw, hh (px)
+      const obst: [number, number, number][] = guests.map((g, i) => [g.x * gs.w, g.y * gs.h, (31 * gs.k * g.s + 8) * (gEls[i]?.offsetParent ? 1 : 0)]);
+      obst.push([BEAM_X * gs.w, NODE_Y * gs.h, 38 * Math.max(.78, gs.k)]);
+      const hit = (cx: number, cy: number, hw: number, hh: number) =>
+        obst.some(([ox, oy, r]) => r > 0 && Math.abs(cx - ox) < hw + r && Math.abs(cy - oy) < hh + r * 0.9) ||
+        placed.some(([px, py, pw, ph]) => Math.abs(cx - px) < hw + pw + 4 && Math.abs(cy - py) < hh + ph + 4);
+      for (const c of list) {
+        let sz = size.get(c.n);
+        if (!sz || c.n.dataset.t !== c.n.textContent) { sz = [c.n.offsetWidth, c.n.offsetHeight]; size.set(c.n, sz); c.n.dataset.t = c.n.textContent ?? ''; }
+        const [w, h] = sz;
+        if (!w) continue;
+        const hw = w / 2 + 3, hh = h / 2 + 4;
+        const cx = c.x * gs.w + w / 2, cy = c.y * gs.h;
+        let best = 0;
+        if (c.o > 0.02 && hit(cx, cy, hw, hh)) {
+          for (let m = 1; m <= 24; m++) {
+            const step = m * (h * 0.3);
+            const up = !hit(cx, cy - step, hw, hh), dn = !hit(cx, cy + step, hw, hh);
+            if (up || dn) { best = up && (!dn || cy - step > hh) ? -step : step; break; }
+          }
+        }
+        const cur = (dy.get(c.n) ?? 0) + (best - (dy.get(c.n) ?? 0)) * 0.5;
+        dy.set(c.n, cur);
+        c.n.style.setProperty('--y', String(r4(c.y + cur / gs.h)));
+        if (c.o > 0.02) placed.push([cx, cy + cur, hw, hh]);
+      }
+    };
+    void chipEls; void nodeEl;
     let t = T0;
     let raf = 0;
     let last = 0;
@@ -135,8 +179,10 @@ export function HeroFlow({ copy }: { copy: HeroFlowCopy }) {
         set(n, g.x, g.y, g.o, g.s);
         n.classList.toggle('conv', g.conv);
       });
-      f.chips.forEach((c, i) => { const n = cEls[i]; if (n) { set(n, c.x, c.y, c.o); text(n, copy.right[c.label]); } });
-      f.left.forEach((c, i) => { const n = lEls[i]; if (n) { set(n, c.x, c.y, c.o); text(n, copy.left[c.label]); } });
+      const list: { n: HTMLElement; x: number; y: number; o: number }[] = [];
+      f.chips.forEach((c, i) => { const n = cEls[i]; if (n) { set(n, c.x, c.y, c.o); text(n, copy.right[c.label]); list.push({ n, ...c }); } });
+      f.left.forEach((c, i) => { const n = lEls[i]; if (n) { set(n, c.x, c.y, c.o); text(n, copy.left[c.label]); list.push({ n, ...c }); } });
+      avoid(list, f.guests);
       beam?.style.setProperty('--p', String(f.pulse));
       node?.style.setProperty('--p', String(f.pulse));
       raf = requestAnimationFrame(frame);
@@ -149,26 +195,12 @@ export function HeroFlow({ copy }: { copy: HeroFlowCopy }) {
     const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; sync(); });
     io.observe(el);
     document.addEventListener('visibilitychange', sync);
-    return () => { io.disconnect(); document.removeEventListener('visibilitychange', sync); cancelAnimationFrame(raf); };
+    return () => { io.disconnect(); ro.disconnect(); document.removeEventListener('visibilitychange', sync); cancelAnimationFrame(raf); };
   }, [copy]);
 
   return (
     <div className="hf" ref={root} role="img" aria-label={copy.label}>
-      <svg className="hf-bg" viewBox="0 0 1400 500" preserveAspectRatio="none" aria-hidden="true">
-        <defs>
-          <linearGradient id="hf-band" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0" stopColor="#fff" stopOpacity=".55" />
-            <stop offset=".5" stopColor="#fff" stopOpacity=".95" />
-            <stop offset="1" stopColor="#fff" stopOpacity=".55" />
-          </linearGradient>
-        </defs>
-        <path d="M0 58C380 58 520 150 700 150S1020 58 1400 58V472C1020 472 880 392 700 392S380 472 0 472Z" fill="url(#hf-band)" />
-        <path d="M0 58C380 58 520 150 700 150S1020 58 1400 58M0 472C380 472 520 392 700 392S1020 472 1400 472" fill="none" stroke="#E2E6F1" strokeWidth="1.2" vectorEffect="non-scaling-stroke" />
-        <g fill="none" stroke="#E3E7F2" strokeWidth="1" vectorEffect="non-scaling-stroke">
-          {[110, 175, 230, 300, 360, 420].map((y) => <path key={`l${y}`} d={`M0 ${y}C320 ${y} 520 ${270 + (y - 270) * 0.25} 700 270`} />)}
-          {[95, 160, 225, 310, 370, 435].map((y) => <path key={`r${y}`} d={`M700 270C880 ${270 + (y - 270) * 0.25} 1080 ${y} 1400 ${y}`} />)}
-        </g>
-      </svg>
+      <IlloSvg data={backgroundsHeroField} className="hf-bg" preserveAspectRatio="xMidYMid slice" />
       <span className="hf-label l">{copy.once}</span>
       <span className="hf-label r">{copy.regulars}</span>
 
@@ -176,10 +208,10 @@ export function HeroFlow({ copy }: { copy: HeroFlowCopy }) {
         <span key={`l${i}`} className="hf-chip l" style={vars(c.x, c.y, c.o)}><PersonGlyph /><span>{copy.left[c.label]}</span></span>
       ))}
 
-      <span className="hf-beam" style={{ '--p': first.pulse } as React.CSSProperties} />
+      <span className="hf-beam" style={{ '--p': first.pulse } as React.CSSProperties}><IlloSvg data={scenesBeam} className="hf-beam-art" /></span>
 
       {first.guests.map((g, i) => (
-        <span key={`g${i}`} className={`hf-g${g.conv ? ' conv' : ''}`} style={vars(g.x, g.y, g.o, g.s)}>
+        <span key={`g${i}`} data-i={i} className={`hf-g${g.conv ? ' conv' : ''}`} style={vars(g.x, g.y, g.o, g.s)}>
           <span className="hf-person"><PersonGlyph /></span>
           <span className="hf-av">
             <span className="pic"><Avatar i={i} /></span>
@@ -191,7 +223,7 @@ export function HeroFlow({ copy }: { copy: HeroFlowCopy }) {
       <span className="hf-node" style={{ '--p': first.pulse } as React.CSSProperties}><LogoMark size={30} /></span>
 
       {first.chips.map((c, i) => (
-        <span key={`c${i}`} className="hf-chip r" style={vars(c.x, c.y, c.o)}><span className="lg"><LogoMark size={14} /></span><span>{copy.right[c.label]}</span></span>
+        <span key={`c${i}`} data-i={i} className="hf-chip r" style={vars(c.x, c.y, c.o)}><span className="lg"><LogoMark size={14} /></span><span>{copy.right[c.label]}</span></span>
       ))}
     </div>
   );
