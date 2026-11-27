@@ -1,4 +1,6 @@
-import { getServerI18n } from '@/lib/i18n-server';
+'use client';
+
+import { useT } from '@/components/I18nProvider';
 import { QrMock } from './features/shared';
 import { CardCarousel, type CarouselCopy } from './features/CardCarousel';
 import { PushPhone, type PushCopy } from './features/PushPhone';
@@ -15,8 +17,8 @@ export function SectionHead({ eyebrow, t1, t2, sub, id, br }: { eyebrow: string;
   );
 }
 
-export async function Logos() {
-  const { t } = await getServerI18n();
+export function Logos() {
+  const { t } = useT();
   const items = Array.from({ length: 10 }, (_, i) => i + 1);
   return (
     <section className="logos">
@@ -30,8 +32,8 @@ export async function Logos() {
 
 export { StampGrid, QrMock } from './features/shared';
 
-export async function Features() {
-  const { t } = await getServerI18n();
+export function Features() {
+  const { t } = useT();
   const carousel: CarouselCopy = {
     owner: t('landing.feat.c1.owner'), lblName: t('landing.feat.c1.lblName'), lblReward: t('landing.feat.c1.lblReward'),
     lblBy: t('landing.feat.c1.lblBy'), lblProg: t('landing.feat.c1.lblProg'), by: t('common.appName'),

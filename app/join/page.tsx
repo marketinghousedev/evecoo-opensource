@@ -1,17 +1,16 @@
 'use client';
 
-import { use, useEffect, useState, type FormEvent } from 'react';
-import { useRouter } from 'next/navigation';
+import { useEffect, useState, type FormEvent } from 'react';
 import StampCard from '@/components/StampCard';
 import { useT } from '@/components/I18nProvider';
 import { api, ApiClientError } from '@/lib/client';
+import { useRouteId } from '@/lib/route-id';
 import type { PublicCard } from '@/lib/types';
 import s from './join.module.css';
 
-export default function JoinPage({ params }: { params: Promise<{ businessId: string }> }) {
-  const { businessId } = use(params);
+export default function JoinPage() {
+  const businessId = useRouteId('join');
   const { t } = useT();
-  const router = useRouter();
   const [card, setCard] = useState<PublicCard | null>(null);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
@@ -21,6 +20,12 @@ export default function JoinPage({ params }: { params: Promise<{ businessId: str
   const [busy, setBusy] = useState(false);
 
   useEffect(() => {
+    if (businessId === null) return;
+    if (!businessId) {
+      setLoadError(t('join.notFound'));
+      setLoading(false);
+      return;
+    }
     let cancelled = false;
     api<PublicCard>(`/api/public/card/${encodeURIComponent(businessId)}`)
       .then((c) => !cancelled && setCard(c))
@@ -43,7 +48,7 @@ export default function JoinPage({ params }: { params: Promise<{ businessId: str
       const r = await api<{ customerId: string; passUrl: string }>('/api/customers', {
         body: { businessId, name, ...(birthday ? { birthday } : {}) },
       });
-      router.push(r.passUrl);
+      window.location.assign(r.passUrl);
     } catch (err) {
       if (err instanceof ApiClientError) setError(err.code === 'network' ? t(err.message) : err.message);
       else setError(t('errors.internal'));

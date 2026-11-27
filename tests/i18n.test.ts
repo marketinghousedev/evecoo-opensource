@@ -1,15 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import {
-  availableLocales,
-  formatPrice,
-  getMessages,
-  getT,
-  resolveLocale,
-  translate,
-  weekdayShort,
-} from '@/lib/i18n';
-import { ApiError, route } from '@/lib/http';
-import { str } from '@/lib/validate';
+import { cookieValue, formatPrice, resolveLocale, translate, weekdayShort } from '@/lib/i18n';
+import { availableLocales, getMessages } from '@/lib/i18n-build';
+
+const getT = (locale: string) => {
+  const m = getMessages(locale);
+  return (key: string, vars?: Record<string, string | number>) => translate(m, locale, key, vars);
+};
 
 describe('i18n', () => {
   it('interpolates variables', () => {
@@ -33,33 +29,19 @@ describe('i18n', () => {
 
   it('resolveLocale ignores unavailable locales and defaults to en', () => {
     expect(availableLocales()).toContain('en');
-    expect(resolveLocale({})).toBe('en');
-    expect(resolveLocale({ cookie: 'zz', acceptLanguage: 'zz-ZZ,fr;q=0.8' })).toBe('en');
-    expect(resolveLocale({ cookie: '../../etc/passwd' })).toBe('en');
-    expect(resolveLocale({ acceptLanguage: 'en-GB,en;q=0.9' })).toBe('en');
+    const avail = availableLocales();
+    expect(resolveLocale(avail, {})).toBe('en');
+    expect(resolveLocale(avail, { cookie: 'zz', acceptLanguage: 'zz-ZZ,fr;q=0.8' })).toBe('en');
+    expect(resolveLocale(avail, { cookie: '../../etc/passwd' })).toBe('en');
+    expect(resolveLocale(avail, { acceptLanguage: 'en-GB,en;q=0.9' })).toBe('en');
+    expect(resolveLocale(['de', 'en'], { cookie: 'de' })).toBe('de');
+    expect(resolveLocale(['de', 'en'], { acceptLanguage: 'fr;q=0.9,de-AT;q=0.8' })).toBe('de');
+    expect(cookieValue('a=1; locale=de', 'locale')).toBe('de');
   });
 
   it('formats price and weekday with Intl', () => {
     expect(formatPrice('en', 29)).toBe('€29');
     expect(formatPrice('de', 29).replace(/\s/g, ' ')).toBe('29 €');
     expect(weekdayShort('en', 0)).toBe('Mon');
-  });
-
-  it('renders an ApiError through the catalog', async () => {
-    const handler = route(() => {
-      str({}, 'name', { min: 1, max: 5 });
-      return new Response('x');
-    });
-    const res = await handler(new Request('http://x/'), { params: Promise.resolve({}) });
-    expect(res.status).toBe(400);
-    const body = await res.json();
-    expect(body.error).toBe('validation_error');
-    expect(body.message).toBe('"name" must be text between 1 and 5 characters long.');
-
-    const nf = route(() => {
-      throw new ApiError(404, 'not_found', 'errors.notFound');
-    });
-    const r2 = await nf(new Request('http://x/'), { params: Promise.resolve({}) });
-    expect((await r2.json()).message).toBe(getT('en')('errors.notFound'));
   });
 });

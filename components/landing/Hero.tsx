@@ -1,11 +1,13 @@
+'use client';
+
 import Link from 'next/link';
-import { getServerI18n } from '@/lib/i18n-server';
+import { useT } from '@/components/I18nProvider';
 import { Icon } from './Icon';
 import { HeroFlow } from './hero/HeroFlow';
 
 const AV = ['#F4A261', '#E76F51', '#2A9D8F', '#264653', '#8E7DBE'];
-export async function Hero() {
-  const { t } = await getServerI18n();
+export function Hero() {
+  const { t } = useT();
   return (
     <section className="hero">
       <div className="hero-in">

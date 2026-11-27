@@ -1,26 +1,71 @@
-import { notFound } from 'next/navigation';
+'use client';
+
+import { useEffect, useState } from 'react';
 import QRCode from 'qrcode';
 import StampCard from '@/components/StampCard';
 import s from './card.module.css';
-import { getServerI18n } from '@/lib/i18n-server';
+import { useT } from '@/components/I18nProvider';
 import { formatDate } from '@/lib/i18n';
-import { getCustomerView } from '@/lib/loyalty';
-import { listCustomerMessages } from '@/lib/messages';
+import { useRouteId } from '@/lib/route-id';
+import { api, ApiClientError } from '@/lib/client';
+import type { CustomerMessage } from '@/lib/types';
 
-export const dynamic = 'force-dynamic';
+type View = {
+  customerName: string;
+  businessName: string;
+  cardName: string;
+  reward: string;
+  stamps: number;
+  stampsRequired: number;
+  color: string;
+  redeemable: boolean;
+};
 
-export default async function CardPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
-  const view = getCustomerView(id);
-  if (!view) notFound();
-  const { locale, t } = await getServerI18n();
-  let messages: Awaited<ReturnType<typeof listCustomerMessages>> = [];
-  try {
-    messages = await listCustomerMessages(id);
-  } catch {
-    messages = [];
-  }
-  const qr = await QRCode.toString(id, { type: 'svg', margin: 1 });
+export default function CardPage() {
+  const id = useRouteId('card');
+  const { locale, t } = useT();
+  const [view, setView] = useState<View | null>(null);
+  const [messages, setMessages] = useState<CustomerMessage[]>([]);
+  const [qr, setQr] = useState<string | undefined>(undefined);
+  const [state, setState] = useState<'loading' | 'ok' | 'notFound' | 'network'>('loading');
+
+  useEffect(() => {
+    if (id === null) return;
+    if (!id) {
+      setState('notFound');
+      return;
+    }
+    let cancelled = false;
+    (async () => {
+      try {
+        const v = await api<View>(`/api/pass/${encodeURIComponent(id)}/google`);
+        if (cancelled) return;
+        let msgs: CustomerMessage[] = [];
+        try {
+          msgs = await api<CustomerMessage[]>(`/api/customers/${encodeURIComponent(id)}/messages`);
+          if (!Array.isArray(msgs)) msgs = [];
+        } catch {
+          msgs = [];
+        }
+        const svg = await QRCode.toString(id, { type: 'svg', margin: 1 });
+        if (cancelled) return;
+        setView(v);
+        setMessages(msgs);
+        setQr(svg);
+        setState('ok');
+      } catch (e) {
+        if (cancelled) return;
+        setState(e instanceof ApiClientError && e.status === 404 ? 'notFound' : 'network');
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [id]);
+
+  if (state === 'loading') return <main className={s.page}><p className={s.empty}>{t('common.loading')}</p></main>;
+  if (state === 'network') return <main className={s.page}><p className={s.empty} role="alert">{t('errors.network')}</p></main>;
+  if (state === 'notFound' || !view || !id) return <main className={s.page}><p className={s.empty} role="alert">{t('errors.notFound')}</p></main>;
 
   const apple = (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.15-2.8.85-3.5.85-.75 0-1.85-.83-3.05-.8-1.55.02-3 .92-3.8 2.3-1.65 2.85-.42 7.05 1.15 9.35.8 1.1 1.7 2.35 2.9 2.3 1.15-.05 1.6-.75 3-.75s1.8.75 3.05.72c1.25-.02 2.05-1.1 2.8-2.25.9-1.3 1.25-2.55 1.28-2.62-.03-.02-2.45-.93-2.45-3.7zM14.2 5.9c.65-.8 1.1-1.85.97-2.9-.93.04-2.07.62-2.74 1.4-.6.68-1.12 1.8-.98 2.8 1.04.08 2.1-.53 2.75-1.3z" /></svg>
@@ -32,7 +77,7 @@ export default async function CardPage({ params }: { params: Promise<{ id: strin
   return (
     <main className={s.page}>
       <div className={s.col}>
-        <h1 className={s.greet}>{t('cardPage.greeting', { name: view.name })}</h1>
+        <h1 className={s.greet}>{t('cardPage.greeting', { name: view.customerName })}</h1>
         <p className={s.tag}>{t('cardPage.tagline')}</p>
         <StampCard
           businessName={view.businessName}

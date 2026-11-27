@@ -1,11 +1,13 @@
+'use client';
+
 import Link from 'next/link';
-import { getServerI18n } from '@/lib/i18n-server';
+import { useT } from '@/components/I18nProvider';
 import { formatPrice } from '@/lib/i18n';
 import { Icon } from './Icon';
 import { SectionHead } from './Features';
 
-export async function Pricing() {
-  const { t, locale } = await getServerI18n();
+export function Pricing() {
+  const { t, locale } = useT();
   const items = Array.from({ length: 15 }, (_, i) => i + 1);
   return (
     <section className="sec alt" id="pricing">
@@ -31,8 +33,8 @@ export async function Pricing() {
   );
 }
 
-export async function Faq() {
-  const { t } = await getServerI18n();
+export function Faq() {
+  const { t } = useT();
   const cols = [[1, 2, 3, 4, 5, 6, 7], [8, 9, 10, 11, 12, 13, 14]];
   return (
     <section className="sec faq" id="faq">

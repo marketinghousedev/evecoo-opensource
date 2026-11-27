@@ -1,5 +1,7 @@
+'use client';
+
 import Link from 'next/link';
-import { getServerI18n } from '@/lib/i18n-server';
+import { useT } from '@/components/I18nProvider';
 import { Icon } from './Icon';
 import { LogoMark } from './Logo';
 import { SectionHead } from './Features';
@@ -7,8 +9,8 @@ import { AutoRows, WalletStack, LiveFeed, TeamRows, BdayPhone, NearMap } from '.
 import type { AutoCopy, WalletCopy, LiveCopy, TeamCopy, BdayCopy, NearCopy } from './bento/BentoVis';
 import './bento/bento.css';
 
-export async function Bento() {
-  const { t } = await getServerI18n();
+export function Bento() {
+  const { t } = useT();
   const auto: AutoCopy = { rows: [1, 2, 3].map((i) => ({ t: t(`landing.bento.auto.r${i}`), s: t(`landing.bento.auto.r${i}s`), m: t(`landing.bento.auto.r${i}m`) })), sent: t('landing.bento.auto.sent') };
   const wallet: WalletCopy = {
     passes: [1, 2, 3].map((i) => ({ name: t(`landing.bento.wallet.c${i}`), a: 0, b: 0 })),
@@ -49,8 +51,8 @@ export async function Bento() {
   );
 }
 
-export async function Problem() {
-  const { t } = await getServerI18n();
+export function Problem() {
+  const { t } = useT();
   return (
     <section className="sec">
       <SectionHead eyebrow={t('landing.prob.eyebrow')} t1={t('landing.prob.title1')} t2={t('landing.prob.title2')} br sub={t('landing.prob.sub')} />

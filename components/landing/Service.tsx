@@ -1,11 +1,13 @@
+'use client';
+
 import Link from 'next/link';
-import { getServerI18n } from '@/lib/i18n-server';
+import { useT } from '@/components/I18nProvider';
 import { Icon } from './Icon';
 import { LogoMark } from './Logo';
 import { QrMock, SectionHead } from './Features';
 
-export async function Service() {
-  const { t } = await getServerI18n();
+export function Service() {
+  const { t } = useT();
   return (
     <section className="sec alt2" id="service">
       <SectionHead eyebrow={t('landing.svc.eyebrow')} t1={t('landing.svc.title1')} t2={t('landing.svc.title2')} br sub={t('landing.svc.sub')} />

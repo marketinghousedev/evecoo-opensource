@@ -1,5 +1,7 @@
+'use client';
+
 import Link from 'next/link';
-import { getServerI18n } from '@/lib/i18n-server';
+import { useT } from '@/components/I18nProvider';
 import { Wordmark } from './Logo';
 import { Icon } from './Icon';
 
@@ -13,8 +15,8 @@ const LINKS = [
   ['support', '#support'],
 ] as const;
 
-export async function SiteNav({ announce = true }: { announce?: boolean }) {
-  const { t } = await getServerI18n();
+export function SiteNav({ announce = true }: { announce?: boolean }) {
+  const { t } = useT();
   return (
     <>
       {announce && (
@@ -52,8 +54,8 @@ export async function SiteNav({ announce = true }: { announce?: boolean }) {
   );
 }
 
-export async function SiteFooter() {
-  const { t } = await getServerI18n();
+export function SiteFooter() {
+  const { t } = useT();
   const cols: [string, [string, string][]][] = [
     ['product', [['how', '/#how'], ['pricing', '/#pricing'], ['faq', '/#faq']]],
     ['resources', [['benefits', '/#benefits'], ['features', '/#features'], ['compare', '/#service'], ['industries', '/#benefits'], ['blog', '/']]],

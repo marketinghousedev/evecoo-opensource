@@ -1,9 +1,11 @@
-import { getServerI18n } from '@/lib/i18n-server';
+'use client';
+
+import { useT } from '@/components/I18nProvider';
 import { LogoMark } from './Logo';
 import { SectionHead } from './Features';
 
-export async function DashPreview() {
-  const { t } = await getServerI18n();
+export function DashPreview() {
+  const { t } = useT();
   const pts = [20, 26, 34, 28, 40, 58, 46, 30, 36, 52, 70, 50, 38, 44, 60, 78, 55, 42, 48, 66, 84, 60, 50, 56, 72, 88, 96, 70, 62, 74];
   const W = 620, H = 220;
   const xy = pts.map((v, i) => [i * (W / (pts.length - 1)), H - (v / 100) * (H - 20) - 10] as const);

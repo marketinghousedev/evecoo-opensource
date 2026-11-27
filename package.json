@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node scripts/copy-messages.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/copy-messages.mjs",
     "build": "next build",
-    "start": "next start",
+    "bundle": "npm run build && scripts/build-bundle.sh",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"
   },

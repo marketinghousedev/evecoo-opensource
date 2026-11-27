@@ -1,5 +1,7 @@
+'use client';
+
 import Link from 'next/link';
-import { getServerI18n } from '@/lib/i18n-server';
+import { useT } from '@/components/I18nProvider';
 import { SiteNav, SiteFooter } from '@/components/landing/Chrome';
 import { Hero } from '@/components/landing/Hero';
 import { Logos, Features } from '@/components/landing/Features';
@@ -12,8 +14,8 @@ import { Reveal } from '@/components/landing/Reveal';
 import { Icon } from '@/components/landing/Icon';
 import './landing.css';
 
-export default async function LandingPage() {
-  const { t } = await getServerI18n();
+export default function LandingPage() {
+  const { t } = useT();
   return (
     <div className="landing">
       <SiteNav />
