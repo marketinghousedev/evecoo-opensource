@@ -61,7 +61,7 @@ export function Problem() {
           <div className="pvis">
             <div className="pm"><span className="pm-h"><small>{t('landing.prob.c1.mock')}</small><em className="loss"><Icon name="trending_down" size={13} /> {t('landing.prob.c1.loss')}</em></span>
               <b className="num60">60<span>%</span></b>
-              <span className="track"><u style={{ width: '60%' }} /></span>
+              <span className="track"><u className="bar60" style={{ width: '60%' }} /></span>
               <small>{t('landing.prob.c1.of')}</small></div>
           </div>
           <div className="plabel"><i className="n r">1</i>{t('landing.prob.c1.label')}</div>
@@ -70,7 +70,7 @@ export function Problem() {
         <article className="pcard" data-reveal>
           <div className="pvis">
             <div className="pm row">
-              <svg width="76" height="76" viewBox="0 0 76 76"><circle cx="38" cy="38" r="30" fill="none" stroke="#D7DDE7" strokeWidth="9" /><circle cx="38" cy="38" r="30" fill="none" stroke="#044DF2" strokeWidth="9" strokeDasharray="122 189" strokeLinecap="round" transform="rotate(-90 38 38)" /><text x="38" y="43" textAnchor="middle" fontSize="15" fontWeight="500" fill="#071130">65 %</text></svg>
+              <svg width="76" height="76" viewBox="0 0 76 76"><circle cx="38" cy="38" r="30" fill="none" stroke="#D7DDE7" strokeWidth="9" /><circle className="ring65" cx="38" cy="38" r="30" fill="none" stroke="#044DF2" strokeWidth="9" strokeDasharray="122 189" strokeLinecap="round" transform="rotate(-90 38 38)" /><text x="38" y="43" textAnchor="middle" fontSize="15" fontWeight="500" fill="#071130">65 %</text></svg>
               <span className="legend"><small>{t('landing.prob.c2.mock')}</small>
                 <span><i className="d b" />{t('landing.prob.c2.reg')}</span><b>650€</b>
                 <span><i className="d" />{t('landing.prob.c2.one')}</span><b className="dim">350€</b></span>
@@ -82,10 +82,10 @@ export function Problem() {
         <article className="pcard" data-reveal>
           <div className="pvis flowv">
             <div className="fl"><span className="fn"><Icon name="person" size={22} /></span><small>{t('landing.prob.c3.guest')}</small></div>
-            <i className="fdot" />
+            <i className="fline" aria-hidden="true"><b /></i>
             <div className="fl"><span className="fn sq"><LogoMark size={26} /></span><small>{t('common.appName').toLowerCase()}</small></div>
-            <i className="fdot" />
-            <div className="fl"><span className="fn blue"><Icon name="person" size={22} fill /></span><small>{t('landing.prob.c3.reg')}</small></div>
+            <i className="fline f2" aria-hidden="true"><b /></i>
+            <div className="fl"><span className="fn blue"><Icon name="person" size={22} fill /><i className="fcheck" aria-hidden="true"><Icon name="check" size={11} /></i></span><small>{t('landing.prob.c3.reg')}</small></div>
             <Link href="/signup" className="btn btn-lg wide">{t('landing.cta.trial')} <Icon name="arrow_forward" size={20} /></Link>
           </div>
           <div className="plabel"><i className="n b">3</i>{t('landing.prob.c3.label')}</div>
