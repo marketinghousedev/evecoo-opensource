@@ -27,7 +27,7 @@ export function Bento() {
     perms: [1, 2, 3].map((i) => t(`landing.bento.team.p${i}`)),
   };
   const bday: BdayCopy = { shop: t('landing.bento.bday.shop'), msg: t('landing.bento.bday.msg'), now: t('landing.bento.bday.now') };
-  const near: NearCopy = { shop: t('landing.bento.near.shop'), msg: t('landing.bento.near.msg'), when: t('landing.bento.near.when') };
+  const near: NearCopy = { shop: t('landing.bento.near.shop'), msg: t('landing.bento.near.msg'), when: t('landing.bento.near.when'), live: t('landing.bento.live.live') };
   const txt = (k: string) => <div className="bx-txt"><h3>{t(`landing.bento.${k}.title`)}</h3><p>{t(`landing.bento.${k}.body`)}</p></div>;
   return (
     <section className="sec alt" id="benefits">
