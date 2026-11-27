@@ -20,6 +20,12 @@ RewriteRule ^(.+[^/])$ $1/index.html [L]
   Header always set X-Content-Type-Options "nosniff"
   Header always set Referrer-Policy "same-origin"
   Header always set X-Frame-Options "DENY"
+  # 'unsafe-inline' scripts: the Next static export inlines its RSC bootstrap. Google Fonts: Material Symbols <link>.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+  Header always set Cross-Origin-Opener-Policy "same-origin"
+  # Only over TLS (mod_ssl / LiteSpeed set HTTPS=on); never sent on plain HTTP.
+  Header always set Strict-Transport-Security "max-age=31536000" env=HTTPS
   <FilesMatch "\.html$">
     Header set Cache-Control "no-cache"
   </FilesMatch>

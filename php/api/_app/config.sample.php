@@ -10,7 +10,9 @@ return [
         'user' => 'uXXX_evecoo',
         'pass' => 'CHANGE-ME',
     ],
-    // Only set this when a trusted reverse proxy sits in front, e.g. 'HTTP_CF_CONNECTING_IP'. Default: REMOTE_ADDR.
+    // Only set this when a trusted reverse proxy sits in front AND the origin is not reachable directly, e.g.
+    // 'HTTP_CF_CONNECTING_IP'. For 'HTTP_X_FORWARDED_FOR' the last (proxy-appended) entry is used. Otherwise any
+    // client can forge the header and get a fresh rate-limit bucket per request. Default: REMOTE_ADDR.
     'ip_header' => null,
     // [limit, windowSeconds]; these are the production defaults when a key is absent.
     'rate_limit' => [

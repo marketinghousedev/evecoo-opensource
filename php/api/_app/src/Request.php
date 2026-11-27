@@ -83,15 +83,33 @@ final class Request
         return new self($method, $path === '' ? '/' : $path, $headers, $body, self::clientIp($server), $declared);
     }
 
-    /** REMOTE_ADDR unless config 'ip_header' names a trusted proxy header ($_SERVER key such as HTTP_CF_CONNECTING_IP). */
+    /**
+     * Rate-limit subject: REMOTE_ADDR unless config 'ip_header' names a trusted proxy header ($_SERVER key such as
+     * HTTP_CF_CONNECTING_IP). For a comma list (X-Forwarded-For) the LAST entry is used: it is the one appended by the
+     * trusted proxy, everything left of it is client-controlled. A value that is not an IP falls back to REMOTE_ADDR.
+     */
     private static function clientIp(array $server): string
     {
         $remote = is_string($server['REMOTE_ADDR'] ?? null) ? $server['REMOTE_ADDR'] : '';
         $name = Config::get('ip_header');
         if (is_string($name) && $name !== '' && is_string($server[$name] ?? null)) {
-            $first = trim(explode(',', $server[$name])[0]);
-            if ($first !== '') return $first;
+            $parts = explode(',', $server[$name]);
+            $last = trim((string) end($parts));
+            if (filter_var($last, FILTER_VALIDATE_IP) !== false) return self::ipSubject($last);
         }
-        return $remote;
+        return self::ipSubject($remote);
+    }
+
+    /**
+     * IPv4 as is; IPv4-mapped IPv6 as the IPv4; other IPv6 reduced to its /64 (one end user typically owns a whole /64,
+     * so per-address buckets would be trivially bypassed). Anything unparsable is returned unchanged.
+     */
+    public static function ipSubject(string $ip): string
+    {
+        $bin = @inet_pton(trim($ip));
+        if ($bin === false) return $ip;
+        if (strlen($bin) === 4) return (string) inet_ntop($bin);
+        if (str_starts_with($bin, str_repeat("\0", 10) . "\xff\xff")) return (string) inet_ntop(substr($bin, 12));
+        return inet_ntop(substr($bin, 0, 8) . str_repeat("\0", 8)) . '/64';
     }
 }

@@ -292,6 +292,30 @@ final class AccountsTest extends TestCase
         for ($k = 0; $k < 3; $k++) self::assertSame(200, $this->login('a@b.com', 'password1')->status);
     }
 
+    public function testLoginEmailBucketIsPerAccountNotPerSpelling(): void
+    {
+        $this->signup();
+        $this->setLimits(['login_email' => [2, 900]]);
+        self::assertSame(401, $this->login('a@b.com', 'wrong1', '10.0.0.1')->status);
+        self::assertSame(401, $this->login(' A@B.com ', 'wrong2', '10.0.0.2')->status);
+        self::assertSame(429, $this->login('a@b.com', 'password1', '10.0.0.3')->status);
+        // the counter is keyed on the account, not on the typed string
+        $uid = (string) Db::one("SELECT id FROM users WHERE email = 'a@b.com'")['id'];
+        $row = Db::one('SELECT hits FROM rate_limits WHERE bucket = ?', [hash('sha256', 'login_email|user:' . $uid)]);
+        self::assertNotNull($row);
+    }
+
+    public function testLoginEmailCollationVariantsShareTheBucketOnMysql(): void
+    {
+        if (Db::driver() !== 'mysql') self::markTestSkipped('accent-insensitive email collation is MySQL-only');
+        $this->signup(['email' => 'jose@b.com']);
+        $this->setLimits(['login_email' => [2, 900]]);
+        // utf8mb4_unicode_ci: these spellings all find the row for jose@b.com
+        self::assertSame(401, $this->login('josé@b.com', 'wrong1', '10.0.0.1')->status);
+        self::assertSame(401, $this->login('jösé@b.com', 'wrong2', '10.0.0.2')->status);
+        self::assertSame(429, $this->login('jose@b.com', 'password1', '10.0.0.3')->status);
+    }
+
     public function testSignupIpLimit(): void
     {
         $this->setLimits(['signup_ip' => [2, 3600]]);

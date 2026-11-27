@@ -71,6 +71,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        $this->setConfig('ip_header', null);
         $this->setLimits(['enabled' => false]);
         if (Db::driver() === 'mysql') {
             Db::run('SET FOREIGN_KEY_CHECKS = 0');
@@ -89,6 +90,14 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     {
         $cfg = require self::$configFile;
         $cfg['rate_limit'] = array_merge(['enabled' => true], $limits);
+        self::writeConfig($cfg);
+    }
+
+    /** Sets one top-level config key (e.g. 'ip_header') for the rest of the test class. */
+    protected function setConfig(string $key, mixed $value): void
+    {
+        $cfg = require self::$configFile;
+        $cfg[$key] = $value;
         self::writeConfig($cfg);
     }
 

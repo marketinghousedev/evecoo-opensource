@@ -44,7 +44,7 @@ final class Accounts
 
     /**
      * Unknown email and wrong password give the same 401 after equal hashing work.
-     * Failed attempts count against 'login_email' (checked before verification, cleared on success).
+     * Attempts count against 'login_email' per account (hit before verification, cleared on success).
      * @param array{email:string,password:string} $i
      * @return array{token:string,role:string}
      */
@@ -52,8 +52,12 @@ final class Accounts
     {
         $email = self::normEmail((string) $i['email']);
         $password = (string) $i['password'];
-        RateLimit::check('login_email', $email);
         $row = Db::one('SELECT id, password_hash, role FROM users WHERE email = ?', [$email]);
+        // Bucket per account, not per spelling: on MySQL the _ci email collation also matches accent/width variants
+        // ('josé@x' finds 'jose@x'), each of which would otherwise get a fresh counter.
+        // Counted atomically on every attempt (no check-then-hit race), cleared on success, so net only failures count.
+        $subject = $row === null ? $email : 'user:' . (string) $row['id'];
+        RateLimit::hit('login_email', $subject);
         if ($row === null) {
             Auth::burn($password);
             $ok = false;
@@ -61,10 +65,9 @@ final class Accounts
             $ok = Auth::verifyPassword($password, (string) $row['password_hash']);
         }
         if (!$ok || $row === null) {
-            RateLimit::hit('login_email', $email);
             throw new ApiError(401, 'invalid_credentials', 'errors.invalidCredentials');
         }
-        RateLimit::clear('login_email', $email);
+        RateLimit::clear('login_email', $subject);
         return ['token' => Auth::createSession((string) $row['id']), 'role' => (string) $row['role']];
     }
 
