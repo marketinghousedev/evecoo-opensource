@@ -6,12 +6,12 @@ import s from './dashboard.module.css';
 
 export default function JoinLink({ businessId }: { businessId: string }) {
   const { t } = useT();
-  const [url, setUrl] = useState(`/join/${businessId}`);
+  const [url, setUrl] = useState(`/join/?id=${encodeURIComponent(businessId)}`);
   const [copied, setCopied] = useState(false);
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
-    setUrl(`${window.location.origin}/join/${businessId}`);
+    setUrl(`${window.location.origin}/join/?id=${encodeURIComponent(businessId)}`);
   }, [businessId]);
 
   async function copy() {

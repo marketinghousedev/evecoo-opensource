@@ -46,7 +46,7 @@ export async function api<T>(path: string, opts: { method?: string; body?: unkno
   if (opts.body !== undefined) headers['content-type'] = 'application/json';
   let res: Response;
   try {
-    res = await fetch(path, {
+    res = await fetch(path.startsWith('/api/') ? '/api/index.php/' + path.slice(5) : path, {
       method: opts.method ?? (opts.body !== undefined ? 'POST' : 'GET'),
       headers,
       body: opts.body !== undefined ? JSON.stringify(opts.body) : undefined,

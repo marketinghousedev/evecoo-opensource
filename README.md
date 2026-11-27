@@ -101,3 +101,13 @@ Drop `messages/<locale>.json` with exactly the keys and `{variables}` of `messag
 - Messages are only shown on the customer's card page; no email/push. Automations run only when triggered (`/api/automations/run`), there is no scheduler.
 - Rate limiting is per IP and per email/business; there is no account lockout.
 - This is an independent rebuild from a spec; the original Next/Vercel product's code is not copied.
+
+## Hostinger Agency: verified deploy notes (first live deploy)
+Found on the live Agency (h5g) site and handled in code:
+- `.htaccess` is **not applied** (Hostinger CDN/web server in front). Unknown paths fall back to `index.html`, so:
+  - the frontend calls the API as `/api/index.php/<route>` (the PHP router maps it to `/api/<route>`; plain `/api/...` still works locally and in tests);
+  - card and join links use the query form `/card/?id=<id>` and `/join/?id=<id>`.
+  - Security headers from `deploy/htaccess.root` (CSP, HSTS, X-Frame-Options) are therefore **not sent** on HTML; PHP JSON responses still carry their own headers.
+- The writable file area is `public_html/` only, so the config lives at `public_html/api/_app/config.php`. PHP files there print nothing over HTTP; `.sql`, `.htaccess` and directory listings return 403.
+- The real MySQL database **and** user name are `u<account>_<siteUid>_<name>` (e.g. `u966322207_bjE7Ylw3N_evecoo`), even though the API lists them as `<name>`. Host `localhost`.
+- Upload with the file-browser TUS endpoint (`agency-hosting_files_generate-upload-url`), one file per path under `public_html/`, then clear the website cache. Errors go to `.h5g/php_error.log`.

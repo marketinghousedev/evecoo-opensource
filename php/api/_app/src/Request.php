@@ -75,6 +75,8 @@ final class Request
         $path = $q === false ? $uri : substr($uri, 0, $q);
         $h = strpos($path, '#');
         if ($h !== false) $path = substr($path, 0, $h);
+        // Hosts without rewrite support (Hostinger Agency) reach the API as /api/index.php/<route>.
+        if (str_starts_with($path, '/api/index.php/')) $path = '/api/' . substr($path, strlen('/api/index.php/'));
 
         $method = is_string($server['REQUEST_METHOD'] ?? null) ? $server['REQUEST_METHOD'] : 'GET';
         $declared = $server['CONTENT_LENGTH'] ?? 0;

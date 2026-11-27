@@ -56,7 +56,7 @@ final class LoyaltyTest extends TestCase
         $r = $this->req('POST', '/api/customers', ['businessId' => $b['businessId'], 'name' => 'Anna', 'birthday' => '2000-05-17']);
         $this->assertSame(201, $r->status);
         $body = self::body($r);
-        $this->assertSame('/card/' . $body['customerId'], $body['passUrl']);
+        $this->assertSame('/card/?id=' . $body['customerId'], $body['passUrl']);
         $row = Db::one('SELECT stamps, birthday FROM customers WHERE id = ?', [$body['customerId']]);
         $this->assertSame(0, (int) $row['stamps']);
         $this->assertSame('2000-05-17', $row['birthday']);

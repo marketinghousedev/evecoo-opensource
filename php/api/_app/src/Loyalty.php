@@ -19,7 +19,7 @@ final class Loyalty
             'INSERT INTO customers (id, business_id, name, birthday, stamps, created_at) VALUES (?, ?, ?, ?, 0, ?)',
             [$id, $businessId, $name, $birthday, Time::nowIso()],
         );
-        return ['customerId' => $id, 'passUrl' => '/card/' . $id];
+        return ['customerId' => $id, 'passUrl' => '/card/?id=' . $id];
     }
 
     public static function addStamp(string $businessId, string $customerId): array
