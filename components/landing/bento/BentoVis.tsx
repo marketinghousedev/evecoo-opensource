@@ -5,6 +5,8 @@ import { WalletPass } from '../WalletPass';
 import { BENTO_PASSES } from '../passes';
 import { LogoMark } from '../Logo';
 import { IlloSvg } from '@/components/illustration/IlloSvg';
+import { LiveTag } from './LiveTag';
+import { iconsAutomationBirthday, iconsAutomationWelcome, iconsAutomationWinback, scenesConfetti, scenesMapTile } from '@/components/illustration/illo-data';
 import { avatarsAvatar03, avatarsAvatar10, avatarsAvatar11, avatarsAvatar12, avatarsAvatar15, avatarsAvatar02, avatarsAvatar08, avatarsBadgePerson } from '@/components/illustration/illo-data';
 import { mod, useTicker } from '../features/useTicker';
 
@@ -12,11 +14,7 @@ const ic = { fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap
 
 /* 1. automations ------------------------------------------------------- */
 export type AutoCopy = { rows: { t: string; s: string; m: string }[]; sent: string };
-const AUTO_ICON = [
-  { bg: '#FFF1E0', fg: '#D9822B', d: <g {...ic}><path d="M3.5 12a8.5 8.5 0 1 0 2.6-6.1L3.5 8.5" /><path d="M3.5 3.5v5h5M12 7.5V12l3 2" /></g> },
-  { bg: '#E6F6EC', fg: '#12945A', d: <g {...ic}><path d="m4 20 3.5-10 6.5 6.5z" /><path d="M14 4v2M19 9h2M17.5 5.5l1.2-1.2M12 9l2-2" /></g> },
-  { bg: '#FCE8F1', fg: '#D6336C', d: <g {...ic}><rect x="4" y="12" width="16" height="8" rx="2" /><path d="M12 12V8M12 4.5c1 1 1 2.5 0 3.5-1-1-1-2.5 0-3.5Z" /></g> },
-];
+const AUTO_ICON = [iconsAutomationWinback, iconsAutomationWelcome, iconsAutomationBirthday];
 
 export function AutoRows({ copy }: { copy: AutoCopy }) {
   const { ref, tick } = useTicker(2600);
@@ -25,11 +23,10 @@ export function AutoRows({ copy }: { copy: AutoCopy }) {
     <div className="bx-auto" ref={ref}>
       {copy.rows.map((r, i) => {
         const open = i === active;
-        const a = AUTO_ICON[i];
         return (
           <div key={i} className={`bx-arow${open ? ' open' : ''}`}>
             <div className="bx-arow-h">
-              <span className="bx-aic" style={{ background: a.bg, color: a.fg }}><svg width="20" height="20" viewBox="0 0 24 24">{a.d}</svg></span>
+              <IlloSvg data={AUTO_ICON[i]} className="bx-aic" />
               <span className="bx-atx"><b>{r.t}</b><small>{r.s}</small></span>
               <span className="bx-tgl"><i /></span>
             </div>
@@ -86,11 +83,11 @@ const FACES = [avatarsAvatar03, avatarsAvatar11, avatarsAvatar15, avatarsAvatar1
 const ROW = 70;
 
 export function LiveFeed({ copy }: { copy: LiveCopy }) {
-  const { ref, tick } = useTicker(2200);
+  const { ref, tick, active } = useTicker(2200);
   const items = [0, 1, 2, 3].map((age) => ({ age, k: tick - age }));
   return (
-    <div className="bx-live" ref={ref}>
-      <span className="bx-livetag"><i />{copy.live}</span>
+    <div className="bx-live" ref={ref} data-active={active}>
+      <LiveTag label={copy.live} />
       <div className="bx-feed">
         {items.map(({ age, k }) => {
           const who = mod(k * 2 + 1, copy.names.length);
@@ -143,11 +140,6 @@ export function TeamRows({ copy }: { copy: TeamCopy }) {
 }
 
 /* 5. birthday phone ----------------------------------------------------- */
-const CONFETTI = [
-  { x: 12, y: 8, c: '#22C55E', d: 0, r: 40 }, { x: 78, y: 4, c: '#F472B6', d: .6, r: -30 }, { x: 30, y: 30, c: '#F59E0B', d: 1.2, r: 70 },
-  { x: 88, y: 26, c: '#818CF8', d: .3, r: 20 }, { x: 52, y: 0, c: '#2DD4BF', d: 1.8, r: -60 }, { x: 66, y: 38, c: '#F472B6', d: 2.1, r: 10 },
-  { x: 20, y: 52, c: '#818CF8', d: 2.6, r: 50 }, { x: 44, y: 18, c: '#F59E0B', d: .9, r: -20 },
-];
 export type BdayCopy = { shop: string; msg: string; now: string };
 
 export function BdayPhone({ copy }: { copy: BdayCopy }) {
@@ -156,9 +148,7 @@ export function BdayPhone({ copy }: { copy: BdayCopy }) {
     <div className="bx-bday" ref={ref} data-active={active}>
       <div className="bx-bphone">
         <span className="bx-bisland" />
-        <div className="bx-confetti" aria-hidden="true">
-          {CONFETTI.map((c, i) => <i key={i} style={{ left: `${c.x}%`, top: `${c.y}%`, background: c.c, animationDelay: `${c.d}s`, ['--r' as string]: `${c.r}deg` }} />)}
-        </div>
+        <IlloSvg data={scenesConfetti} className="bx-confetti" preserveAspectRatio="xMidYMin slice" />
         <b className="bx-bclock">9:41</b>
         <div className="bx-bnotif">
           <span className="bx-bapp"><LogoMark size={22} /></span>
@@ -170,17 +160,18 @@ export function BdayPhone({ copy }: { copy: BdayCopy }) {
 }
 
 /* 6. nearby map --------------------------------------------------------- */
-export type NearCopy = { shop: string; msg: string; when: string };
+export type NearCopy = { shop: string; msg: string; when: string; live: string };
+/** The map tile repeats 3x2; only the first copy keeps the #pin-anchor id so ids stay unique. */
+const TILE_PLAIN = { ...scenesMapTile, body: scenesMapTile.body.replace(/ id="[^"]*"/g, '') };
 
 export function NearMap({ copy, children }: { copy: NearCopy; children?: ReactNode }) {
   const { ref, active } = useTicker(1000);
   return (
     <div className="bx-map" ref={ref} data-active={active}>
-      <svg viewBox="0 0 300 160" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <rect width="300" height="160" fill="#EEF1F6" />
-        <g fill="#E1E6EF"><rect x="14" y="14" width="46" height="36" rx="3" /><rect x="84" y="56" width="42" height="40" rx="3" /><rect x="205" y="14" width="42" height="30" rx="3" /><rect x="208" y="70" width="60" height="34" rx="3" /><rect x="12" y="92" width="40" height="30" rx="3" /></g>
-        <g stroke="#fff" strokeLinecap="round"><path d="M-10 52h320M-10 120h320" strokeWidth="11" /><path d="M72-10v180M190-10v180" strokeWidth="11" /><path d="M262-10v180" strokeWidth="7" /><path d="M-10 90l320-20" strokeWidth="6" /></g>
-      </svg>
+      <div className="bx-tiles" aria-hidden="true">
+        {[0, 1, 2, 3, 4, 5].map((i) => <IlloSvg key={i} data={i === 1 ? scenesMapTile : TILE_PLAIN} className="bx-tile" />)}
+      </div>
+      <LiveTag label={copy.live} className="bx-maplive" />
       <span className="bx-ring r1" /><span className="bx-ring r2" />
       <span className="bx-pin"><LogoMark size={22} /></span>
       <div className="bx-nnotif">
