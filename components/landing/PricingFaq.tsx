@@ -5,6 +5,7 @@ import { useT } from '@/components/I18nProvider';
 import { formatPrice } from '@/lib/i18n';
 import { Icon } from './Icon';
 import { SectionHead } from './Features';
+import './p8.css';
 
 export function Pricing() {
   const { t, locale } = useT();

@@ -3,6 +3,7 @@
 import { useT } from '@/components/I18nProvider';
 import { LogoMark } from './Logo';
 import { SectionHead } from './Features';
+import './p8.css';
 
 export function DashPreview() {
   const { t } = useT();

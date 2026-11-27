@@ -5,11 +5,12 @@ import { useT } from '@/components/I18nProvider';
 import { Icon } from './Icon';
 import { LogoMark } from './Logo';
 import { IlloSvg } from '@/components/illustration/IlloSvg';
-import { avatarsAvatar01, avatarsBadgeCheck, avatarsGuestGrey } from '@/components/illustration/illo-data';
+import { avatarsAvatar01, avatarsBadgeCheck, avatarsGuestGrey, iconsSpotCoins, iconsSpotFootsteps, iconsSpotLoop } from '@/components/illustration/illo-data';
 import { SectionHead } from './Features';
 import { AutoRows, WalletStack, LiveFeed, TeamRows, BdayPhone, NearMap } from './bento/BentoVis';
 import type { AutoCopy, WalletCopy, LiveCopy, TeamCopy, BdayCopy, NearCopy } from './bento/BentoVis';
 import './bento/bento.css';
+import './p8.css';
 
 export function Bento() {
   const { t } = useT();
@@ -66,7 +67,7 @@ export function Problem() {
               <span className="track"><u className="bar60" style={{ width: '60%' }} /></span>
               <small>{t('landing.prob.c1.of')}</small></div>
           </div>
-          <div className="plabel"><i className="n r">1</i>{t('landing.prob.c1.label')}</div>
+          <div className="plabel"><i className="n r">1</i>{t('landing.prob.c1.label')}<IlloSvg data={iconsSpotFootsteps} className="spot" /></div>
           <h3>{t('landing.prob.c1.title')}</h3><p>{t('landing.prob.c1.body')}</p>
         </article>
         <article className="pcard" data-reveal>
@@ -78,7 +79,7 @@ export function Problem() {
                 <span><i className="d" />{t('landing.prob.c2.one')}</span><b className="dim">350€</b></span>
             </div>
           </div>
-          <div className="plabel"><i className="n">2</i>{t('landing.prob.c2.label')}</div>
+          <div className="plabel"><i className="n">2</i>{t('landing.prob.c2.label')}<IlloSvg data={iconsSpotCoins} className="spot" /></div>
           <h3>{t('landing.prob.c2.title')}</h3><p>{t('landing.prob.c2.body')}</p>
         </article>
         <article className="pcard" data-reveal>
@@ -90,7 +91,7 @@ export function Problem() {
             <div className="fl"><span className="fn fn-av"><IlloSvg data={avatarsAvatar01} className="fn-art" /><IlloSvg data={avatarsBadgeCheck} className="fcheck" /></span><small>{t('landing.prob.c3.reg')}</small></div>
             <Link href="/signup" className="btn btn-lg wide">{t('landing.cta.trial')} <Icon name="arrow_forward" size={20} /></Link>
           </div>
-          <div className="plabel"><i className="n b">3</i>{t('landing.prob.c3.label')}</div>
+          <div className="plabel"><i className="n b">3</i>{t('landing.prob.c3.label')}<IlloSvg data={iconsSpotLoop} className="spot" /></div>
           <h3>{t('landing.prob.c3.title')}</h3><p>{t('landing.prob.c3.body')}</p>
         </article>
       </div>

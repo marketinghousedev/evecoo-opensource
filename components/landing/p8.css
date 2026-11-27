@@ -1,0 +1,61 @@
+/* P8: problem spots, service scene + messenger, dashboard glass, pricing pattern, logo marquee */
+
+/* problem: 32px spot illustrations in each card's label row */
+.plabel .spot { margin-left: auto; height: 32px; width: 32px; flex: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .pcard.is-in .spot-step-2 { animation: spot-fade 2.4s ease-in-out 1s infinite alternate; }
+  .pcard.is-in .spot-coin-top { animation: spot-bob 2.4s ease-in-out infinite alternate; }
+}
+@keyframes spot-fade { from { opacity: .2; } to { opacity: .6; } }
+@keyframes spot-bob { from { transform: translateY(0); } to { transform: translateY(-1.5px); } }
+
+/* service: counter stand scene */
+.stand-scene { position: relative; container-type: inline-size; width: 94%; max-width: 380px; margin: 52px auto auto; aspect-ratio: 240 / 300; }
+.stand-art { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.stand-print { position: absolute; left: 22.08%; width: 55.83%; top: 8.7%; height: 36%; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 1.2cqw; padding-top: 2.6cqw; text-align: center; color: #2A3A2E; z-index: 1; }
+.stand-print .moon { width: 6.2cqw; height: 6.2cqw; border-radius: 50%; background: #E3B34A; display: block; flex: none; }
+.stand-print b { font-family: serif; font-weight: 700; font-size: 7.6cqw; line-height: 1.08; text-wrap: balance; }
+.stand-print strong { font-family: serif; font-weight: 400; font-size: 6.4cqw; line-height: 1.1; text-wrap: balance; }
+.stand-print small { position: absolute; top: calc(100% + 27cqw); width: 100%; font-size: 3.4cqw; line-height: 1.2; color: #3A4160; }
+.stand-qr { position: absolute; left: 38.33%; top: 46.67%; width: 23.33%; aspect-ratio: 1; z-index: 1; line-height: 0; }
+.stand-qr svg { width: 100%; height: 100%; display: block; border-radius: 2px; }
+.parcel-art { position: absolute; left: -4%; bottom: -1%; width: 36%; transform: rotate(-4deg); z-index: 2; }
+
+/* service: messenger-style chat (generic, no third-party styling) */
+.svis.chat { padding: 10px 6px; align-items: stretch; }
+.msgr { width: 100%; border-radius: 18px; overflow: hidden; background: #fff; border: 1px solid var(--border); box-shadow: var(--shadow); display: flex; flex-direction: column; }
+.msgr-top { display: flex; align-items: center; gap: 8px; padding: 9px 12px; background: var(--navy); color: #fff; }
+.msgr-top span { display: inline-flex; align-items: center; gap: 6px; font-size: .78rem; } .msgr-top b { font-weight: 600; }
+.msgr-top .dot { width: 7px; height: 7px; border-radius: 50%; background: #12B76A; display: inline-block; }
+.msgr-body { padding: 14px 12px 10px; display: flex; flex-direction: column; gap: 8px; background: #F6F8FC; }
+.msgr .bub { border-radius: 14px; padding: 8px 12px 6px; font-size: .75rem; line-height: 1.35; position: relative; max-width: 86%; display: block; margin: 0; }
+.msgr .bub small { display: flex; justify-content: flex-end; align-items: center; gap: 4px; margin-top: 2px; font-size: .6rem; color: #6B7391; }
+.msgr .bub.out { background: var(--brand-soft); align-self: flex-end; border-bottom-right-radius: 4px; color: var(--on-surface); }
+.msgr .bub.in { background: #fff; align-self: flex-start; border-bottom-left-radius: 4px; box-shadow: 0 1px 2px rgba(11,31,68,.08); }
+.msgr-in { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-top: 1px solid #EEF1F8; background: #fff; }
+.msgr-in span { flex: 1; height: 28px; border-radius: 9999px; background: #F1F3F9; }
+.msgr-in i { width: 28px; height: 28px; border-radius: 50%; background: var(--brand); color: #fff; display: grid; place-items: center; flex: none; }
+
+/* dashboard preview: generated area-chart backdrop and glass tiles */
+.dprev { background: url('/illustrations/backgrounds/dash-area.svg') no-repeat center bottom / 100% auto, linear-gradient(160deg, #EAF0FE, #F4F6FB 55%); position: relative; }
+.dprev .dp-tile { background: rgba(255,255,255,.58); border: 1px solid rgba(255,255,255,.85); box-shadow: 0 1px 2px rgba(11,31,68,.04), 0 10px 28px rgba(11,31,68,.06), inset 0 1px 0 rgba(255,255,255,.9); -webkit-backdrop-filter: blur(14px) saturate(1.4); backdrop-filter: blur(14px) saturate(1.4); }
+
+/* pricing: tileable stamp pattern at 4% on navy */
+.pnavy { background: url('/illustrations/backgrounds/pricing-pattern.svg') 0 0 / 160px 160px repeat, linear-gradient(170deg, #12306A, #0B1F44 45%, #071735); }
+
+/* logo strip: infinite marquee of fictional wordmarks */
+.logos { padding: 40px 0 8px; overflow: hidden; }
+.logo-marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.logo-track { display: flex; width: max-content; animation: logo-scroll 42s linear infinite; }
+.logo-marquee:hover .logo-track, .logo-marquee:focus-within .logo-track { animation-play-state: paused; }
+.logo-set { display: flex; align-items: center; gap: 56px; padding: 6px 28px; margin: 0; list-style: none; flex: none; }
+.logo-set li { display: flex; flex: none; }
+.logo-set .wm { height: 30px; width: auto; display: block; color: #8A91AA; transition: color .2s; }
+.logo-set li:hover .wm { color: var(--navy); }
+@keyframes logo-scroll { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .logo-track { animation: none; width: auto; justify-content: center; }
+  .logo-track .logo-set[aria-hidden] { display: none; }
+  .logo-set { flex-wrap: wrap; justify-content: center; gap: 24px 40px; }
+  .logo-marquee { -webkit-mask-image: none; mask-image: none; }
+}
