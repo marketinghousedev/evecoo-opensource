@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { useT } from '@/components/I18nProvider';
 import { formatPrice } from '@/lib/i18n';
 import { Icon } from './Icon';
+import { IlloSvg } from '@/components/illustration/IlloSvg';
+import { iconsUiCheckCircle } from '@/components/illustration/illo-data';
 import { SectionHead } from './Features';
 import './p8.css';
 
@@ -18,7 +20,7 @@ export function Pricing() {
           <div className="pn-top"><small className="ey">{t('landing.price.all')}</small><span className="free-pill"><i />{t('landing.price.free')}</span></div>
           <div className="amount"><b>{formatPrice(locale, 29)}</b><span>{t('landing.price.perMonth')}</span></div>
           <p>{t('landing.price.lt')}</p>
-          <ul>{[1, 2, 3].map((i) => <li key={i}><Icon name="check_circle" size={18} fill />{t(`landing.price.n${i}`)}</li>)}</ul>
+          <ul>{[1, 2, 3].map((i) => <li key={i}><IlloSvg data={iconsUiCheckCircle} className="ck" width={18} height={18} />{t(`landing.price.n${i}`)}</li>)}</ul>
           <div className="pn-cta">
             <Link href="/signup" className="btn btn-white btn-lg wide">{t('landing.price.cta')} <Icon name="arrow_forward" size={20} /></Link>
             <small>{t('landing.price.nocc')}</small>
@@ -26,7 +28,7 @@ export function Pricing() {
         </div>
         <div className="pwhite">
           <small className="ey">{t('landing.price.included')}</small>
-          <ul>{items.map((i) => <li key={i}><Icon name="check_circle" size={20} fill />{t(`landing.price.i${i}`)}</li>)}</ul>
+          <ul>{items.map((i) => <li key={i}><IlloSvg data={iconsUiCheckCircle} className="ck" width={20} height={20} />{t(`landing.price.i${i}`)}</li>)}</ul>
           <p>{t('landing.price.foot')}</p>
         </div>
       </div>

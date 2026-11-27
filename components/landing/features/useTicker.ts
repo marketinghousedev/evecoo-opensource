@@ -10,6 +10,7 @@ export function useTicker(ms: number) {
   const ref = useRef<HTMLDivElement>(null);
   const [tick, setTick] = useState(0);
   const [active, setActive] = useState(false);
+  const [seen, setSeen] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -23,7 +24,7 @@ export function useTicker(ms: number) {
       if (run && id === undefined) id = window.setInterval(() => setTick((t) => t + 1), ms);
       else if (!run && id !== undefined) { window.clearInterval(id); id = undefined; }
     };
-    const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; sync(); }, { threshold: 0.25 });
+    const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) setSeen(true); sync(); }, { threshold: 0.25 });
     io.observe(el);
     document.addEventListener('visibilitychange', sync);
     mq.addEventListener('change', sync);
@@ -35,7 +36,7 @@ export function useTicker(ms: number) {
     };
   }, [ms]);
 
-  return { ref, tick, setTick, active };
+  return { ref, tick, setTick, active, seen };
 }
 
 export const mod = (n: number, m: number) => ((n % m) + m) % m;

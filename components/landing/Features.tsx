@@ -52,6 +52,7 @@ export function Features() {
     ret: t('landing.feat.c3.ret'), retSub: t('landing.feat.c3.retSub', { a: '{a}', b: '{b}' }), cust: t('landing.feat.c3.cust'),
     week: t('landing.feat.c3.week', { n: '{n}' }), byTime: t('landing.feat.c3.byTime'), peak: t('landing.feat.c3.peak'),
     byDay: t('landing.feat.c3.byDay'), best: t('landing.feat.c3.best'), days: t('landing.feat.c3.days').split(','),
+    stamps: t('landing.feat.c3.stamps'), rewards: t('landing.feat.c3.rewards'), messages: t('landing.feat.c3.messages'),
   };
   return (
     <section className="sec" id="features">

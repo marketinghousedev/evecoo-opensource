@@ -3,6 +3,8 @@
 import { LogoMark } from '../Logo';
 import { WalletPass } from '../WalletPass';
 import { PASSES } from '../passes';
+import { IlloSvg } from '@/components/illustration/IlloSvg';
+import { backgroundsCardStudio } from '@/components/illustration/illo-data';
 import { mod, useTicker } from './useTicker';
 
 export type CarouselCopy = { how: string; prev: string; next: string; goto: string };
@@ -12,7 +14,8 @@ export function CardCarousel({ copy }: { copy: CarouselCopy }) {
   const N = PASSES.length;
   const idx = mod(tick, N);
   return (
-    <div className="fx-car" ref={ref}>
+    <div className="fx-car fx-visual" ref={ref}>
+      <IlloSvg data={backgroundsCardStudio} className="fx-bg" preserveAspectRatio="xMidYMid slice" />
       <div className="fx-stage">
         {PASSES.map((p, i) => {
           const rel = mod(i - idx + N / 2, N) - N / 2; // -6..5 around the active card
