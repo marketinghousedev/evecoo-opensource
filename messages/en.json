@@ -15,6 +15,8 @@
   "errors.notRedeemable": "This card doesn't have enough stamps yet.",
   "errors.internal": "Something went wrong on our side. Please try again later.",
   "errors.invalidJson": "The request body must be a valid JSON object.",
+  "errors.rateLimited": "Too many attempts. Please wait a moment and try again.",
+  "errors.methodNotAllowed": "This action is not supported.",
   "errors.network": "Couldn't reach the server. Check your connection and try again.",
   "errors.validation.string": "\"{field}\" must be text between {min} and {max} characters long.",
   "errors.validation.int": "\"{field}\" must be a whole number between {min} and {max}.",

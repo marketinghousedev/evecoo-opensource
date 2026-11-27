@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="tests/Support/bootstrap.php"
+         colors="true"
+         cacheDirectory=".phpunit.cache"
+         failOnWarning="true"
+         failOnRisky="true"
+         beStrictAboutOutputDuringTests="true">
+    <testsuites>
+        <testsuite name="Core">
+            <directory>tests/Core</directory>
+        </testsuite>
+        <testsuite name="Accounts">
+            <directory>tests/Accounts</directory>
+        </testsuite>
+        <testsuite name="Loyalty">
+            <directory>tests/Loyalty</directory>
+        </testsuite>
+        <testsuite name="Engage">
+            <directory>tests/Engage</directory>
+        </testsuite>
+    </testsuites>
+    <source>
+        <include>
+            <directory>api/_app/src</directory>
+        </include>
+    </source>
+</phpunit>

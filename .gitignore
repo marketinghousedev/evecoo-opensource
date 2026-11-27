@@ -12,3 +12,9 @@ reference/
 out/
 public/i18n/
 php/vendor/
+dist/
+php/api/_app/config.php
+php/api/_app/var/*
+php/api/_app/messages/
+*.sqlite
+php/.phpunit.cache/
