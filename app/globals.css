@@ -28,6 +28,17 @@
   --shadow: 0 1px 2px rgba(11, 31, 68, .04), 0 12px 40px rgba(11, 31, 68, .07);
   --shadow-lg: 0 2px 4px rgba(11, 31, 68, .04), 0 24px 64px rgba(11, 31, 68, .12);
   --font: var(--font-hanken), "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* Illustration system (docs/ILLUSTRATION-SYSTEM.md, components/illustration/palette.ts) */
+  --success: #12B76A;
+  --success-strong: #12945A;
+  --loss: #D6244B;
+  --illo-espresso: #8A4B2A;
+  --illo-honey: #B86E00;
+  --illo-tomato: #D4421C;
+  --illo-salmon: #E5674A;
+  --illo-berry: #C2366F;
+  --illo-herb: #5E7A1F;
+  --illo-shadow: drop-shadow(0 1px 1px rgba(11, 31, 68, .06)) drop-shadow(0 10px 18px rgba(11, 31, 68, .10));
   /* legacy aliases used by app screens */
   --ink: var(--on-surface);
   --line: var(--border);
@@ -55,6 +66,8 @@ h3 { font-size: 1.15rem; }
 p { margin: 0 0 1em; }
 a { color: var(--brand); }
 img, svg { max-width: 100%; }
+.illo { display: inline-block; flex: none; overflow: visible; }
+.illo-lift { filter: var(--illo-shadow); }
 
 .material-symbols-outlined {
   font-family: 'Material Symbols Outlined';

@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "node scripts/copy-messages.mjs",
+    "predev": "node scripts/copy-messages.mjs && node scripts/gen-illo-index.mjs",
     "dev": "next dev",
-    "prebuild": "node scripts/copy-messages.mjs",
+    "prebuild": "node scripts/copy-messages.mjs && node scripts/gen-illo-index.mjs",
     "build": "next build",
     "bundle": "npm run build && scripts/build-bundle.sh",
+    "svg:optimize": "node scripts/svg-optimize.mjs",
+    "illo:index": "node scripts/gen-illo-index.mjs",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"
   },
@@ -22,6 +24,7 @@
     "@types/qrcode": "^1.5.5",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "svgo": "^4.0.0",
     "typescript": "^5.6.0",
     "vitest": "^2.1.0"
   },
