@@ -1,7 +1,9 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { DoodleHeader, Ico, KebabStamp, Qr, ShopLogo, StatusBar } from './art';
+import { DoodleHeader, Ico, Qr, ShopLogo, StatusBar } from './art';
+import { WalletPass } from '../WalletPass';
+import { PASS_BY_SLUG } from '../passes';
 import './howitworks.css';
 import type { HowCopy } from './keys';
 
@@ -132,25 +134,7 @@ export function HowItWorksStory({ c }: { c: HowCopy }) {
     { t: c.n3t, b: c.n3b },
   ];
   const pass = (stamps: number, compact = false) => (
-    <div className={`hw-pass${compact ? ' compact' : ''}`}>
-      <div className="hw-pass-top"><b>{c.brand}</b><span><small>{c.cardLabel}</small>{c.nameVal}</span></div>
-      {!compact && (
-        <div className="hw-stamps">
-          {Array.from({ length: 10 }, (_, i) => (
-            <span key={i} className={`hw-stamp${i < stamps ? ' full' : ''}`}>
-              <i className="g"><KebabStamp size={40} ghost /></i>
-              <i className="f"><KebabStamp size={40} /></i>
-            </span>
-          ))}
-        </div>
-      )}
-      <div className="hw-fields">
-        <span><small>{c.fReward}</small>{c.reward}</span>
-        <span><small>{c.fBy}</small>{c.byVal}</span>
-        <span><small>{c.fProgress}</small>{c.progress.replace('{n}', String(stamps))}</span>
-      </div>
-      <div className="hw-pass-qr"><Qr size={compact ? 62 : 80} seed={23} /></div>
-    </div>
+    <WalletPass pass={PASS_BY_SLUG.kebab} filled={stamps} required={10} holder={c.nameVal} compact={compact} />
   );
 
   return (

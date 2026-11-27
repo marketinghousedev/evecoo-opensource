@@ -27,16 +27,7 @@
 /* 2 wallet */
 .bx-wallet { position: relative; height: 276px; flex: none; }
 .bx-stack { position: relative; width: 62%; height: 244px; margin: 0 auto; perspective: 900px; }
-.bx-pass { position: absolute; left: 0; right: 0; top: 0; height: 170px; border-radius: 14px; color: #fff; overflow: hidden; box-shadow: 0 -4px 14px rgba(0, 0, 0, .22); transform-origin: 50% 100%; transition: transform .9s var(--ease); will-change: transform; }
-.bx-pass-top { display: flex; justify-content: space-between; padding: 9px 12px 0; position: relative; z-index: 2; }
-.bx-pass-top b { font-size: .95rem; font-weight: 700; }
-.bx-pass-top span { font-size: .56rem; font-weight: 600; text-align: right; display: flex; flex-direction: column; line-height: 1.3; }
-.bx-pass small { font-size: .4rem; letter-spacing: .14em; font-weight: 600; opacity: .6; }
-.bx-pass-art { position: absolute; left: 0; right: 0; top: 40px; bottom: 0; padding: 0 14px; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 8px; }
-.bx-pass-art::after { content: ''; position: absolute; inset: 0; background: linear-gradient(transparent 40%, rgba(0, 0, 0, .55)); }
-.bx-pass-art strong, .bx-pass-art small { position: relative; z-index: 1; }
-.bx-pass-art strong { font-size: 2.3rem; font-weight: 500; letter-spacing: -.02em; line-height: 1; font-variant-numeric: tabular-nums; }
-.bx-stamps { position: absolute; right: 12px; top: 8px; z-index: 1; gap: 4px; justify-content: end; }
+.bx-pass { position: absolute; left: 0; right: 0; top: 0; height: 210px; clip-path: inset(-40px -40px 0 -40px); transform-origin: 50% 100%; transition: transform .9s var(--ease), opacity .6s var(--ease); will-change: transform, opacity; }
 .bx-wbtns { position: absolute; left: 0; right: 0; bottom: 0; display: flex; gap: 8px; justify-content: center; z-index: 5; }
 .bx-wb { display: inline-flex; align-items: center; gap: 6px; background: #fff; border: 1px solid var(--border); border-radius: 9999px; padding: 7px 14px; font-size: .74rem; font-weight: 500; }
 .bx-wb.dark { background: #000; color: #fff; border-color: #000; }

@@ -14,11 +14,7 @@ import './bento/bento.css';
 export function Bento() {
   const { t } = useT();
   const auto: AutoCopy = { rows: [1, 2, 3].map((i) => ({ t: t(`landing.bento.auto.r${i}`), s: t(`landing.bento.auto.r${i}s`), m: t(`landing.bento.auto.r${i}m`) })), sent: t('landing.bento.auto.sent') };
-  const wallet: WalletCopy = {
-    passes: [1, 2, 3].map((i) => ({ name: t(`landing.bento.wallet.c${i}`), a: 0, b: 0 })),
-    of: t('landing.bento.wallet.of', { a: '{a}', b: '{b}' }), stamps: t('landing.bento.wallet.stamps'), holder: t('landing.bento.wallet.name'), lblName: t('landing.bento.wallet.lbl'),
-    apple: t('landing.bento.wallet.a'), google: t('landing.bento.wallet.g'),
-  };
+  const wallet: WalletCopy = { apple: t('landing.bento.wallet.a'), google: t('landing.bento.wallet.g') };
   const live: LiveCopy = {
     live: t('landing.bento.live.live'),
     names: [1, 2, 3, 4, 5].map((i) => t(`landing.bento.live.n${i}`)),

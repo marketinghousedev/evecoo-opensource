@@ -9,6 +9,7 @@
     "build": "next build",
     "bundle": "npm run build && scripts/build-bundle.sh",
     "svg:optimize": "node scripts/svg-optimize.mjs",
+    "passes:gen": "node scripts/gen-passes.mjs && npm run svg:optimize",
     "stamps:gen": "node scripts/gen-stamps.mjs && npm run svg:optimize",
     "illo:index": "node scripts/gen-illo-index.mjs",
     "test": "vitest run",
