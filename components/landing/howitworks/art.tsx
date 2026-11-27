@@ -1,24 +1,18 @@
 /* Small inline-SVG illustrations used by the How-it-works phone story. All drawn by hand, no images. */
 import { IlloSvg } from '@/components/illustration/IlloSvg';
+import QRCode from 'qrcode';
 import { stampsStampKebabMono } from '@/components/illustration/illo-data';
 
-export function Qr({ size = 80, seed = 11, dark = '#0B1222' }: { size?: number; seed?: number; dark?: string }) {
-  const n = 25;
-  let s = seed;
+/** A real, scannable QR code (same `qrcode` encoder the card page uses), drawn as one crisp path. */
+export function Qr({ size = 80, text, dark = '#0B1222' }: { size?: number; text: string; dark?: string }) {
+  const { modules } = QRCode.create(text, { errorCorrectionLevel: 'M' });
+  const n = modules.size;
   let d = '';
-  const inFinder = (x: number, y: number) => (x < 8 && y < 8) || (x > n - 9 && y < 8) || (x < 8 && y > n - 9);
-  for (let y = 0; y < n; y++) {
-    for (let x = 0; x < n; x++) {
-      s = (s * 1103515245 + 12345) & 0x7fffffff;
-      if (!inFinder(x, y) && s % 100 < 50) d += `M${x} ${y}h1v1h-1z`;
-    }
-  }
-  const finder = (x: number, y: number) => `M${x} ${y}h7v7h-7zM${x + 1} ${y + 1}v5h5v-5zM${x + 2} ${y + 2}h3v3h-3z`;
+  for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) if (modules.get(x, y)) d += `M${x} ${y}h1v1h-1z`;
   return (
-    <svg width={size} height={size} viewBox={`-1 -1 ${n + 2} ${n + 2}`} aria-hidden="true" className="hw-qr" shapeRendering="crispEdges">
-      <rect x="-1" y="-1" width={n + 2} height={n + 2} fill="#fff" />
+    <svg width={size} height={size} viewBox={`-2 -2 ${n + 4} ${n + 4}`} aria-hidden="true" className="hw-qr" shapeRendering="crispEdges">
+      <rect x="-2" y="-2" width={n + 4} height={n + 4} fill="#fff" />
       <path d={d} fill={dark} />
-      <path d={finder(0, 0) + finder(n - 7, 0) + finder(0, n - 7)} fill={dark} fillRule="evenodd" />
     </svg>
   );
 }
@@ -48,26 +42,6 @@ export function ShopLogo({ name, sub, size = 64 }: { name: string; sub: string; 
       <path d="M14 20h4M14 25h4M14 30h4M14 35h4" stroke="#7A0A13" strokeWidth="1.4" />
       <text x="40" y="38" textAnchor="middle" fontSize="10.5" fontWeight="800" fill="#111" fontFamily="inherit">{name}</text>
       <text x="40" y="46" textAnchor="middle" fontSize="5.5" fontWeight="600" fill="#555" fontFamily="inherit">{sub}</text>
-    </svg>
-  );
-}
-
-/** Food doodles pattern for the join page header. */
-export function DoodleHeader() {
-  return (
-    <svg className="hw-doodles" width="100%" height="100%" aria-hidden="true">
-      <defs>
-        <pattern id="hw-doodle" width="64" height="56" patternUnits="userSpaceOnUse" patternTransform="rotate(-12)">
-          <g fill="none" stroke="#000" strokeOpacity=".28" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M6 18c0-6 6-9 11-9s11 3 11 9Z M5 22h24 M6 26c0 3 3 4 11 4s11-1 11-4" />
-            <path d="M40 6l4 16h6l4-16 M42 12h10" />
-            <path d="M44 34c4-2 10 0 10 5s-5 8-10 6-4-9 0-11Z M47 38l3 3" />
-            <path d="M10 38v14 M8 38h4 M10 42c-3 0-3 4 0 4" />
-            <circle cx="30" cy="46" r="3" />
-          </g>
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#hw-doodle)" />
     </svg>
   );
 }

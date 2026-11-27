@@ -1,7 +1,9 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { DoodleHeader, Ico, Qr, ShopLogo, StatusBar } from './art';
+import { IlloSvg } from '@/components/illustration/IlloSvg';
+import { scenesCounterSceneKebab, scenesJoinHeaderKebab, scenesLockscreenWallpaperBlue, scenesScanSuccess } from '@/components/illustration/illo-data';
+import { Ico, Qr, ShopLogo, StatusBar } from './art';
 import { WalletPass } from '../WalletPass';
 import { PASS_BY_SLUG } from '../passes';
 import './howitworks.css';
@@ -51,7 +53,7 @@ function snapshot(t: number, nameLen: number): Snap {
     dateSet: t >= 4800,
     consent: t >= 5050,
     press: t >= 5300 && t < 5550,
-    passIn: t >= 5900,
+    passIn: t >= 5700,
     stamps: t >= STEP_AT[1] ? stamps : 0,
     reward: t >= 12650 && t < STEP_AT[2],
     scanOk: t >= 8450,
@@ -166,22 +168,17 @@ export function HowItWorksStory({ c }: { c: HowCopy }) {
               <div className="hw-cam-top"><span className="ic">{Ico.flashOff(14)}</span><span>{Ico.chevU(12)}</span><span className="ic">{Ico.live(14)}</span></div>
               <div className={`hw-vf${s.focus ? ' focus' : ''}`}>
                 <div className="hw-vf-world">
-                  <span className="wall" />
-                  <span className="spit"><i /></span>
-                  <span className="lamp" />
-                  <span className="pos"><i /></span>
-                  <span className="counter" />
+                  <IlloSvg data={scenesCounterSceneKebab} className="hw-vf-art" preserveAspectRatio="xMidYMid slice" />
                   <div className="standee">
                     <b>{c.brand}</b>
                     <small>{c.brandSub}</small>
                     <em>{c.scanTitle}</em>
                     <span className="qrw">
-                      <Qr size={84} seed={5} />
+                      <Qr size={92} text={`https://${c.url}`} />
                       <span className="fb" />
                     </span>
                     <span className="badges"><i>{c.wallet2}</i><i>{c.wallet1}</i></span>
                   </div>
-                  <span className="base" />
                 </div>
                 <span className={`hw-link${s.link ? ' show' : ''}${s.tap ? ' tap' : ''}`}>{Ico.link(10)}{c.url}</span>
                 <span className="hw-zoom"><i>.5</i><i className="on">1×</i><i>2</i></span>
@@ -193,7 +190,7 @@ export function HowItWorksStory({ c }: { c: HowCopy }) {
 
             {/* 1b join page */}
             <section className={`hw-scene hw-join${on('join')}`}>
-              <div className="hw-join-head"><DoodleHeader /><StatusBar /></div>
+              <div className="hw-join-head"><IlloSvg data={scenesJoinHeaderKebab} className="hw-doodles" preserveAspectRatio="xMidYMid slice" /><StatusBar /></div>
               <div className="hw-join-logo"><ShopLogo name={c.brand} sub={c.brandSub} size={76} /></div>
               <div className="hw-join-body">
                 <small className="shop">{c.shop}</small>
@@ -258,6 +255,7 @@ export function HowItWorksStory({ c }: { c: HowCopy }) {
 
             {/* 2a' stamp added */}
             <section className={`hw-scene hw-added${on('added')}`}>
+              <IlloSvg data={scenesScanSuccess} className="hw-scene-bg" preserveAspectRatio="xMidYMid slice" />
               <StatusBar />
               <span className="ring">{Ico.check(30)}</span>
               <span className="lbl">{c.stampAdded}</span>
@@ -266,6 +264,7 @@ export function HowItWorksStory({ c }: { c: HowCopy }) {
 
             {/* 3 lock screen */}
             <section className={`hw-scene hw-lock${on('lock')}`}>
+              <IlloSvg data={scenesLockscreenWallpaperBlue} className="hw-scene-bg" preserveAspectRatio="xMidYMid slice" />
               <StatusBar />
               <span className="lk">{Ico.lock(12)}</span>
               <span className="date">{c.lockDate}</span>
