@@ -2,6 +2,27 @@
 import * as d from './illo-data';
 
 export const illos = {
+  'avatars/avatar-01': d.avatarsAvatar01,
+  'avatars/avatar-02': d.avatarsAvatar02,
+  'avatars/avatar-03': d.avatarsAvatar03,
+  'avatars/avatar-04': d.avatarsAvatar04,
+  'avatars/avatar-05': d.avatarsAvatar05,
+  'avatars/avatar-06': d.avatarsAvatar06,
+  'avatars/avatar-07': d.avatarsAvatar07,
+  'avatars/avatar-08': d.avatarsAvatar08,
+  'avatars/avatar-09': d.avatarsAvatar09,
+  'avatars/avatar-10': d.avatarsAvatar10,
+  'avatars/avatar-11': d.avatarsAvatar11,
+  'avatars/avatar-12': d.avatarsAvatar12,
+  'avatars/avatar-13': d.avatarsAvatar13,
+  'avatars/avatar-14': d.avatarsAvatar14,
+  'avatars/avatar-15': d.avatarsAvatar15,
+  'avatars/avatar-16': d.avatarsAvatar16,
+  'avatars/badge-check': d.avatarsBadgeCheck,
+  'avatars/badge-person': d.avatarsBadgePerson,
+  'avatars/badge-stamp': d.avatarsBadgeStamp,
+  'avatars/guest-grey': d.avatarsGuestGrey,
+  'avatars/guest-soft': d.avatarsGuestSoft,
   'icons/ui-stamp': d.iconsUiStamp,
 } as const;
 

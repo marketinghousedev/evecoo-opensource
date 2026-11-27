@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { useT } from '@/components/I18nProvider';
 import { Icon } from './Icon';
 import { LogoMark } from './Logo';
+import { IlloSvg } from '@/components/illustration/IlloSvg';
+import { avatarsAvatar01, avatarsBadgeCheck, avatarsGuestGrey } from '@/components/illustration/illo-data';
 import { SectionHead } from './Features';
 import { AutoRows, WalletStack, LiveFeed, TeamRows, BdayPhone, NearMap } from './bento/BentoVis';
 import type { AutoCopy, WalletCopy, LiveCopy, TeamCopy, BdayCopy, NearCopy } from './bento/BentoVis';
@@ -81,11 +83,11 @@ export function Problem() {
         </article>
         <article className="pcard" data-reveal>
           <div className="pvis flowv">
-            <div className="fl"><span className="fn"><Icon name="person" size={22} /></span><small>{t('landing.prob.c3.guest')}</small></div>
+            <div className="fl"><span className="fn fn-av"><IlloSvg data={avatarsGuestGrey} className="fn-art" /></span><small>{t('landing.prob.c3.guest')}</small></div>
             <i className="fline" aria-hidden="true"><b /></i>
             <div className="fl"><span className="fn sq"><LogoMark size={26} /></span><small>{t('common.appName').toLowerCase()}</small></div>
             <i className="fline f2" aria-hidden="true"><b /></i>
-            <div className="fl"><span className="fn blue"><Icon name="person" size={22} fill /><i className="fcheck" aria-hidden="true"><Icon name="check" size={11} /></i></span><small>{t('landing.prob.c3.reg')}</small></div>
+            <div className="fl"><span className="fn fn-av"><IlloSvg data={avatarsAvatar01} className="fn-art" /><IlloSvg data={avatarsBadgeCheck} className="fcheck" /></span><small>{t('landing.prob.c3.reg')}</small></div>
             <Link href="/signup" className="btn btn-lg wide">{t('landing.cta.trial')} <Icon name="arrow_forward" size={20} /></Link>
           </div>
           <div className="plabel"><i className="n b">3</i>{t('landing.prob.c3.label')}</div>

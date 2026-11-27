@@ -2,7 +2,8 @@
 
 import type { ReactNode } from 'react';
 import { LogoMark } from '../Logo';
-import { Avatar } from '../features/shared';
+import { IlloSvg } from '@/components/illustration/IlloSvg';
+import { avatarsAvatar03, avatarsAvatar10, avatarsAvatar11, avatarsAvatar12, avatarsAvatar15, avatarsAvatar02, avatarsAvatar08, avatarsBadgePerson } from '@/components/illustration/illo-data';
 import { mod, useTicker } from '../features/useTicker';
 
 const ic = { fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' } as const;
@@ -90,13 +91,7 @@ export function WalletStack({ copy }: { copy: WalletCopy }) {
 
 /* 3. live feed ---------------------------------------------------------- */
 export type LiveCopy = { live: string; names: string[]; actions: string[]; when: string[] };
-const FACES = [
-  { skin: '#E9B98F', hair: '#BDBDBD', shirt: '#7BA3C9' },
-  { skin: '#D99A73', hair: '#5A3420', shirt: '#E4893F' },
-  { skin: '#F0C7A4', hair: '#2B2323', shirt: '#6D88D9' },
-  { skin: '#E3A27C', hair: '#C2561F', shirt: '#2E9E8A' },
-  { skin: '#F3CDA6', hair: '#E8B64A', shirt: '#D96A8C' },
-];
+const FACES = [avatarsAvatar03, avatarsAvatar11, avatarsAvatar15, avatarsAvatar12, avatarsAvatar10];
 const ROW = 70;
 
 export function LiveFeed({ copy }: { copy: LiveCopy }) {
@@ -116,7 +111,7 @@ export function LiveFeed({ copy }: { copy: LiveCopy }) {
               className={`bx-lrow${k === tick && tick > 0 ? ' fresh' : ''}`}
               style={{ transform: `translateY(${age * ROW}px)`, opacity: age === 3 ? 0 : 1 }}
             >
-              <Avatar skin={f.skin} hair={f.hair} shirt={f.shirt} size={38} />
+              <IlloSvg data={f} className="bx-av" />
               <span className="bx-atx"><b>{copy.names[who]}</b><small className={act === 1 ? 'g' : ''}>{copy.actions[act]}</small></span>
               <small className="bx-when">{copy.when[Math.min(age, 2)]}</small>
             </div>
@@ -128,6 +123,7 @@ export function LiveFeed({ copy }: { copy: LiveCopy }) {
 }
 
 /* 4. team permissions --------------------------------------------------- */
+const TEAM_FACES = [avatarsAvatar02, avatarsAvatar08];
 export type TeamCopy = { rows: { n: string; r: string }[]; perms: string[] };
 const FRAMES: number[][][] = [
   [[1, 1, 0], [1, 0, 0]],
@@ -143,8 +139,9 @@ export function TeamRows({ copy }: { copy: TeamCopy }) {
     <div className="bx-team" ref={ref}>
       {copy.rows.map((r, ri) => (
         <div key={ri} className="bx-trow">
-          <span className="bx-aic" style={{ background: '#E8EFFE', color: '#044DF2' }}>
-            <svg width="20" height="20" viewBox="0 0 24 24" {...ic}><rect x="5" y="3" width="14" height="18" rx="2.5" /><circle cx="12" cy="10" r="2.2" /><path d="M8.5 16.5c.8-1.600 2-2.200 3.500-2.200s2.700.6 3.500 2.200" /></svg>
+          <span className="bx-tav">
+            <IlloSvg data={TEAM_FACES[ri % TEAM_FACES.length]} className="bx-av" />
+            <IlloSvg data={avatarsBadgePerson} className="bx-tbadge" />
           </span>
           <span className="bx-atx"><b>{r.n}</b><small>{r.r}</small></span>
           <span className="bx-perms">{copy.perms.map((p, pi) => <i key={pi} className={st[ri][pi] ? 'on' : ''}>{p}</i>)}</span>

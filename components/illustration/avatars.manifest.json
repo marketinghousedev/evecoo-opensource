@@ -1,0 +1,107 @@
+[
+  {
+    "id": "avatar-01",
+    "file": "avatars/avatar-01.svg",
+    "description": "Young woman with long dark brown hair and a berry top"
+  },
+  {
+    "id": "avatar-02",
+    "file": "avatars/avatar-02.svg",
+    "description": "Man with a short black beard and round glasses in a blue shirt"
+  },
+  {
+    "id": "avatar-03",
+    "file": "avatars/avatar-03.svg",
+    "description": "Senior woman with a grey bun, glasses and a cream scarf"
+  },
+  {
+    "id": "avatar-04",
+    "file": "avatars/avatar-04.svg",
+    "description": "Woman wearing a blue hijab"
+  },
+  {
+    "id": "avatar-05",
+    "file": "avatars/avatar-05.svg",
+    "description": "Bald man with a deep skin tone in an ochre jacket"
+  },
+  {
+    "id": "avatar-06",
+    "file": "avatars/avatar-06.svg",
+    "description": "Young woman with dark curly hair and a coral top"
+  },
+  {
+    "id": "avatar-07",
+    "file": "avatars/avatar-07.svg",
+    "description": "Teenage boy in a red cap and a navy hoodie"
+  },
+  {
+    "id": "avatar-08",
+    "file": "avatars/avatar-08.svg",
+    "description": "Woman with long braids and a green collared top"
+  },
+  {
+    "id": "avatar-09",
+    "file": "avatars/avatar-09.svg",
+    "description": "Senior man with grey hair, a moustache and glasses in a brown shirt"
+  },
+  {
+    "id": "avatar-10",
+    "file": "avatars/avatar-10.svg",
+    "description": "Woman with a blonde bob and a bright blue top"
+  },
+  {
+    "id": "avatar-11",
+    "file": "avatars/avatar-11.svg",
+    "description": "Man with a rounded afro and a brown sweater"
+  },
+  {
+    "id": "avatar-12",
+    "file": "avatars/avatar-12.svg",
+    "description": "Young man with ginger hair and a green jacket"
+  },
+  {
+    "id": "avatar-13",
+    "file": "avatars/avatar-13.svg",
+    "description": "Older man with a full grey beard in a slate shirt"
+  },
+  {
+    "id": "avatar-14",
+    "file": "avatars/avatar-14.svg",
+    "description": "Woman wearing a berry hijab and glasses"
+  },
+  {
+    "id": "avatar-15",
+    "file": "avatars/avatar-15.svg",
+    "description": "Woman with short dark hair and a round face in an olive top"
+  },
+  {
+    "id": "avatar-16",
+    "file": "avatars/avatar-16.svg",
+    "description": "Man with side-parted hair in a blue hoodie"
+  },
+  {
+    "id": "guest-grey",
+    "file": "avatars/guest-grey.svg",
+    "description": "Anonymous guest, grey outline person"
+  },
+  {
+    "id": "guest-soft",
+    "file": "avatars/guest-soft.svg",
+    "description": "Anonymous guest, soft brand-blue outline person"
+  },
+  {
+    "id": "badge-check",
+    "file": "avatars/badge-check.svg",
+    "description": "Success check badge"
+  },
+  {
+    "id": "badge-person",
+    "file": "avatars/badge-person.svg",
+    "description": "Person badge"
+  },
+  {
+    "id": "badge-stamp",
+    "file": "avatars/badge-stamp.svg",
+    "description": "Stamp badge"
+  }
+]

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { LogoMark } from '../Logo';
-import { Avatar, PersonGlyph } from './avatars';
+import { Avatar, AvatarBadge, PersonGlyph } from './avatars';
 import './hero-flow.css';
 
 export type HeroFlowCopy = {
@@ -183,13 +183,7 @@ export function HeroFlow({ copy }: { copy: HeroFlowCopy }) {
           <span className="hf-person"><PersonGlyph /></span>
           <span className="hf-av">
             <span className="pic"><Avatar i={i} /></span>
-            <span className={`hf-badge ${i % 3 === 1 ? 'user' : 'check'}`}>
-              {i % 3 === 1 ? (
-                <svg viewBox="0 0 24 24" width="11" height="11" aria-hidden="true"><circle cx="12" cy="8" r="4.2" fill="currentColor" /><path d="M3.5 21c.6-4.6 4-7 8.5-7s7.9 2.4 8.5 7Z" fill="currentColor" /></svg>
-              ) : (
-                <svg viewBox="0 0 24 24" width="11" height="11" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-              )}
-            </span>
+            <span className="hf-badge"><AvatarBadge kind={i % 3 === 1 ? 'person' : 'check'} /></span>
           </span>
         </span>
       ))}
