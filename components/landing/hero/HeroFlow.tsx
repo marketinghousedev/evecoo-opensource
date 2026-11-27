@@ -136,6 +136,7 @@ export function HeroFlow({ copy }: { copy: HeroFlowCopy }) {
     const chipEls = [...cEls, ...lEls];
     const dy = new Map<HTMLElement, number>();
     const size = new Map<HTMLElement, [number, number]>();
+    const fade = new Map<HTMLElement, number>();
     const avoid = (list: { n: HTMLElement; x: number; y: number; o: number }[], guests: Guest[]) => {
       const placed: [number, number, number, number][] = []; // cx, cy, hw, hh (px)
       const obst: [number, number, number][] = guests.map((g, i) => [g.x * gs.w, g.y * gs.h, (31 * gs.k * g.s + 8) * (gEls[i]?.offsetParent ? 1 : 0)]);
@@ -161,7 +162,12 @@ export function HeroFlow({ copy }: { copy: HeroFlowCopy }) {
         const cur = (dy.get(c.n) ?? 0) + (best - (dy.get(c.n) ?? 0)) * 0.5;
         dy.set(c.n, cur);
         c.n.style.setProperty('--y', String(r4(c.y + cur / gs.h)));
-        if (c.o > 0.02) placed.push([cx, cy + cur, hw, hh]);
+        // no free lane (or still sliding into one): fade the chip out instead of letting it overlap
+        const clash = c.o > 0.02 && hit(cx, cy + cur, hw, hh);
+        const f = clamp((fade.get(c.n) ?? 1) + (clash ? -0.5 : 0.08));
+        fade.set(c.n, f);
+        c.n.style.setProperty('--o', String(r4(c.o * f)));
+        if (c.o > 0.02 && !clash) placed.push([cx, cy + cur, hw, hh]);
       }
     };
     void chipEls; void nodeEl;

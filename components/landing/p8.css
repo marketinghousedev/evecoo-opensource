@@ -14,8 +14,8 @@
 .stand-art { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .stand-print { position: absolute; left: 22.08%; width: 55.83%; top: 8.7%; height: 36%; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 1.2cqw; padding-top: 2.6cqw; text-align: center; color: #2A3A2E; z-index: 1; }
 .stand-print .moon { width: 6.2cqw; height: 6.2cqw; border-radius: 50%; background: #E3B34A; display: block; flex: none; }
-.stand-print b { font-family: serif; font-weight: 700; font-size: 7.6cqw; line-height: 1.08; text-wrap: balance; }
-.stand-print strong { font-family: serif; font-weight: 400; font-size: 6.4cqw; line-height: 1.1; text-wrap: balance; }
+.stand-print b { font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif; font-weight: 700; font-size: 7.6cqw; line-height: 1.08; text-wrap: balance; }
+.stand-print strong { font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif; font-weight: 400; font-size: 6.4cqw; line-height: 1.1; text-wrap: balance; }
 .stand-print small { position: absolute; top: calc(100% + 27cqw); width: 100%; font-size: 3.4cqw; line-height: 1.2; color: #3A4160; }
 .stand-qr { position: absolute; left: 38.33%; top: 46.67%; width: 23.33%; aspect-ratio: 1; z-index: 1; line-height: 0; }
 .stand-qr svg { width: 100%; height: 100%; display: block; border-radius: 2px; }
@@ -29,7 +29,7 @@
 .msgr-top .dot { width: 7px; height: 7px; border-radius: 50%; background: #12B76A; display: inline-block; }
 .msgr-body { padding: 14px 12px 10px; display: flex; flex-direction: column; gap: 8px; background: #F6F8FC; }
 .msgr .bub { border-radius: 14px; padding: 8px 12px 6px; font-size: .75rem; line-height: 1.35; position: relative; max-width: 86%; display: block; margin: 0; }
-.msgr .bub small { display: flex; justify-content: flex-end; align-items: center; gap: 4px; margin-top: 2px; font-size: .6rem; color: #6B7391; }
+.msgr .bub small { display: flex; justify-content: flex-end; align-items: center; gap: 4px; margin-top: 2px; font-size: .6rem; color: #5A6280; }
 .msgr .bub.out { background: var(--brand-soft); align-self: flex-end; border-bottom-right-radius: 4px; color: var(--on-surface); }
 .msgr .bub.in { background: #fff; align-self: flex-start; border-bottom-left-radius: 4px; box-shadow: 0 1px 2px rgba(11,31,68,.08); }
 .msgr-in { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-top: 1px solid #EEF1F8; background: #fff; }
@@ -50,7 +50,7 @@
 .logo-marquee:hover .logo-track, .logo-marquee:focus-within .logo-track { animation-play-state: paused; }
 .logo-set { display: flex; align-items: center; gap: 56px; padding: 6px 28px; margin: 0; list-style: none; flex: none; }
 .logo-set li { display: flex; flex: none; }
-.logo-set .wm { height: 30px; width: auto; display: block; color: #8A91AA; transition: color .2s; }
+.logo-set .wm { height: 30px; width: auto; display: block; color: #6B7391; transition: color .2s; }
 .logo-set li:hover .wm { color: var(--navy); }
 @keyframes logo-scroll { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) {

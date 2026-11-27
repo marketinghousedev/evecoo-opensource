@@ -79,13 +79,8 @@ img, svg { max-width: 100%; }
 @keyframes stamp-pop { 0% { transform: scale(.4) rotate(-18deg); opacity: .2; } 65% { transform: scale(1.12) rotate(4deg); opacity: 1; } 100% { transform: none; opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .stamp-slot.is-pop > .illo, .stamp-slot.is-pop > .stamp-notch-mono { animation: none; } }
 
-.material-symbols-outlined {
-  font-family: 'Material Symbols Outlined';
-  font-weight: normal; font-style: normal; font-size: 24px; line-height: 1;
-  letter-spacing: normal; text-transform: none; display: inline-block; white-space: nowrap;
-  word-wrap: normal; direction: ltr; -webkit-font-feature-settings: 'liga'; font-feature-settings: 'liga';
-  -webkit-font-smoothing: antialiased; user-select: none;
-}
+.lp-ico { display: inline-flex; flex: none; font-size: 24px; line-height: 1; vertical-align: middle; }
+.lp-ico > svg { display: block; }
 
 .container { width: 100%; max-width: 1080px; margin: 0 auto; padding: 16px; }
 

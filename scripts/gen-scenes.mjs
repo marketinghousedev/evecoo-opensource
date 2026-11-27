@@ -16,8 +16,7 @@ const write = (dir, name, s) => fs.writeFileSync(path.join(root, dir, name + '.s
 /* ---------- counter scene: what the phone camera sees (268x356) ---------- */
 function counter(kind) {
   const n = `counter-scene-${kind}`;
-  const hero = kind === 'kebab'
-    ? `<g class="spit">
+  const hero = `<g class="spit">
          <rect x="35" y="30" width="3.4" height="172" rx="1.7" fill="${C.navy}" fill-opacity=".45"/>
          <rect x="12" y="46" width="48" height="150" rx="15" fill="${C.honey}"/>
          <path d="M14 76h44M13 100h46M13 124h46M14 148h44M16 172h40" stroke="${C.espresso}" stroke-width="7" stroke-linecap="round" stroke-opacity=".75"/>
@@ -26,21 +25,8 @@ function counter(kind) {
          <rect x="8" y="36" width="56" height="12" rx="5" fill="${C.espressoSoft}"/>
          <rect x="10" y="196" width="52" height="9" rx="3" fill="${C.navy}" fill-opacity=".35"/>
          <rect x="62" y="56" width="26" height="124" rx="6" fill="url(#${n}__heat)"/>
-       </g>`
-    : `<g class="machine">
-         <rect x="10" y="76" width="82" height="118" rx="10" fill="${C.espresso}"/>
-         <rect x="8" y="64" width="86" height="20" rx="8" fill="${C.espressoSoft}"/>
-         <rect x="10" y="64" width="82" height="6" rx="3" fill="${C.white}" fill-opacity=".5"/>
-         <rect x="22" y="94" width="58" height="34" rx="6" fill="${C.navy}" fill-opacity=".45"/>
-         <circle cx="34" cy="111" r="7" fill="${C.honeySoft}" fill-opacity=".9"/><circle cx="52" cy="111" r="4" fill="${C.honeySoft}" fill-opacity=".6"/><circle cx="68" cy="111" r="4" fill="${C.tomato}" fill-opacity=".9"/>
-         <rect x="26" y="138" width="14" height="20" rx="4" fill="${C.navy}" fill-opacity=".55"/><rect x="62" y="138" width="14" height="20" rx="4" fill="${C.navy}" fill-opacity=".55"/>
-         <path d="M33 158v14M69 158v14" stroke="${C.honeySoft}" stroke-width="2.5" stroke-linecap="round" stroke-opacity=".7"/>
-         <rect x="24" y="176" width="20" height="18" rx="3" fill="${C.white}" fill-opacity=".85"/><rect x="58" y="176" width="20" height="18" rx="3" fill="${C.white}" fill-opacity=".85"/>
-         <path d="M92 108q16 0 16 22v30" fill="none" stroke="${C.navy}" stroke-opacity=".4" stroke-width="3" stroke-linecap="round"/>
-         <rect x="96" y="30" width="22" height="46" rx="6" fill="${C.honey}" fill-opacity=".85"/><rect x="98" y="24" width="18" height="8" rx="3" fill="${C.espressoSoft}"/>
-         <rect x="6" y="194" width="92" height="8" rx="3" fill="${C.navy}" fill-opacity=".3"/>
        </g>`;
-  const glow = kind === 'kebab' ? C.tomato : C.honey;
+  const glow = C.tomato;
   const bokeh = [[132, 24, 14, .5], [24, 12, 9, .35], [246, 96, 12, .35], [106, 84, 8, .4], [172, 118, 10, .3], [232, 40, 7, .4]]
     .map(([x, y, r, o]) => `<circle class="bokeh" cx="${x}" cy="${y}" r="${r}" fill="url(#${n}__bokeh)" fill-opacity="${o}"/>`).join('');
   const menu = [0, 1, 2, 3].map((i) => `<path d="M112 ${22 + i * 8}h${i % 2 ? 54 : 72}M192 ${22 + i * 8}h${i % 2 ? 30 : 24}" stroke="${C.honeySoft}" stroke-width="2.6" stroke-linecap="round" stroke-opacity="${i ? .55 : .85}"/>`).join('');
@@ -85,7 +71,6 @@ ${hero}
 </g>`);
 }
 write('scenes', 'counter-scene-kebab', counter('kebab'));
-write('scenes', 'counter-scene-coffee', counter('coffee'));
 
 /* ---------- join page header: stamp pattern at 8% on the brand colour (currentColor) ---------- */
 const stampArt = (name) => fs.readFileSync(path.join(root, 'stamps', `stamp-${name}-mono.svg`), 'utf8')
@@ -104,7 +89,6 @@ function joinHeader(slug, a, b) {
 <rect width="268" height="132" fill="url(#${n}__shade)"/>`);
 }
 write('scenes', 'join-header-kebab', joinHeader('kebab', 'kebab', 'burger'));
-write('scenes', 'join-header-coffee', joinHeader('coffee', 'coffee', 'croissant'));
 
 /* ---------- scan success background (268x580) ---------- */
 {
@@ -127,9 +111,8 @@ write('scenes', 'join-header-coffee', joinHeader('coffee', 'coffee', 'croissant'
 /* ---------- lock screen wallpapers (268x580), reused by the feature cards ---------- */
 function wallpaper(variant) {
   const n = `lockscreen-wallpaper-${variant}`;
-  const violet = variant === 'violet';
-  const base = violet ? [C.navy, C.brand, C.berry] : [C.brand, C.brandLight, C.brandMuted];
-  const hi = violet ? C.berry : C.brandMuted;
+  const base = [C.brand, C.brandLight, C.brandMuted];
+  const hi = C.brandMuted;
   const wave = (y, a, op, col, id) =>
     `<path class="wave wave-${id}" d="M-20 ${y}C40 ${y - a} 90 ${y + a} 150 ${y}S250 ${y - a} 300 ${y - a / 2}V620H-20Z" fill="${col}" fill-opacity="${op}"/>`;
   return svg('0 0 268 580', `
@@ -140,7 +123,6 @@ function wallpaper(variant) {
 <rect width="268" height="580" fill="url(#${n}__bg)"/>
 <ellipse cx="70" cy="560" rx="210" ry="170" fill="url(#${n}__glow)"/>
 <ellipse cx="236" cy="150" rx="140" ry="120" fill="url(#${n}__glow)" fill-opacity=".35"/>
-${wave(330, 34, 0.1, C.white, 1)}${wave(400, 40, 0.12, C.white, 2)}${wave(470, 36, 0.16, violet ? C.brandMuted : C.brandLight, 3)}${wave(530, 30, 0.22, C.brand, 4)}`);
+${wave(330, 34, 0.1, C.white, 1)}${wave(400, 40, 0.12, C.white, 2)}${wave(470, 36, 0.16, C.brandLight, 3)}${wave(530, 30, 0.22, C.brand, 4)}`);
 }
 write('scenes', 'lockscreen-wallpaper-blue', wallpaper('blue'));
-write('scenes', 'lockscreen-wallpaper-violet', wallpaper('violet'));

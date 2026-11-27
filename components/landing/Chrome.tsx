@@ -71,7 +71,7 @@ export function SiteFooter() {
           </div>
           {cols.map(([title, items]) => (
             <div key={title}>
-              <h4>{t(`footer.${title}`)}</h4>
+              <h3>{t(`footer.${title}`)}</h3>
               <ul>
                 {items.map(([k, href]) => (
                   <li key={k}><Link href={href}>{t(`footer.${k}`)}</Link></li>

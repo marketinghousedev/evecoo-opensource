@@ -13,16 +13,13 @@ const en = getMessages('en');
 
 export const metadata: Metadata = {
   title: `${translate(en, 'en', 'common.appName')} – ${translate(en, 'en', 'common.tagline')}`,
+  description: `${translate(en, 'en', 'landing.hero.sub1')} ${translate(en, 'en', 'landing.hero.sub2')}`,
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   const locales = availableLocales();
   return (
     <html lang="en" className={hanken.variable}>
-      <head>
-        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=block" />
-      </head>
       <body>
         <I18nProvider locales={locales} messages={en}>
           <LocaleSwitcher locales={locales} />

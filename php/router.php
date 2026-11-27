@@ -31,6 +31,16 @@ $serve = static function (string $file, int $status = 200) use ($types): never {
     http_response_code($status);
     header('Content-Type: ' . ($types[$ext] ?? 'application/octet-stream'));
     header('X-Content-Type-Options: nosniff');
+    // Mirrors mod_deflate in deploy/htaccess.root, so local Lighthouse runs see production-like transfer sizes.
+    $text = in_array($ext, ['html', 'txt', 'css', 'js', 'mjs', 'json', 'svg', 'map', 'xml'], true);
+    if ($text && function_exists('gzencode') && str_contains((string) ($_SERVER['HTTP_ACCEPT_ENCODING'] ?? ''), 'gzip')) {
+        $body = (string) gzencode((string) file_get_contents($file), 6);
+        header('Content-Encoding: gzip');
+        header('Vary: Accept-Encoding');
+        header('Content-Length: ' . strlen($body));
+        echo $body;
+        exit;
+    }
     header('Content-Length: ' . filesize($file));
     readfile($file);
     exit;

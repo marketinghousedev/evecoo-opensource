@@ -23,11 +23,13 @@ const rect = (x, y, w, h, r) => `M${x + r} ${y}H${x + w - r}Q${x + w} ${y} ${x +
 
 // shape: [d, fill colour key | 'none', optional flag]. 'hl' = decorative highlight (filled only).
 const ICONS = {
+  // Doener spit: the skewer runs through (top knob and bottom tip) and the meat cone has bumpy
+  // edges and slice ridges, so it never reads as a cup at 20 px.
   kebab: { tint: 'honeySoft', shapes: [
-    ['M20 4V9', 'none'],
-    ['M12 10Q20 7 28 10L24.5 31Q20 33 15.5 31Z', 'honey'],
-    ['M13.5 20.5H26.5', 'none'],
-    ['M12 34H28', 'none'],
+    ['M20 3V8M20 31V37', 'none'],
+    ['M9 8.5H31Q33.5 11 30.5 13.5Q32.5 16.5 29 19Q30.5 22 27.5 24.5Q28.5 27.5 25 30.5H15Q11.5 27.5 12.5 24.5Q9.5 22 11 19Q7.5 16.5 9.5 13.5Q6.5 11 9 8.5Z', 'honey'],
+    ['M11.5 14.5Q20 17 28.5 14.5M13 21.5Q20 24 27 21.5', 'none'],
+    ['M12.5 11.5Q13.5 10.5 15 10.5', 'white', 'hl'],
   ] },
   coffee: { tint: 'espressoSoft', shapes: [
     ['M14 4.5Q12.2 7 14 9.5M20 4.5Q18.2 7 20 9.5', 'none'],
@@ -47,10 +49,11 @@ const ICONS = {
     ['M9 18Q10 15.5 12.5 14', 'white', 'hl'],
   ] },
   pizza: { tint: 'tomatoSoft', shapes: [
-    ['M7 14Q20 9 33 14L20 34Z', 'honeySoft'],
-    ['M5.5 10Q20 3.5 34.5 10Q35 13 33 14Q20 9 7 14Q5 13 5.5 10Z', 'honey'],
-    [ell(16, 19, 3.3, 3.3), 'tomato'],
-    [ell(24.5, 20, 3, 3), 'tomato'],
+    ['M6.5 12.5Q20 6.5 33.5 12.5L20 36Z', 'honeySoft'],
+    ['M5 9Q20 1.5 35 9Q36 12 33.5 12.5Q20 6.5 6.5 12.5Q4 12 5 9Z', 'honey'],
+    [ell(15, 17, 2.8, 2.8), 'tomato'],
+    [ell(25, 17, 2.8, 2.8), 'tomato'],
+    [ell(20, 25.5, 2.5, 2.5), 'tomato'],
   ] },
   burger: { tint: 'honeySoft', shapes: [
     ['M7 18Q7 8 20 8Q33 8 33 18Z', 'honey'],
@@ -78,13 +81,13 @@ const ICONS = {
     ['M11 21Q9 9 20 8Q31 9 29 21Q25 24 20 22.5Q15 24 11 21Z', 'berry'],
     ['M14.5 15Q15.5 12 18 11', 'white', 'hl'],
   ] },
+  // Open scissors: hollow finger rings (visible in every state), pointed blades, pivot dot.
   scissors: { tint: 'espressoSoft', shapes: [
-    ['M10 5L13 4.5L26 25L22 27.5Z', 'border'],
-    ['M30 5L27 4.5L14 25L18 27.5Z', 'border'],
-    [ell(12, 31, 4.5, 4.5), 'espresso'],
-    [ell(28, 31, 4.5, 4.5), 'espresso'],
-    [ell(12, 31, 1.6, 1.6), 'white'],
-    [ell(28, 31, 1.6, 1.6), 'white'],
+    ['M15 24.5L28.5 4.5Q30.5 5.5 30 8L19 26.5Z', 'border'],
+    ['M25 24.5L11.5 4.5Q9.5 5.5 10 8L21 26.5Z', 'border'],
+    [ell(12, 30.5, 4.8, 4.8), 'none'],
+    [ell(28, 30.5, 4.8, 4.8), 'none'],
+    [ell(20, 17.5, 1, 1), 'navy'],
   ] },
   nail: { tint: 'berrySoft', shapes: [
     [rect(10.5, 17, 19, 17, 4.5), 'berry'],
@@ -98,15 +101,12 @@ const ICONS = {
     [rect(12, 22, 16, 12.5, 2.5), 'navy'],
     ['M16.5 26V31', 'white', 'hl'],
   ] },
+  // Five-petal bloom on a stem with one leaf (reads as a flower, not a pot, at 20 px).
   flower: { tint: 'berrySoft', shapes: [
-    ['M20 14V23', 'none'],
-    ['M10 22Q5.5 19 6.5 14Q10.5 14.5 12.5 18Z', 'herb'],
-    ['M30 22Q34.5 19 33.5 14Q29.5 14.5 27.5 18Z', 'herb'],
-    [ell(20, 10, 4.8, 4.8), 'berry'],
-    [ell(12.5, 15.5, 4.5, 4.5), 'berry'],
-    [ell(27.5, 15.5, 4.5, 4.5), 'berry'],
-    [ell(20, 10, 1.4, 1.4), 'white'],
-    ['M9.5 22.5H30.5L24.5 35H15.5Z', 'white'],
+    ['M20 22V36', 'none'],
+    ['M20 31Q26.5 31.5 29 24.5Q22.5 24 20 31Z', 'herb'],
+    ['M15.72 7.11A4.3 4.3 0 1 1 24.28 7.11A4.3 4.3 0 1 1 26.93 15.25A4.3 4.3 0 1 1 20 20.28A4.3 4.3 0 1 1 13.07 15.25A4.3 4.3 0 1 1 15.72 7.11Z', 'berry'],
+    [ell(20, 13, 2.4, 2.4), 'honeySoft'],
   ] },
   carwash: { tint: 'brandSoft', shapes: [
     ['M20 5Q31.5 17 31.5 24.5A11.5 11.5 0 0 1 8.5 24.5Q8.5 17 20 5Z', 'brandMuted'],

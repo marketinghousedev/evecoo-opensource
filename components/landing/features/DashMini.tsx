@@ -33,9 +33,9 @@ export function DashMini({ copy }: { copy: DashCopy }) {
       <div className="fx-dash-top">
         <div className="fx-tile fx-ring">
           <svg width="64" height="64" viewBox="0 0 48 48" aria-hidden="true">
-            <circle cx="24" cy="24" r={R} fill="none" stroke="#E4E9F5" strokeWidth="5.5" />
-            <circle cx="24" cy="24" r={R} fill="none" stroke="#0B1F44" strokeWidth="5.5" strokeLinecap="round" strokeDasharray={C} strokeDashoffset={C * (1 - z(s.pct) / 100)} transform="rotate(-90 24 24)" style={{ transition: 'stroke-dashoffset .9s var(--ease)' }} />
-            <text x="24" y="27.4" textAnchor="middle" fontSize="9.5" fontWeight="500" fill="#0B1F44" style={{ fontVariantNumeric: 'tabular-nums' }}>{pct}%</text>
+            <circle cx="24" cy="24" r={R} fill="none" stroke="#E4E9F5" strokeWidth="4.5" />
+            <circle cx="24" cy="24" r={R} fill="none" stroke="#0B1F44" strokeWidth="4.5" strokeLinecap="round" strokeDasharray={C} strokeDashoffset={C * (1 - z(s.pct) / 100)} transform="rotate(-90 24 24)" style={{ transition: 'stroke-dashoffset .9s var(--ease)' }} />
+            <text x="24" y="28.2" textAnchor="middle" fontSize="12" fontWeight="600" letterSpacing="-.3" fill="#0B1F44" style={{ fontVariantNumeric: 'tabular-nums' }}>{pct}%</text>
           </svg>
           <span><b className="fx-ic"><IlloSvg data={iconsDashReturning} />{copy.ret}</b><small>{copy.retSub.replace('{a}', String(ret)).replace('{b}', String(cust))}</small></span>
         </div>
