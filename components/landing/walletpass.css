@@ -1,0 +1,23 @@
+/* WalletPass: everything is sized in cqw of .wp-box, so the pass scales with its container. */
+.wp-box { container-type: inline-size; width: 100%; }
+.wp {
+  position: relative; overflow: hidden; background: var(--wp-bg); color: var(--wp-fg);
+  border-radius: 4.4cqw; padding: 5cqw 5cqw 5.5cqw; font-size: 4cqw; line-height: 1.2; text-align: left;
+  /* top highlight + two-layer shadow */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3), 0 1px 2px rgba(11, 31, 68, .16), 0 12px 24px -4px rgba(11, 31, 68, .24);
+}
+.wp::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 30cqw; background: linear-gradient(rgba(255, 255, 255, .12), transparent); pointer-events: none; }
+.wp > * { position: relative; }
+.wp small { display: block; font-size: 2.9cqw; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--wp-label); line-height: 1.25; }
+.wp-head { display: flex; align-items: center; gap: 2.6cqw; }
+.wp-mark { width: 9.5cqw; height: 9.5cqw; flex: none; }
+.wp-head b { flex: 1; min-width: 0; font-size: 5.4cqw; font-weight: 700; letter-spacing: -.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.wp-holder { display: flex; flex-direction: column; text-align: right; font-size: 3.4cqw; font-weight: 600; flex: none; }
+.wp-strip { margin: 3.5cqw -5cqw 0; aspect-ratio: 375 / 123; line-height: 0; }
+.wp-strip > svg { width: 100%; height: 100%; display: block; }
+.wp-stamps { margin-top: 4cqw; }
+.wp-fields { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2cqw; margin-top: 4cqw; font-size: 3.5cqw; font-weight: 600; }
+.wp-fields span { display: flex; flex-direction: column; gap: .4cqw; min-width: 0; }
+.wp-qr { width: 24cqw; aspect-ratio: 1; margin: 4cqw auto 0; padding: 2cqw; box-sizing: border-box; background: #fff; border-radius: 2.6cqw; line-height: 0; box-shadow: 0 1px 2px rgba(11, 31, 68, .18); }
+.wp-qr > svg { width: 100%; height: 100%; display: block; }
+.wp.is-compact .wp-fields { margin-top: 3cqw; }

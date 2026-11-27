@@ -1,7 +1,6 @@
 'use client';
 
 import { useT } from '@/components/I18nProvider';
-import { QrMock } from './features/shared';
 import { CardCarousel, type CarouselCopy } from './features/CardCarousel';
 import { PushPhone, type PushCopy } from './features/PushPhone';
 import { DashMini, type DashCopy } from './features/DashMini';
@@ -43,12 +42,7 @@ export { QrMock } from './features/shared';
 
 export function Features() {
   const { t } = useT();
-  const carousel: CarouselCopy = {
-    owner: t('landing.feat.c1.owner'), lblName: t('landing.feat.c1.lblName'), lblReward: t('landing.feat.c1.lblReward'),
-    lblBy: t('landing.feat.c1.lblBy'), lblProg: t('landing.feat.c1.lblProg'), by: t('common.appName'),
-    how: t('landing.feat.c1.how'), prev: t('landing.feat.c1.prev'), next: t('landing.feat.c1.next'), goto: t('landing.feat.c1.goto'),
-    cards: [1, 2, 3, 4, 5].map((i) => ({ name: t(`landing.feat.c1.k${i}.name`), reward: t(`landing.feat.c1.k${i}.reward`), prog: t(`landing.feat.c1.k${i}.prog`) })),
-  };
+  const carousel: CarouselCopy = { how: t('landing.feat.c1.how'), prev: t('landing.feat.c1.prev'), next: t('landing.feat.c1.next'), goto: t('landing.feat.c1.goto') };
   const push: PushCopy = {
     date: t('landing.feat.c2.date'),
     ago: [t('landing.feat.c2.now'), t('landing.feat.c2.ago2'), t('landing.feat.c2.ago3')],
@@ -66,7 +60,7 @@ export function Features() {
         <article className="fcard fx-card" data-reveal>
           <h3>{t('landing.feat.c1.title')}</h3>
           <p>{t('landing.feat.c1.body')}</p>
-          <CardCarousel copy={carousel} qr={<QrMock size={74} />} />
+          <CardCarousel copy={carousel} />
         </article>
         <article className="fcard fx-card" data-reveal>
           <h3>{t('landing.feat.c2.title')}</h3>

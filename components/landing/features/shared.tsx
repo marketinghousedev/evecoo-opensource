@@ -1,4 +1,4 @@
-export function QrMock({ size = 80, dark = '#0B1F44' }: { size?: number; dark?: string }) {
+export function QrMock({ size = 80, dark = "#0B1F44" }: { size?: number | string; dark?: string }) {
   const cells: number[] = [];
   let s = 7;
   for (let i = 0; i < 169; i++) { s = (s * 1103515245 + 12345) & 0x7fffffff; cells.push(s % 100 < 48 ? 1 : 0); }

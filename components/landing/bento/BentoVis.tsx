@@ -1,8 +1,8 @@
 'use client';
 
-import type { CSSProperties, ReactNode } from 'react';
-import { StampGrid } from '@/components/illustration/StampGrid';
-import { DEMO_STAMPS } from '../demoStamps';
+import type { ReactNode } from 'react';
+import { WalletPass } from '../WalletPass';
+import { BENTO_PASSES } from '../passes';
 import { LogoMark } from '../Logo';
 import { IlloSvg } from '@/components/illustration/IlloSvg';
 import { avatarsAvatar03, avatarsAvatar10, avatarsAvatar11, avatarsAvatar12, avatarsAvatar15, avatarsAvatar02, avatarsAvatar08, avatarsBadgePerson } from '@/components/illustration/illo-data';
@@ -46,39 +46,28 @@ export function AutoRows({ copy }: { copy: AutoCopy }) {
 }
 
 /* 2. wallet passes ------------------------------------------------------ */
-export type WalletCopy = { passes: { name: string; a: number; b: number }[]; of: string; stamps: string; holder: string; lblName: string; apple: string; google: string };
-const PASS = [
-  { bg: '#2B1B14', art: 'radial-gradient(90% 120% at 70% 40%, #9B6B48 0%, #3A241A 60%, #1E1410 100%)' },
-  { bg: '#26140F', art: 'radial-gradient(90% 120% at 30% 40%, #B07A4C 0%, #4A2A1C 60%, #1E1410 100%)' },
-  { bg: '#14110F', art: 'radial-gradient(90% 120% at 65% 30%, #5B4A40 0%, #2A211C 60%, #14110F 100%)' },
-];
+export type WalletCopy = { apple: string; google: string };
+/** Stack slot by depth from the front: vertical offset, scale, stacking order, opacity. Depth 3+ is hidden. */
 const DEPTH = [
-  { y: 66, s: 1, z: 3 },
-  { y: 33, s: 0.965, z: 2 },
-  { y: 0, s: 0.93, z: 1 },
+  { y: 66, s: 1, z: 6, o: 1 },
+  { y: 33, s: 0.965, z: 5, o: 1 },
+  { y: 0, s: 0.93, z: 4, o: 1 },
+  { y: 0, s: 0.9, z: 3, o: 0 },
+  { y: 0, s: 0.9, z: 2, o: 0 },
+  { y: 0, s: 0.9, z: 1, o: 0 },
 ];
-const PROG = [[6, 8], [5, 6], [4, 10], [3, 8], [7, 8]];
 
 export function WalletStack({ copy }: { copy: WalletCopy }) {
   const { ref, tick } = useTicker(2700);
-  const n = copy.passes.length;
+  const n = BENTO_PASSES.length;
   return (
     <div className="bx-wallet" ref={ref}>
       <div className="bx-stack">
-        {copy.passes.map((p, i) => {
-          const depth = mod(i - tick, n);
-          const d = DEPTH[depth];
-          // progress text changes each time a pass reaches the front
-          const k = Math.floor((tick + n - i) / n);
-          const prog = PROG[mod(k - 1 + 2 * i, PROG.length)];
+        {BENTO_PASSES.map((p, i) => {
+          const d = DEPTH[mod(i - tick, n)];
           return (
-            <div key={i} className="bx-pass" style={{ background: PASS[i].bg, transform: `translateY(${d.y}px) scale(${d.s})`, zIndex: d.z }}>
-              <div className="bx-pass-top"><b>{p.name}</b><span><small>{copy.lblName}</small>{copy.holder}</span></div>
-              <div className="bx-pass-art" style={{ background: PASS[i].art }}>
-                <StampGrid className="bx-stamps" name={DEMO_STAMPS.cup} n={prog[1]} filled={prog[0]} size={21} tone="mono" columns={5} style={{ color: '#F3E7D6', '--stamp-bg': PASS[i].bg } as CSSProperties} />
-                <strong>{copy.of.replace('{a}', String(prog[0])).replace('{b}', String(prog[1]))}</strong>
-                <small>{copy.stamps}</small>
-              </div>
+            <div key={p.slug} className="bx-pass" style={{ transform: `translateY(${d.y}px) scale(${d.s})`, zIndex: d.z, opacity: d.o }} aria-hidden={d.o === 0 || undefined}>
+              <WalletPass pass={p} />
             </div>
           );
         })}

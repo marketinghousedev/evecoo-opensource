@@ -144,22 +144,6 @@
 .hw-wallet-head span { width: 22px; height: 22px; border-radius: 50%; background: #E3E6EE; color: #1A6BFF; display: flex; align-items: center; justify-content: center; font-weight: 600; }
 .hw-pass-wrap { position: absolute; top: 80px; left: 10px; right: 10px; transform: translateY(330px) scale(.96); transition: transform .9s var(--hw-ease); }
 .hw-pass-wrap.in { transform: none; }
-.hw-pass { background: #A80F1E; color: #fff; border-radius: 12px; padding: 12px 12px 14px; box-shadow: 0 12px 28px rgba(80,0,10,.25); }
-.hw-pass-top { display: flex; justify-content: space-between; align-items: flex-start; }
-.hw-pass-top b { font-size: 14px; font-weight: 800; }
-.hw-pass-top span { display: flex; flex-direction: column; align-items: flex-end; font-size: 8.5px; font-weight: 600; }
-.hw-pass-top small, .hw-fields small { font-size: 5.5px; letter-spacing: .1em; text-transform: uppercase; opacity: .65; font-weight: 600; }
-.hw-stamps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px 0; justify-items: center; margin: 14px 0 14px; }
-.hw-stamp { position: relative; width: 44px; height: 40px; }
-.hw-stamp i { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; transition: opacity .3s, transform .45s cubic-bezier(.34,1.56,.64,1); }
-.hw-stamp .f { opacity: 0; transform: scale(.3) rotate(-25deg); }
-.hw-stamp.full .f { opacity: 1; transform: none; }
-.hw-stamp.full .g { opacity: 0; }
-.hw-fields { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; font-size: 7.5px; font-weight: 600; }
-.hw-fields span { display: flex; flex-direction: column; gap: 1px; }
-.hw-pass-qr { display: flex; justify-content: center; margin-top: 34px; padding-bottom: 6px; }
-.hw-pass-qr .hw-qr { padding: 5px; background: #fff; border-radius: 6px; box-sizing: content-box; }
-.hw-pass.compact .hw-pass-qr { margin-top: 16px; }
 .hw-others { position: absolute; left: 12px; right: 12px; bottom: 0; height: 70px; }
 .hw-others i { position: absolute; left: 0; right: 0; height: 60px; border-radius: 12px 12px 0 0; }
 .hw-others i:nth-child(1) { top: 0; background: #2A2C33; }
