@@ -1,13 +1,3 @@
-export function StampGrid({ n = 8, filled = 6, size = 26, color = '#fff' }: { n?: number; filled?: number; size?: number; color?: string }) {
-  return (
-    <span className="stamp-grid" style={{ gridTemplateColumns: `repeat(4, ${size}px)` }}>
-      {Array.from({ length: n }, (_, i) => (
-        <i key={i} style={{ width: size, height: size, background: i < filled ? color : 'transparent', borderColor: color, opacity: i < filled ? 1 : .45 }} />
-      ))}
-    </span>
-  );
-}
-
 export function QrMock({ size = 80, dark = '#0B1F44' }: { size?: number; dark?: string }) {
   const cells: number[] = [];
   let s = 7;

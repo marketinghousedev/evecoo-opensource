@@ -1,4 +1,6 @@
 /* Small inline-SVG illustrations used by the How-it-works phone story. All drawn by hand, no images. */
+import { IlloSvg } from '@/components/illustration/IlloSvg';
+import { stampsStampKebabMono } from '@/components/illustration/illo-data';
 
 export function Qr({ size = 80, seed = 11, dark = '#0B1222' }: { size?: number; seed?: number; dark?: string }) {
   const n = 25;
@@ -21,26 +23,18 @@ export function Qr({ size = 80, seed = 11, dark = '#0B1222' }: { size?: number; 
   );
 }
 
-/** Illustrated kebab wrap used as a stamp. `ghost` renders the faded empty slot. */
+/** Kebab stamp from the stamp library (mono, takes the pass ink). `ghost` renders the faded empty slot. */
 export function KebabStamp({ size = 34, ghost = false }: { size?: number; ghost?: boolean }) {
-  if (ghost) {
-    return (
-      <svg width={size} height={size} viewBox="0 0 40 40" aria-hidden="true">
-        <path d="M4 20c4-7 12-10 19-9 7 1 12 5 13 12 0 6-7 11-16 11-8 0-15-4-16-10Z" fill="#fff" opacity=".26" />
-      </svg>
-    );
-  }
   return (
-    <svg width={size} height={size} viewBox="0 0 40 40" aria-hidden="true">
-      <path d="M6 16c4-5 11-7 17-6 6 1 11 5 12 9l-2 2c-3-3-8-5-13-5-5 0-10 2-12 4Z" fill="#5DB33E" />
-      <path d="M7 15c3-3 8-5 13-5M14 12c3-2 7-2 10-1M22 12c4 0 8 2 10 5" stroke="#3D8E25" strokeWidth="1.4" fill="none" strokeLinecap="round" />
-      <path d="M7 18c5-4 12-5 18-3 4 1 8 3 9 6-5-2-11-3-16-2-4 1-8 2-11 3Z" fill="#7A2E10" />
-      <path d="M10 18c4-2 9-3 13-2M15 19c4-1 9-1 13 1" stroke="#A9471C" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-      <circle cx="14" cy="16" r="1.7" fill="#E2402B" /><circle cx="24" cy="14.5" r="1.7" fill="#E2402B" /><circle cx="30" cy="17.5" r="1.5" fill="#E2402B" />
-      <path d="M4 20c6-3 14-4 22-2 5 1 9 3 10 5 0 6-7 11-16 11-8 0-15-4-16-10 0-2 0-3 0-4Z" fill="#E9B46C" />
-      <path d="M5 22c7-2 15-2 22 0 4 1 7 2 8 3" stroke="#C98A3F" strokeWidth="1.3" fill="none" strokeLinecap="round" />
-      <path d="M10 28c3 2 8 3 13 2" stroke="#D29A52" strokeWidth="1.2" fill="none" strokeLinecap="round" />
-    </svg>
+    <span style={{ position: 'relative', display: 'block', width: size, height: size, color: '#fff' }}>
+      <IlloSvg data={stampsStampKebabMono} style={{ width: size, height: size, opacity: ghost ? 0.28 : 1 }} />
+      {!ghost && (
+        <svg viewBox="0 0 40 40" width={size} height={size} aria-hidden="true" style={{ position: 'absolute', inset: 0 }}>
+          <circle cx="31.5" cy="31.5" r="6" fill="#fff" />
+          <path d="M28.9 31.7L30.8 33.6L34.2 29.8" fill="none" stroke="#A80F1E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      )}
+    </span>
   );
 }
 

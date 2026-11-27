@@ -1,6 +1,8 @@
 'use client';
 
-import type { ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
+import { StampGrid } from '@/components/illustration/StampGrid';
+import { DEMO_STAMPS } from '../demoStamps';
 import { LogoMark } from '../Logo';
 import { IlloSvg } from '@/components/illustration/IlloSvg';
 import { avatarsAvatar03, avatarsAvatar10, avatarsAvatar11, avatarsAvatar12, avatarsAvatar15, avatarsAvatar02, avatarsAvatar08, avatarsBadgePerson } from '@/components/illustration/illo-data';
@@ -73,7 +75,7 @@ export function WalletStack({ copy }: { copy: WalletCopy }) {
             <div key={i} className="bx-pass" style={{ background: PASS[i].bg, transform: `translateY(${d.y}px) scale(${d.s})`, zIndex: d.z }}>
               <div className="bx-pass-top"><b>{p.name}</b><span><small>{copy.lblName}</small>{copy.holder}</span></div>
               <div className="bx-pass-art" style={{ background: PASS[i].art }}>
-                <svg viewBox="0 0 120 60" className="bx-cup" aria-hidden="true"><ellipse cx="78" cy="48" rx="30" ry="6" fill="#000" opacity=".25" /><path d="M54 24h48v8a24 18 0 0 1-48 0z" fill="#F3E7D6" /><ellipse cx="78" cy="24" rx="24" ry="5" fill="#B27A4A" /><path d="M102 27h6a6 6 0 0 1 0 12h-8" fill="none" stroke="#F3E7D6" strokeWidth="4" /></svg>
+                <StampGrid className="bx-stamps" name={DEMO_STAMPS.cup} n={prog[1]} filled={prog[0]} size={21} tone="mono" columns={5} style={{ color: '#F3E7D6', '--stamp-bg': PASS[i].bg } as CSSProperties} />
                 <strong>{copy.of.replace('{a}', String(prog[0])).replace('{b}', String(prog[1]))}</strong>
                 <small>{copy.stamps}</small>
               </div>

@@ -1,5 +1,7 @@
 import type { CSSProperties } from 'react';
 import s from './StampCard.module.css';
+import { StampGrid } from './illustration/StampGrid';
+import type { StampName } from './illustration/stamps';
 
 function inkFor(hex: string): string {
   const m = /^#([0-9a-fA-F]{6})$/.exec(hex);
@@ -25,6 +27,8 @@ export default function StampCard(p: {
   qrSvg?: string;
   qrHint?: string;
   qrAlt?: string;
+  /** Stamp icon from the library; the card setting that picks it comes later. */
+  stamp?: StampName;
 }) {
   const ink = inkFor(p.color);
   const filled = Math.max(0, Math.min(p.stamps, p.stampsRequired));
@@ -42,13 +46,16 @@ export default function StampCard(p: {
       </div>
       <div className={s.title}>{p.cardName}</div>
       <div className={s.strip}>
-        {Array.from({ length: p.stampsRequired }, (_, i) => (
-          <span key={i} aria-hidden="true" className={`${s.dot} ${i < filled ? s.dotOn : ''}`}>
-            {i < filled && (
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
-            )}
-          </span>
-        ))}
+        <StampGrid
+          name={p.stamp ?? 'star'}
+          n={p.stampsRequired}
+          filled={filled}
+          size={44}
+          tone="mono"
+          columns={5}
+          className={s.stamps}
+          style={{ color: 'var(--ink)', '--stamp-bg': 'var(--card-color)' } as CSSProperties}
+        />
       </div>
       <div className={s.meta}>
         <span>{p.rewardLabel}</span>
