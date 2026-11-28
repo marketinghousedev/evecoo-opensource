@@ -3,6 +3,8 @@
   background: radial-gradient(700px 420px at 50% 62%, rgba(255,255,255,.75), transparent 70%), linear-gradient(180deg, #F1F3FB, #E9EEFA);
   border: 1px solid #E6EAF5; }
 
+.hw.hw-bare { background: none; border: 0; padding: 0; border-radius: 0; max-width: none; }
+
 /* stepper */
 .hw-steps { list-style: none; margin: 0 auto 34px; padding: 0; display: flex; justify-content: center; align-items: flex-start; }
 .hw-step { display: flex; align-items: flex-start; }

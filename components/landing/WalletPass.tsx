@@ -16,6 +16,8 @@ export type WalletPassProps = {
   required?: number;
   /** Overrides pass.holder. */
   holder?: string;
+  /** Overrides the reward line (live designer). */
+  reward?: string;
   /** Hides the stamp grid (small scanner preview). */
   compact?: boolean;
   className?: string;
@@ -26,7 +28,7 @@ export type WalletPassProps = {
  * phone). It scales with its container width: every length is in cqw, so it looks identical at any size.
  * Layout: header (mark, name, holder), strip art, stamp grid, 3 label/value fields, QR.
  */
-export function WalletPass({ pass, filled, required, holder, compact = false, className }: WalletPassProps) {
+export function WalletPass({ pass, filled, required, holder, reward, compact = false, className }: WalletPassProps) {
   const { t } = useT();
   const n = required ?? pass.stampsRequired;
   const k = Math.min(filled ?? pass.current, n);
@@ -45,7 +47,7 @@ export function WalletPass({ pass, filled, required, holder, compact = false, cl
         <div className="wp-strip"><IlloSvg data={pass.strip} /></div>
         {!compact && <StampGrid className="wp-stamps" name={pass.stamp} n={n} filled={k} tone="mono" style={grid} />}
         <div className="wp-fields">
-          <span><small>{t('landing.passes.lblReward')}</small>{t(`landing.passes.${pass.slug}.reward`)}</span>
+          <span><small>{t('landing.passes.lblReward')}</small>{reward ?? t(`landing.passes.${pass.slug}.reward`)}</span>
           <span><small>{t('landing.passes.lblBy')}</small>{t('common.appName')}</span>
           <span><small>{t('landing.passes.lblProg')}</small>{t('landing.passes.progress', { a: k, b: n })}</span>
         </div>

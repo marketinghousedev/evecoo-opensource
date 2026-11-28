@@ -1,0 +1,47 @@
+/* How it works B: scroll-driven, sticky phone. Classes prefixed hwb-. */
+.hwb-track { height: 300vh; position: relative; }
+.hwb-pin { position: sticky; top: 0; height: 100vh; min-height: 640px; display: flex; align-items: center; }
+.hwb-grid { width: 100%; max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 200px 320px 1fr; gap: 40px; align-items: center; }
+.hwb-phone { display: flex; justify-content: center; }
+.hwb-phone .hw-stage { height: 620px; }
+
+.hwb-rail { list-style: none; margin: 0; padding: 0; position: relative; display: flex; flex-direction: column; gap: 84px; }
+.hwb-rail-line { position: absolute; left: 19px; top: 20px; bottom: 20px; width: 3px; border-radius: 3px; background: #D9DFEA; overflow: hidden; }
+.hwb-rail-line > span { position: absolute; inset: 0; background: var(--brand); transform-origin: top; transform: scaleY(0); }
+.hwb-rs { position: relative; display: flex; align-items: center; gap: 14px; }
+.hwb-dot { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; flex: none; background: #fff; border: 1px solid #DCE2EE; color: #6B7391; font-weight: 600; transition: background .4s, border-color .4s, color .4s, box-shadow .4s; }
+.hwb-lbl { font-weight: 500; color: #7A829C; transition: color .3s; }
+.hwb-rs.is-active .hwb-dot { background: var(--brand); border-color: var(--brand); color: #fff; box-shadow: 0 0 0 7px rgba(109, 59, 245, .16); }
+.hwb-rs.is-done .hwb-dot { background: var(--brand); border-color: var(--brand); color: #fff; }
+.hwb-rs.is-active .hwb-lbl { color: var(--on-surface); font-weight: 600; }
+.hwb-rs.is-done .hwb-lbl { color: var(--brand); font-weight: 600; }
+
+.hwb-copy { position: relative; min-height: 260px; display: grid; }
+.hwb-step { grid-area: 1 / 1; opacity: 0; transform: translateY(14px); transition: opacity .5s var(--ease, ease-out), transform .6s var(--ease, ease-out); pointer-events: none; align-self: center; }
+.hwb-step.is-active { opacity: 1; transform: none; pointer-events: auto; }
+.hwb-kick { display: inline-block; font-size: .8rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--brand); margin-bottom: 10px; }
+.hwb-step h3 { font-size: clamp(1.5rem, 2.4vw, 2rem); line-height: 1.2; margin: 0 0 12px; }
+.hwb-step p { margin: 0; font-size: 1.05rem; line-height: 1.6; color: var(--muted); max-width: 40ch; }
+.hwb-hint { position: absolute; left: 0; bottom: -56px; margin: 0; font-size: .85rem; color: #7A829C; }
+
+/* reduced motion: stacked static steps */
+.hwb-stack { list-style: none; margin: 0 auto; padding: 0; max-width: 1000px; display: flex; flex-direction: column; gap: 56px; }
+.hwb-row { display: grid; grid-template-columns: 1fr 320px; gap: 40px; align-items: center; }
+.hwb-row .hwb-text h3 { font-size: 1.6rem; margin: 10px 0; }
+.hwb-row .hwb-text p { margin: 0; color: var(--muted); line-height: 1.6; max-width: 40ch; }
+.hwb-n { width: 40px; height: 40px; border-radius: 50%; background: var(--brand); color: #fff; font-weight: 600; display: grid; place-items: center; }
+
+@media (max-width: 960px) {
+  .hwb-grid { grid-template-columns: 56px 1fr; grid-template-areas: "rail phone" "copy copy"; gap: 16px 12px; align-content: center; }
+  .hwb-rail { grid-area: rail; gap: 0; height: 330px; justify-content: space-between; align-self: start; margin-top: 70px; }
+  .hwb-rail-line { left: 19px; }
+  .hwb-lbl { display: none; }
+  .hwb-phone { grid-area: phone; }
+  .hwb-phone .hw-stage { height: 440px; }
+  .hwb-phone .hw-phone, .hwb-phone .hw-phone.zoom { transform: scale(.7); transform-origin: 50% 0; }
+  .hwb-copy { grid-area: copy; min-height: 150px; text-align: left; }
+  .hwb-step h3 { font-size: 1.3rem; margin-bottom: 6px; }
+  .hwb-step p { font-size: .95rem; max-width: none; }
+  .hwb-hint { display: none; }
+  .hwb-row { grid-template-columns: 1fr; gap: 20px; }
+}
