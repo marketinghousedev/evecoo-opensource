@@ -33,8 +33,9 @@ header('Cache-Control: no-cache, must-revalidate');
 header('X-Content-Type-Options: nosniff');
 header('Referrer-Policy: strict-origin-when-cross-origin');
 header('X-Frame-Options: SAMEORIGIN');
-readfile(__DIR__ . '/index.html');
+readfile(__DIR__ . '/page.html');
 PHP
+  mv "$html" "$dir/page.html"
 done < <(find "$PUB" -name index.html -not -path "$PUB/api/*" -print0)
 
 mkdir -p "$PUB/api"

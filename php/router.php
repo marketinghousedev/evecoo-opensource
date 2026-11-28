@@ -26,6 +26,8 @@ $types = [
     'map' => 'application/json', 'xml' => 'application/xml', 'webmanifest' => 'application/manifest+json',
 ];
 
+$page = static fn (string $dir): ?string => is_file("$dir/index.html") ? "$dir/index.html" : (is_file("$dir/page.html") ? "$dir/page.html" : null);
+
 $serve = static function (string $file, int $status = 200) use ($types): never {
     $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
     http_response_code($status);
@@ -67,14 +69,14 @@ if ($path !== '/' && is_file($file)) {
 }
 
 // 3. Shell pages for dynamic ids
-if (preg_match('#^/(card|join)/[^/]+/?$#', $path, $m) && is_file("$root/{$m[1]}/index.html")) {
-    $serve("$root/{$m[1]}/index.html");
+if (preg_match('#^/(card|join)/[^/]+/?$#', $path, $m) && ($f = $page("$root/{$m[1]}")) !== null) {
+    $serve($f);
 }
 
 // 4. /x -> /x/index.html (also / -> index.html)
 $trim = rtrim($path, '/');
-if (is_file("$root$trim/index.html")) {
-    $serve("$root$trim/index.html");
+if (($f = $page("$root$trim")) !== null) {
+    $serve($f);
 }
 
 // 5. 404 page
