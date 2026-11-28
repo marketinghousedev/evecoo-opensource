@@ -8,6 +8,8 @@ import { Hero } from './Hero';
 import { HeroBowl } from './herob/HeroBowl';
 import { Logos, Features } from './Features';
 import { HowItWorks } from './HowItWorks';
+import { FeaturesB } from './featuresb/FeaturesB';
+import { HowItWorksB } from './howb/HowItWorksB';
 import { Bento, Problem } from './Bento';
 import { Service } from './Service';
 import { DashPreview } from './DashPreview';
@@ -26,8 +28,8 @@ export type SectionDef = {
 export const SECTIONS: Record<string, SectionDef> = {
   hero: { label: 'Hero', default: 'b', variants: { a: Hero, b: HeroBowl } },
   logos: { label: 'Logos', default: 'a', variants: { a: Logos } },
-  features: { label: 'Features', default: 'a', variants: { a: Features } },
-  how: { label: 'How it works', default: 'a', variants: { a: HowItWorks } },
+  features: { label: 'Features', default: 'a', variants: { a: Features, b: FeaturesB } },
+  how: { label: 'How it works', default: 'a', variants: { a: HowItWorks, b: HowItWorksB } },
   bento: { label: 'Benefits', default: 'a', variants: { a: Bento } },
   problem: { label: 'Problem', default: 'a', variants: { a: Problem } },
   service: { label: 'Service', default: 'a', variants: { a: Service } },

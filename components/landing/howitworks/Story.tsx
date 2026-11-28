@@ -63,7 +63,11 @@ function snapshot(t: number, nameLen: number): Snap {
 
 const sameSnap = (a: Snap, b: Snap) => (Object.keys(a) as (keyof Snap)[]).every((k) => a[k] === b[k]);
 
-export function HowItWorksStory({ c }: { c: HowCopy }) {
+export const STORY_END = 20000;
+export const STORY_STEP_AT = STEP_AT;
+
+/** `at` (ms on the story timeline) drives the phone from outside (scroll-driven variant): no timer, no stepper. */
+export function HowItWorksStory({ c, at, bare }: { c: HowCopy; at?: number; bare?: boolean }) {
   const nameLen = c.nameVal.length;
   const [snap, setSnap] = useState<Snap>(() => snapshot(0, nameLen));
   const tRef = useRef(0);
@@ -87,8 +91,12 @@ export function HowItWorksStory({ c }: { c: HowCopy }) {
   }, [nameLen]);
 
   useEffect(() => {
+    if (at !== undefined) paint(at);
+  }, [at, paint]);
+
+  useEffect(() => {
     const root = rootRef.current;
-    if (!root) return;
+    if (!root || at !== undefined) return;
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
     reduced.current = mq.matches;
     if (reduced.current) {
@@ -115,7 +123,7 @@ export function HowItWorksStory({ c }: { c: HowCopy }) {
     io.observe(root);
     document.addEventListener('visibilitychange', sync);
     return () => { io.disconnect(); document.removeEventListener('visibilitychange', sync); cancelAnimationFrame(raf); };
-  }, [paint]);
+  }, [paint, at]);
 
   const jump = (i: number) => {
     tRef.current = reduced.current ? REST_AT[i] : STEP_AT[i] + 1;
@@ -140,8 +148,8 @@ export function HowItWorksStory({ c }: { c: HowCopy }) {
   );
 
   return (
-    <div className="hw" ref={rootRef}>
-      <ol className="hw-steps">
+    <div className={bare ? 'hw hw-bare' : 'hw'} ref={rootRef}>
+      {!bare && <ol className="hw-steps">
         {steps.map((label, i) => (
           <li key={i} className={`hw-step${i === s.step ? ' is-active' : ''}${i < s.step ? ' is-done' : ''}`}>
             <button type="button" onClick={() => jump(i)} aria-current={i === s.step ? 'step' : undefined}>
@@ -154,7 +162,7 @@ export function HowItWorksStory({ c }: { c: HowCopy }) {
             {i < 2 && <span className="hw-line" aria-hidden="true"><span ref={(el) => { lines.current[i] = el; }} /></span>}
           </li>
         ))}
-      </ol>
+      </ol>}
 
       <div className="hw-stage">
         <div className={`hw-phone${s.step === 1 ? ' zoom' : ''}`} role="img" aria-label={c.phoneLabel}>
