@@ -12,13 +12,14 @@
 /* service: counter stand scene */
 .stand-scene { position: relative; container-type: inline-size; width: 94%; max-width: 380px; margin: 52px auto auto; aspect-ratio: 240 / 300; }
 .stand-art { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-.stand-print { position: absolute; left: 22.08%; width: 55.83%; top: 8.7%; height: 36%; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 1.2cqw; padding-top: 2.6cqw; text-align: center; color: #2A3A2E; z-index: 1; }
-.stand-print .moon { width: 6.2cqw; height: 6.2cqw; border-radius: 50%; background: #E3B34A; display: block; flex: none; }
-.stand-print b { font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif; font-weight: 700; font-size: 7.6cqw; line-height: 1.08; text-wrap: balance; }
-.stand-print strong { font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif; font-weight: 400; font-size: 6.4cqw; line-height: 1.1; text-wrap: balance; }
-.stand-print small { position: absolute; top: calc(100% + 27cqw); width: 100%; font-size: 3.4cqw; line-height: 1.2; color: #3A4160; }
-.stand-qr { position: absolute; left: 38.33%; top: 46.67%; width: 23.33%; aspect-ratio: 1; z-index: 1; line-height: 0; }
-.stand-qr svg { width: 100%; height: 100%; display: block; border-radius: 2px; }
+.stand-poster { position: absolute; left: 20%; width: 60%; top: 8.67%; z-index: 1; border-radius: 3.4cqw; box-shadow: 0 0 0 .7cqw rgba(255,255,255,.65), 0 1.6cqw 3cqw rgba(11,31,68,.25); }
+.stand-poster .qrp { border-radius: 3.4cqw; }
+.stand-poster::after { content: ''; position: absolute; inset: -1cqw; border-radius: 4cqw; pointer-events: none; background: linear-gradient(115deg, rgba(255,255,255,.28) 0, rgba(255,255,255,0) 22%, rgba(255,255,255,0) 80%, rgba(255,255,255,.14) 100%); background-size: 100% 100%; }
+.stand-poster::before { content: ''; position: absolute; left: -1cqw; top: -1cqw; width: 3.2cqw; height: calc(100% + 2cqw); border-radius: 4cqw 0 0 4cqw; background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.15) 60%, rgba(255,255,255,.5)); background-size: 100% 220%; z-index: 3; pointer-events: none; opacity: .7; }
+@media (prefers-reduced-motion: no-preference) {
+  .stand-poster::before { animation: stand-shimmer 6s ease-in-out infinite; }
+}
+@keyframes stand-shimmer { 0%, 100% { background-position: 0 0; opacity: .5; } 50% { background-position: 0 100%; opacity: .95; } }
 .parcel-art { position: absolute; left: -4%; bottom: -1%; width: 36%; transform: rotate(-4deg); z-index: 2; }
 
 /* service: messenger-style chat (generic, no third-party styling) */

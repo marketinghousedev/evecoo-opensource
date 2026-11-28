@@ -4,7 +4,7 @@ import QRCode from 'qrcode';
 import { stampsStampKebabMono } from '@/components/illustration/illo-data';
 
 /** A real, scannable QR code (same `qrcode` encoder the card page uses), drawn as one crisp path. */
-export function Qr({ size = 80, text, dark = '#0B1222' }: { size?: number; text: string; dark?: string }) {
+export function Qr({ size = 80, text, dark = '#0B1222' }: { size?: number | string; text: string; dark?: string }) {
   const { modules } = QRCode.create(text, { errorCorrectionLevel: 'M' });
   const n = modules.size;
   let d = '';

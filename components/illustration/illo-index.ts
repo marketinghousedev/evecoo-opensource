@@ -26,6 +26,7 @@ export const illos = {
   'backgrounds/card-studio': d.backgroundsCardStudio,
   'backgrounds/dash-area': d.backgroundsDashArea,
   'backgrounds/hero-field': d.backgroundsHeroField,
+  'backgrounds/poster-coffee-hills': d.backgroundsPosterCoffeeHills,
   'backgrounds/pricing-pattern': d.backgroundsPricingPattern,
   'brands/mark-bakehouse': d.brandsMarkBakehouse,
   'brands/mark-barber': d.brandsMarkBarber,

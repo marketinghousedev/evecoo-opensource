@@ -4,9 +4,10 @@ import Link from 'next/link';
 import { useT } from '@/components/I18nProvider';
 import { Icon } from './Icon';
 import { LogoMark } from './Logo';
-import { QrMock, SectionHead } from './Features';
+import { SectionHead } from './Features';
 import { IlloSvg } from '@/components/illustration/IlloSvg';
 import { scenesCounterStand, scenesParcel } from '@/components/illustration/illo-data';
+import { QrPoster } from './QrPoster';
 import './p8.css';
 
 function Ticks() {
@@ -25,12 +26,7 @@ export function Service() {
           <span className="free"><Icon name="check_circle" size={20} fill />{t('landing.svc.post')}</span>
           <div className="stand-scene">
             <IlloSvg data={scenesCounterStand} className="stand-art illo-lift" />
-            <div className="stand-print">
-              <i className="moon" />
-              <b>{t('landing.svc.poster1')}</b><strong>{t('landing.svc.poster2')}</strong>
-              <small>{t('landing.svc.poster3')}</small>
-            </div>
-            <div className="stand-qr"><QrMock size={80} /></div>
+            <div className="stand-poster"><QrPoster /></div>
             <IlloSvg data={scenesParcel} className="parcel-art illo-lift" />
           </div>
           <div className="stxt"><h3>{t('landing.svc.shipTitle')}</h3><p>{t('landing.svc.shipBody')}</p></div>
