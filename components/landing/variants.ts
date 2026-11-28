@@ -19,6 +19,9 @@ import { Pricing, Faq } from './PricingFaq';
 import { DashPreviewB } from './dashb/DashPreviewB';
 import { PricingB } from './pricb/PricingB';
 import { FaqB } from './faqb/FaqB';
+import { BentoB } from './bentob/BentoB';
+import { ProblemB } from './problemb/ProblemB';
+import { ServiceB } from './serviceb/ServiceB';
 
 export type SectionDef = {
   /** Shown in the Compare panel. */
@@ -35,9 +38,9 @@ export const SECTIONS: Record<string, SectionDef> = {
   logos: { label: 'Logos', default: 'a', variants: { a: Logos, b: LogosPicker } },
   features: { label: 'Features', default: 'a', variants: { a: Features, b: FeaturesB } },
   how: { label: 'How it works', default: 'a', variants: { a: HowItWorks, b: HowItWorksB } },
-  bento: { label: 'Benefits', default: 'a', variants: { a: Bento } },
-  problem: { label: 'Problem', default: 'a', variants: { a: Problem } },
-  service: { label: 'Service', default: 'a', variants: { a: Service } },
+  bento: { label: 'Benefits', default: 'a', variants: { a: Bento, b: BentoB } },
+  problem: { label: 'Problem', default: 'a', variants: { a: Problem, b: ProblemB } },
+  service: { label: 'Service', default: 'a', variants: { a: Service, b: ServiceB } },
   dash: { label: 'Dashboard', default: 'a', variants: { a: DashPreview, b: DashPreviewB } },
   pricing: { label: 'Pricing', default: 'a', variants: { a: Pricing, b: PricingB } },
   faq: { label: 'FAQ', default: 'a', variants: { a: Faq, b: FaqB } },
