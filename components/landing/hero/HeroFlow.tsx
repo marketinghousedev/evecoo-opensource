@@ -100,7 +100,7 @@ function compute(t: number): Frame {
 const vars = (x: number, y: number, o: number, s = 1) =>
   ({ '--x': x, '--y': y, '--o': o, '--s': s }) as React.CSSProperties;
 
-export function HeroFlow({ copy }: { copy: HeroFlowCopy }) {
+export function HeroFlow({ copy, bare = false }: { copy: HeroFlowCopy; /** Drop the hero-field backdrop (hero variant B shows the bowl glow through). */ bare?: boolean }) {
   const root = useRef<HTMLDivElement>(null);
   const first = compute(T0);
 
@@ -206,7 +206,7 @@ export function HeroFlow({ copy }: { copy: HeroFlowCopy }) {
 
   return (
     <div className="hf" ref={root} role="img" aria-label={copy.label}>
-      <IlloSvg data={backgroundsHeroField} className="hf-bg" preserveAspectRatio="xMidYMid slice" />
+      {!bare && <IlloSvg data={backgroundsHeroField} className="hf-bg" preserveAspectRatio="xMidYMid slice" />}
       <span className="hf-label l">{copy.once}</span>
       <span className="hf-label r">{copy.regulars}</span>
 

@@ -149,3 +149,14 @@ textarea.input { border-radius: var(--radius-sm); }
 .auth-wrap .back:hover { color: var(--brand); }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+/* Hero variant B (docs/HERO-BOWL-SPEC.md): reveal and bowl-glow colours */
+:root {
+  --glow-accent: #3f7cff;
+  --glow-accent-cyan: #8fe6f4;
+  --glow-ghost: #5c6f92;
+  --glow-hl: #5b7cf0;
+  --glow-panel: #0e1f3d;
+  --glow-bowl-lilac: #d2daff;
+  --glow-bowl-cyan: #8fd5f1;
+}
