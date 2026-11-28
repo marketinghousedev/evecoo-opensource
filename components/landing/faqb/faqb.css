@@ -1,0 +1,32 @@
+/* FAQ B: searchable chat-style answers */
+.fqb { background: #fff; }
+.fqb-wrap { max-width: 760px; margin: 0 auto; }
+.fqb .faq-h { margin-bottom: 8px; }
+.fqb-sub { text-align: center; color: var(--muted); margin: 0 0 28px; }
+.fqb-search { position: relative; display: flex; align-items: center; }
+.fqb-search > svg { position: absolute; left: 16px; color: var(--muted); pointer-events: none; }
+.fqb-search input { width: 100%; min-height: 54px; border: 1px solid var(--border); border-radius: 9999px; padding: 0 48px 0 46px; font: inherit; font-size: 1rem; background: #F8F8FC; color: var(--on-surface); -webkit-appearance: none; appearance: none; }
+.fqb-search input::-webkit-search-cancel-button { display: none; }
+.fqb-search input:focus-visible { outline: 3px solid var(--brand-muted); outline-offset: 1px; border-color: var(--brand); background: #fff; }
+.fqb-search .clr { position: absolute; right: 8px; width: 40px; height: 40px; border-radius: 50%; border: 0; background: transparent; font-size: 1.4rem; line-height: 1; color: var(--muted); cursor: pointer; }
+.fqb-search .clr:hover { background: var(--brand-soft); }
+.fqb-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.fqb-chips button { font: inherit; font-size: .85rem; font-weight: 500; min-height: 40px; padding: 0 16px; border-radius: 9999px; border: 1px solid var(--border); background: #fff; color: var(--muted); cursor: pointer; transition: background .2s, color .2s, border-color .2s; }
+.fqb-chips button.on { background: var(--brand); border-color: var(--brand); color: #fff; }
+.fqb-chips button:not(.on):hover { background: var(--brand-soft); border-color: var(--brand-muted); }
+.fqb-chips button:focus-visible, .fqb-none .btn:focus-visible { outline: 3px solid var(--brand-muted); outline-offset: 2px; }
+.fqb-count { font-size: .75rem; color: var(--muted); margin: 18px 0 8px; }
+.fqb-chat { list-style: none; margin: 0; padding: 0; display: grid; gap: 22px; }
+.fqb-chat li { display: grid; gap: 8px; animation: fqb-in .35s var(--ease) both; }
+@keyframes fqb-in { from { opacity: 0; transform: translateY(8px); } }
+.fqb .qb { display: flex; justify-content: flex-end; }
+.fqb .qb p { margin: 0; max-width: 82%; background: var(--brand); color: #fff; border-radius: 20px 20px 4px 20px; padding: 12px 16px; font-size: .95rem; font-weight: 500; }
+.fqb .ab { display: flex; align-items: flex-end; gap: 10px; }
+.fqb .ab p { margin: 0; max-width: 82%; background: #F1F3F9; color: var(--on-surface); border-radius: 20px 20px 20px 4px; padding: 12px 16px; font-size: .92rem; }
+.fqb .av { flex: none; width: 32px; height: 32px; display: block; }
+.fqb-none { display: flex; align-items: flex-end; gap: 10px; margin-top: 8px; }
+.fqb-none .a { background: #F1F3F9; border-radius: 20px 20px 20px 4px; padding: 16px 18px; max-width: 82%; }
+.fqb-none .a b { display: block; font-weight: 600; } .fqb-none .a p { margin: 4px 0 14px; color: var(--muted); font-size: .9rem; }
+.fqb .faq-more { margin-top: 40px; }
+@media (max-width: 640px) { .fqb .qb p, .fqb .ab p, .fqb-none .a { max-width: 100%; } .fqb .ab p { max-width: calc(100% - 42px); } .fqb-none .a { max-width: calc(100% - 42px); } }
+@media (prefers-reduced-motion: reduce) { .fqb-chat li { animation: none; } }

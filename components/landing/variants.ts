@@ -12,6 +12,9 @@ import { Bento, Problem } from './Bento';
 import { Service } from './Service';
 import { DashPreview } from './DashPreview';
 import { Pricing, Faq } from './PricingFaq';
+import { DashPreviewB } from './dashb/DashPreviewB';
+import { PricingB } from './pricb/PricingB';
+import { FaqB } from './faqb/FaqB';
 
 export type SectionDef = {
   /** Shown in the Compare panel. */
@@ -31,7 +34,7 @@ export const SECTIONS: Record<string, SectionDef> = {
   bento: { label: 'Benefits', default: 'a', variants: { a: Bento } },
   problem: { label: 'Problem', default: 'a', variants: { a: Problem } },
   service: { label: 'Service', default: 'a', variants: { a: Service } },
-  dash: { label: 'Dashboard', default: 'a', variants: { a: DashPreview } },
-  pricing: { label: 'Pricing', default: 'a', variants: { a: Pricing } },
-  faq: { label: 'FAQ', default: 'a', variants: { a: Faq } },
+  dash: { label: 'Dashboard', default: 'a', variants: { a: DashPreview, b: DashPreviewB } },
+  pricing: { label: 'Pricing', default: 'a', variants: { a: Pricing, b: PricingB } },
+  faq: { label: 'FAQ', default: 'a', variants: { a: Faq, b: FaqB } },
 };
