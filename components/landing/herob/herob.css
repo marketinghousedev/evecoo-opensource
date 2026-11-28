@@ -6,6 +6,7 @@
 :where(.landing.hb-on) .sec, :where(.landing.hb-on) .logos { background: var(--bg); }
 
 .hb { display: contents; }
+html[data-hero='a'] .hb, html[data-hero='a'] .atmo { display: none; }
 .hb-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .hb .w { display: inline-block; white-space: nowrap; }
 .hb .ch { will-change: opacity, filter; }
@@ -20,6 +21,7 @@
 .hb-flow { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; }
 .hb-flow .hf { height: clamp(250px, 36vh, 400px); margin: 0 auto; }
 .hb-flow .hf::after { display: none; }
+.hb-flow .hf { -webkit-mask-image: linear-gradient(transparent, #000 24%, #000 76%, transparent); mask-image: linear-gradient(transparent, #000 24%, #000 76%, transparent); }
 .hb-fu { opacity: 0; transform: translateY(14px); }
 .hb-ready .hb-fu { animation: hbfu .9s var(--ease) forwards; animation-delay: var(--d, 0s); }
 @keyframes hbfu { to { opacity: 1; transform: none; } }

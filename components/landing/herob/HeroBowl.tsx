@@ -161,6 +161,7 @@ export function HeroBowl() {
       const ih = innerHeight;
       q = y / ih;
       tgt = bowlTarget(q);
+      hero.style.opacity = String(Math.round((1 - smooth((q - 0.1) / 0.55)) * 1000) / 1000);
       const s = clamp((q - 0.69) / 0.74);
       stmt.style.transform = `translateY(${(0.205 * (1 - s) * (1 - s) * ih).toFixed(1)}px)`;
       const p = clamp((q - 0.56) / 2.03);

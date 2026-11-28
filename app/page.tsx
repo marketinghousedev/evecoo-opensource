@@ -29,6 +29,7 @@ export default function LandingPage() {
     u.searchParams.set('hero', v);
     window.history.replaceState(null, '', u);
     window.scrollTo(0, 0);
+    document.documentElement.dataset.hero = v;
     setVariant(v);
   };
   return (

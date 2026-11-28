@@ -19,7 +19,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   const locales = availableLocales();
   return (
-    <html lang="en" className={hanken.variable}>
+    <html lang="en" className={hanken.variable} suppressHydrationWarning>
+      <head>
+        {/* Hero variant is read before first paint so ?hero=a never flashes variant B (see herob.css). */}
+        <script dangerouslySetInnerHTML={{ __html: "try{var h=new URLSearchParams(location.search).get('hero');if(h==='a'||h==='b')document.documentElement.dataset.hero=h}catch(e){}" }} />
+      </head>
       <body>
         <I18nProvider locales={locales} messages={en}>
           <LocaleSwitcher locales={locales} />
