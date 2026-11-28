@@ -21,6 +21,22 @@ mkdir -p "$PUB"
 cp -R out/. "$PUB/"
 cp deploy/htaccess.root "$PUB/.htaccess"
 
+# Hostinger Agency ignores .htaccess and its CDN sends `max-age=31536000` on HTML, so browsers would keep a page for a
+# year. Serve every exported page through a tiny index.php (the server prefers it over index.html) that marks the HTML
+# as revalidate-always. Hashed assets under _next/ keep their long cache.
+while IFS= read -r -d '' html; do
+  dir=$(dirname "$html")
+  cat > "$dir/index.php" <<'PHP'
+<?php
+header('Content-Type: text/html; charset=utf-8');
+header('Cache-Control: no-cache, must-revalidate');
+header('X-Content-Type-Options: nosniff');
+header('Referrer-Policy: strict-origin-when-cross-origin');
+header('X-Frame-Options: SAMEORIGIN');
+readfile(__DIR__ . '/index.html');
+PHP
+done < <(find "$PUB" -name index.html -not -path "$PUB/api/*" -print0)
+
 mkdir -p "$PUB/api"
 cp -R php/api/. "$PUB/api/"
 rm -f "$PUB/api/_app/config.php"
