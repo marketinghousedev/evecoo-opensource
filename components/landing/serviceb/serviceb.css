@@ -1,0 +1,48 @@
+/* Service B: timeline. Horizontal on desktop, vertical on mobile. The parcel follows scroll progress. */
+.tl { position: relative; max-width: 1240px; margin: 0 auto; --fill: 0px; --len: 0px; }
+.tl-stops { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; position: relative; z-index: 1; }
+.tl-stop { position: relative; padding-top: 96px; }
+.tl-dot { position: absolute; top: 56px; left: 50%; width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%; background: #fff; border: 3px solid var(--brand-muted); transition: background .4s var(--ease), border-color .4s var(--ease), transform .4s var(--ease); }
+.tl-stop.on .tl-dot { background: var(--brand); border-color: var(--brand); transform: scale(1.15); box-shadow: 0 0 0 6px rgba(109, 59, 245, .15); }
+/* rail + fill run from the first to the last dot (dots sit at 12.5% and 87.5% of the width) */
+.tl-rail, .tl-fill { position: absolute; z-index: 0; top: var(--y0, 56px); left: var(--x0, 12.5%); width: var(--len); height: 4px; margin-top: -2px; border-radius: 2px; }
+.tl-rail { background: repeating-linear-gradient(90deg, #CDBDFB 0 8px, transparent 8px 14px); }
+.tl-fill { width: var(--fill); max-width: var(--len); background: var(--brand); transition: none; }
+.tl-parcel { position: absolute; z-index: 2; left: 0; top: 0; width: 0; height: 0; will-change: transform; pointer-events: none; }
+.tl-parcel-art { position: absolute; width: 76px; max-width: none; height: 63px; left: -38px; top: -66px; display: block; }
+.tl-body { background: #fff; border: 1px solid #EEF1F8; border-radius: 24px; box-shadow: var(--shadow); padding: 20px 20px 24px; opacity: .55; transform: translateY(10px); transition: opacity .5s var(--ease), transform .5s var(--ease); height: 100%; display: flex; flex-direction: column; }
+.tl-stop.on .tl-body { opacity: 1; transform: none; }
+.tl-day { align-self: flex-start; font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--brand); background: var(--brand-soft); border-radius: 9999px; padding: 4px 10px; }
+.tl-body h3 { font-size: 1.1875rem; font-weight: 500; margin: 12px 0 14px; line-height: 1.25; }
+.tl-card { height: 168px; flex: none; border-radius: 16px; background: linear-gradient(135deg, #F8F8FC, #F1EBFE); display: grid; place-items: center; overflow: hidden; position: relative; }
+.tl-body p { color: var(--muted); font-size: .9375rem; line-height: 1.5; margin: 14px 0 0; }
+.tl-cta { text-align: center; margin-top: 40px; }
+
+.tl-form { width: 78%; display: grid; gap: 8px; }
+.tl-field { display: flex; gap: 6px; height: 32px; border-radius: 10px; background: #fff; border: 1px solid var(--border); padding: 0 10px; align-items: center; }
+.tl-field i { height: 7px; width: 42%; border-radius: 4px; background: #D7DDE7; }
+.tl-field i.s { width: 28%; background: var(--brand-muted); }
+.tl-ok { display: inline-flex; align-items: center; gap: 8px; height: 34px; border-radius: 9999px; background: var(--brand); color: #fff; font-size: .8rem; font-weight: 500; padding: 0 12px 0 6px; justify-self: start; }
+.tl-okic { width: 22px; height: 22px; }
+.tl-pass { width: 118px; filter: drop-shadow(0 8px 14px rgba(11, 31, 68, .16)); }
+.tl-stand.stand-scene { margin: 0; width: auto; height: 150px; max-width: none; }
+.tl-first { display: flex; align-items: center; gap: 14px; }
+.tl-thumb { width: 82px; border-radius: 10px; box-shadow: 0 6px 14px rgba(11, 31, 68, .2); transform: rotate(-3deg); }
+.tl-chip { display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px 8px 8px; border-radius: 9999px; background: #fff; border: 1px solid var(--brand-muted); font-size: .8rem; font-weight: 600; color: var(--brand-deep); box-shadow: 0 4px 12px rgba(109, 59, 245, .15); }
+.tl-chipic { width: 24px; height: 24px; }
+
+/* vertical on narrow screens */
+@media (max-width: 860px) {
+  .tl-stops { grid-template-columns: 1fr; gap: 24px; }
+  .tl-stop { padding: 0 0 0 52px; }
+  .tl-dot { top: 28px; left: 18px; }
+  .tl-rail, .tl-fill { left: var(--x0); top: var(--y0); width: 4px; height: var(--len); margin: 0 0 0 -2px; }
+  .tl-rail { background: repeating-linear-gradient(180deg, #CDBDFB 0 8px, transparent 8px 14px); }
+  .tl-fill { width: 4px; height: var(--fill); max-width: none; max-height: var(--len); }
+  .tl-parcel-art { width: 52px; max-width: none; height: 43px; left: -26px; top: -22px; }
+  .tl-body { padding: 16px 16px 20px; }
+  .tl-card { height: 150px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tl-body, .tl-dot { transition: none; }
+}
