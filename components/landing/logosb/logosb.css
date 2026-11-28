@@ -1,0 +1,17 @@
+/* Logos variant B: business picker chips. Prefixed lb-. */
+.lb { padding: 40px 0 8px; }
+.lb > p { margin-bottom: 18px; }
+.lb-rail { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 980px; margin: 0 auto; padding: 4px 20px; }
+.lb-chip { --chip: var(--brand); display: inline-flex; align-items: center; gap: 8px; font: inherit; font-size: .9375rem; font-weight: 500; color: var(--on-surface, #071130); background: #fff; border: 1.5px solid var(--border); border-radius: 9999px; padding: 6px 16px 6px 6px; cursor: pointer; box-shadow: var(--shadow); transition: transform .25s var(--ease), border-color .25s, background .25s, color .25s; }
+.lb-chip:hover { transform: translateY(-2px); border-color: var(--chip); }
+.lb-chip:focus-visible { outline: 3px solid var(--brand-muted); outline-offset: 2px; }
+.lb-chip[aria-pressed='true'] { background: var(--chip); border-color: var(--chip); color: #fff; }
+.lb-mark { width: 30px; height: 30px; flex: none; border-radius: 50%; background: #fff; }
+.lb .lb-live { margin: 16px 20px 0; min-height: 1.5em; text-transform: none; letter-spacing: 0; font-size: .875rem; color: var(--muted); }
+.lb-clear { font: inherit; font-weight: 600; margin-left: 10px; color: var(--brand); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; }
+@media (max-width: 640px) {
+  .lb-rail { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; padding: 6px 16px 10px; }
+  .lb-rail::-webkit-scrollbar { display: none; }
+  .lb-chip { flex: none; scroll-snap-align: center; }
+}
+@media (prefers-reduced-motion: reduce) { .lb-chip { transition: none; } .lb-chip:hover { transform: none; } }

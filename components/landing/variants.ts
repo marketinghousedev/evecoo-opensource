@@ -6,6 +6,8 @@
 import type { ComponentType } from 'react';
 import { Hero } from './Hero';
 import { HeroBowl } from './herob/HeroBowl';
+import { HeroStamp } from './heroc/HeroStamp';
+import { LogosPicker } from './logosb/LogosPicker';
 import { Logos, Features } from './Features';
 import { HowItWorks } from './HowItWorks';
 import { Bento, Problem } from './Bento';
@@ -24,8 +26,8 @@ export type SectionDef = {
 
 /** Order = order in the Compare panel (and the page order). Keys are the URL parameters. */
 export const SECTIONS: Record<string, SectionDef> = {
-  hero: { label: 'Hero', default: 'b', variants: { a: Hero, b: HeroBowl } },
-  logos: { label: 'Logos', default: 'a', variants: { a: Logos } },
+  hero: { label: 'Hero', default: 'b', variants: { a: Hero, b: HeroBowl, c: HeroStamp } },
+  logos: { label: 'Logos', default: 'a', variants: { a: Logos, b: LogosPicker } },
   features: { label: 'Features', default: 'a', variants: { a: Features } },
   how: { label: 'How it works', default: 'a', variants: { a: HowItWorks } },
   bento: { label: 'Benefits', default: 'a', variants: { a: Bento } },
