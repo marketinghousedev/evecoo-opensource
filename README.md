@@ -1,6 +1,8 @@
-# evecoo
+# Biome
 
 Digital stamp cards for small shops: customers keep a card on their phone, staff add stamps by QR/customer id, owners see statistics and send messages.
+
+_Product name: Biome. Code identifiers, folders, env vars (`EVECOO_*`) and config keys keep the original `evecoo` name on purpose._
 
 Frontend: Next.js static export. Backend: PHP 8.2+ with MySQL/MariaDB (SQLite for local work). Built for Hostinger Agency hosting.
 

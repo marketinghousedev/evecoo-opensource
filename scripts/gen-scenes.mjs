@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', 'public', 'illustrations');
 const C = {
-  brand: '#044DF2', brandLight: '#2F6BFF', brandSoft: '#E8EFFE', brandMuted: '#B9CCFB', navy: '#0B1F44', ink: '#071130', white: '#FFFFFF',
+  brand: '#6D3BF5', brandLight: '#8B5CF6', brandSoft: '#F1EBFE', brandMuted: '#CDBDFB', navy: '#0B1F44', ink: '#071130', white: '#FFFFFF',
   espresso: '#8A4B2A', espressoSoft: '#F3E6DC', honey: '#B86E00', honeySoft: '#FCEFD6', tomato: '#D4421C', tomatoSoft: '#FCE4DC', berry: '#C2366F',
 };
 const svg = (vb, body) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb}">${body}</svg>\n`;

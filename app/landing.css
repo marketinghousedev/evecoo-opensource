@@ -4,13 +4,13 @@
 .btn-sm { min-height: 38px; padding: 8px 18px; font-size: .9rem; }
 .btn-lg { min-height: 50px; padding: 12px 28px; font-size: 1rem; }
 .btn-xl { min-height: 60px; padding: 16px 36px; font-size: 1.125rem; }
-.btn-glow { box-shadow: 0 10px 30px rgba(4, 77, 242, .3); }
+.btn-glow { box-shadow: 0 10px 30px rgba(109,59,245, .3); }
 .btn-white { background: #fff; color: var(--navy); border-color: #fff; }
 .btn-white:hover { background: var(--brand-soft); border-color: var(--brand-soft); }
 .btn.wide { width: 100%; }
 
 /* announcement + nav */
-.announce { background: var(--navy); color: #F6D98A; font-size: .8125rem; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 44px; padding: 8px 16px; text-align: center; }
+.announce { position: relative; z-index: 2; background: var(--navy); color: #F6D98A; font-size: .8125rem; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 44px; padding: 8px 16px; text-align: center; }
 .announce .laurel { color: #E3B34A; display: inline-flex; }
 .announce .laurel.flip { transform: scaleX(-1); }
 .announce > span:nth-child(2) { color: #fff; }
@@ -35,7 +35,7 @@
 }
 
 /* hero */
-.hero { position: relative; background: radial-gradient(900px 600px at 100% 40%, #DDEBFC 0, transparent 70%), linear-gradient(#F4F6FC, #F8F8FC); padding-top: 40px; overflow: hidden; }
+.hero { position: relative; background: radial-gradient(900px 600px at 100% 40%, #EADFFC 0, transparent 70%), linear-gradient(#F4F6FC, #F8F8FC); padding-top: 40px; overflow: hidden; }
 .hero-in { text-align: center; max-width: 900px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 2; }
 .proof { display: inline-flex; align-items: center; gap: 10px; background: #fff; border: 1px solid var(--border); border-radius: 9999px; padding: 6px 18px 6px 8px; box-shadow: var(--shadow); margin-bottom: 28px; }
 .proof-faces { display: inline-flex; }
@@ -103,7 +103,7 @@
 .island { position: absolute; top: 10px; left: 50%; width: 72px; height: 22px; margin-left: -36px; background: #000; border-radius: 12px; z-index: 3; }
 .phone-vis { overflow: hidden; align-items: center; }
 .phone-vis .phone { margin-top: 0; }
-.lock { background: radial-gradient(circle at 30% 20%, #3A6BFF, #0B2A8A 55%, #091340); color: #fff; text-align: center; padding-top: 48px; }
+.lock { background: radial-gradient(circle at 30% 20%, #8B5CF6, #4C1D95 55%, #2E1065); color: #fff; text-align: center; padding-top: 48px; }
 .lock .lk { display: block; margin: 0 auto 2px; opacity: .9; }
 .lock .clock { display: block; font-size: 4rem; font-weight: 500; letter-spacing: -.04em; line-height: 1; }
 .phone.sm .lock .clock { font-size: 3.2rem; }
@@ -181,7 +181,7 @@
 .flowv { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 0; padding-top: 10px; }
 .fl { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 66px; } .fl small { font-size: .65rem; color: var(--muted); font-weight: 500; }
 .fn { width: 46px; height: 46px; border-radius: 50%; background: #fff; box-shadow: var(--shadow); display: flex; align-items: center; justify-content: center; color: #9AA1B8; } .fn.sq { border-radius: 12px; width: 56px; height: 56px; } .fn.blue { background: var(--brand); color: #fff; }
-.fline { position: relative; width: 44px; height: 2px; margin: 22px 2px 0; background: linear-gradient(90deg, #DCE3F3, #C9D5F2); border-radius: 1px; display: block; }
+.fline { position: relative; width: 44px; height: 2px; margin: 22px 2px 0; background: linear-gradient(90deg, #DCE3F3, #D3C6F5); border-radius: 1px; display: block; }
 .fline b { position: absolute; top: 50%; left: 0; width: 6px; height: 6px; margin: -3px 0 0 -3px; border-radius: 50%; background: var(--brand); box-shadow: 0 0 0 3px rgb(4 77 242 / .12); }
 .fn { position: relative; }
 .fcheck { position: absolute; top: -4px; right: -5px; width: 18px; height: 18px; }
@@ -262,7 +262,7 @@
 .faq-more { text-align: center; font-size: .8rem; color: var(--muted); margin-top: 36px; } .faq-more a { font-weight: 500; text-decoration: none; }
 
 /* final + footer */
-.final { background: linear-gradient(#fff, #F1F5FF); text-align: center; padding: 72px 20px 88px; } .final h2 { font-size: 40px; max-width: 700px; margin: 0 auto 12px; } .final p { color: var(--muted); margin-bottom: 28px; }
+.final { background: linear-gradient(#fff, #F6F1FF); text-align: center; padding: 72px 20px 88px; } .final h2 { font-size: 40px; max-width: 700px; margin: 0 auto 12px; } .final p { color: var(--muted); margin-bottom: 28px; }
 @media (max-width: 760px) { .final h2 { font-size: 28px; } }
 .site-footer { background: var(--navy); color: #fff; padding: 56px 32px 24px; }
 .footer-in { max-width: 1400px; margin: 0 auto; }
@@ -277,7 +277,7 @@
 .sec.alt > .bento { max-width: 1240px; }
 
 /* sections off screen or in a hidden tab: freeze every CSS animation (set by components/landing/Reveal.tsx) */
-.landing main > section[data-paused] *, .landing main > section[data-paused] *::before, .landing main > section[data-paused] *::after { animation-play-state: paused !important; }
+.landing :is(main, [data-vslot]) > section[data-paused] *, .landing :is(main, [data-vslot]) > section[data-paused] *::before, .landing :is(main, [data-vslot]) > section[data-paused] *::after { animation-play-state: paused !important; }
 
 /* skip style, layout and paint of sections below the fold until they get near the viewport */
-.landing main > section:not(.hero):not(.logos), .site-footer { content-visibility: auto; contain-intrinsic-size: auto 900px; }
+.landing :is(main, [data-vslot]) > section:not(.hero):not(.logos), .site-footer { content-visibility: auto; contain-intrinsic-size: auto 900px; }

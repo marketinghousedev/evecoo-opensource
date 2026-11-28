@@ -4,10 +4,12 @@
 
 /** Core UI colours, mirrored from app/globals.css. */
 export const core = {
-  brand: '#044DF2',
-  brandLight: '#2F6BFF',
-  brandSoft: '#E8EFFE',
-  brandMuted: '#B9CCFB',
+  brand: '#6D3BF5',
+  brandHover: '#5A2BE0',
+  brandDeep: '#4C1D95',
+  brandLight: '#8B5CF6',
+  brandSoft: '#F1EBFE',
+  brandMuted: '#CDBDFB',
   navy: '#0B1F44',
   ink: '#071130',
   muted: '#3A4160',

@@ -1,7 +1,7 @@
 # Illustration system
 
 One vector language for the whole landing page: flat, friendly, precise. Line-drawn objects on
-soft colour fields, brand blue as the hero, warm food accents as seasoning. No photos-plus-clipart
+soft colour fields, brand violet as the hero, warm food accents as seasoning. No photos-plus-clipart
 mix, no stock avatars. File rules and naming: `public/illustrations/README.md`. Machine-readable
 palette: `components/illustration/palette.ts` (the asset test rejects any other hex).
 
@@ -9,7 +9,7 @@ palette: `components/illustration/palette.ts` (the asset test rejects any other 
 
 | Role | Tokens |
 | --- | --- |
-| Brand | brand `#044DF2`, brand-light `#2F6BFF`, brand-soft `#E8EFFE`, brand-muted `#B9CCFB` |
+| Brand | brand `#6D3BF5` (white text 5.8:1), brand-hover `#5A2BE0`, brand-deep `#4C1D95`, brand-light `#8B5CF6`, brand-soft `#F1EBFE`, brand-muted `#CDBDFB` |
 | Neutrals | navy `#0B1F44`, ink `#071130`, muted `#3A4160`, border `#D7DDE7`, line `#EEF1F8`, bg `#F8F8FC`, white |
 | Status | success `#12B76A` (soft `#E3F7EE`), success-strong `#12945A`, loss `#D6244B` (soft `#FCE4E9`) |
 
@@ -27,7 +27,7 @@ Warm accents (solid on white, contrast ratio in brackets; `-soft` tints are fill
 Rules:
 - **60/30/10.** Each illustration: neutrals and soft tints about 60%, brand or one accent about
   30%, at most one second accent about 10%. Never more than two accents in one asset.
-- Brand blue is reserved for "the product" (pass, phone UI, stamps earned). Food and shops use
+- Brand violet is reserved for "the product" (pass, phone UI, stamps earned). Food and shops use
   the accents.
 - `success #12B76A` is only 2.6:1 on white: use it as a large fill or dot. Use `#12945A` where
   green carries meaning on white. `loss` is only for the "lost customer" story.
@@ -87,9 +87,9 @@ import { iconsUiStamp } from '@/components/illustration/illo-data';
 | Do | Don't |
 | --- | --- |
 | Navy 2 px outline, round caps, one shade from the top-left | Mixed stroke widths, square caps, light from below |
-| Brand blue for the pass, phone and earned stamps | Brand blue on food, or food accents on product UI |
+| Brand violet for the pass, phone and earned stamps | Brand violet on food, or food accents on product UI |
 | Copy in `messages/*.json`, laid over the art in HTML | Words, prices or logos baked into an SVG |
 | CSS `.illo-lift` shadow, flat contact ellipse | Blurred `<filter>` shadows, pure black shadows |
-| Original, fictional shops and marks | Tracing evecoo.de art or any real company's logo |
+| Original, fictional shops and marks | Tracing any competitor's art or any real company's logo |
 | Official Apple/Google Wallet badge files, unmodified | Redrawn or recoloured wallet badges |
 | `currentColor` for parts recoloured by CSS | Off-palette hexes or colour names |

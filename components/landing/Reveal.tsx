@@ -8,7 +8,7 @@ import { useEffect } from 'react';
  */
 export function Reveal() {
   useEffect(() => {
-    const secs = Array.from(document.querySelectorAll<HTMLElement>('.landing main > section'));
+    const secs = Array.from(document.querySelectorAll<HTMLElement>('.landing :is(main, [data-vslot]) > section'));
     const onScreen = new Set<Element>();
     const paint = () => {
       for (const s of secs) {

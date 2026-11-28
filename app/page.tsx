@@ -1,52 +1,34 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 import { useT } from '@/components/I18nProvider';
 import { SiteNav, SiteFooter } from '@/components/landing/Chrome';
-import { Hero } from '@/components/landing/Hero';
-import { Logos, Features } from '@/components/landing/Features';
-import { HowItWorks } from '@/components/landing/HowItWorks';
-import { Bento, Problem } from '@/components/landing/Bento';
-import { Service } from '@/components/landing/Service';
-import { DashPreview } from '@/components/landing/DashPreview';
-import { Pricing, Faq } from '@/components/landing/PricingFaq';
-import { HeroBowl, BowlAtmo, HeroSwitch } from '@/components/landing/herob/HeroBowl';
+import { BowlAtmo } from '@/components/landing/herob/HeroBowl';
 import { Reveal } from '@/components/landing/Reveal';
 import { Icon } from '@/components/landing/Icon';
+import { VariantSlot, ComparePanel, useVariant, useVariantKey } from '@/components/landing/variant-runtime';
 import './landing.css';
 
 export default function LandingPage() {
   const { t } = useT();
-  // Hero variant: B (bowl glow) is the default, ?hero=a keeps the previous hero.
-  const [variant, setVariant] = useState<'a' | 'b'>('b');
-  useEffect(() => {
-    const v = new URLSearchParams(window.location.search).get('hero');
-    if (v === 'a' || v === 'b') setVariant(v);
-  }, []);
-  const choose = (v: 'a' | 'b') => {
-    const u = new URL(window.location.href);
-    u.searchParams.set('hero', v);
-    window.history.replaceState(null, '', u);
-    window.scrollTo(0, 0);
-    document.documentElement.dataset.hero = v;
-    setVariant(v);
-  };
+  // Every section renders through <VariantSlot>; add B versions in components/landing/variants.ts (docs/VARIANTS.md).
+  const hero = useVariant('hero');
+  const revision = useVariantKey();
   return (
-    <div className={variant === 'b' ? 'landing hb-on' : 'landing'}>
+    <div className={hero === 'b' ? 'landing hb-on' : 'landing'}>
       <SiteNav />
-      {variant === 'b' && <BowlAtmo />}
+      {hero === 'b' && <BowlAtmo />}
       <main>
-        {variant === 'b' ? <HeroBowl key="b" /> : <Hero key="a" />}
-        <Logos />
-        <Features />
-        <HowItWorks />
-        <Bento />
-        <Problem />
-        <Service />
-        <DashPreview />
-        <Pricing />
-        <Faq />
+        <VariantSlot section="hero" />
+        <VariantSlot section="logos" />
+        <VariantSlot section="features" />
+        <VariantSlot section="how" />
+        <VariantSlot section="bento" />
+        <VariantSlot section="problem" />
+        <VariantSlot section="service" />
+        <VariantSlot section="dash" />
+        <VariantSlot section="pricing" />
+        <VariantSlot section="faq" />
         <section className="final">
           <h2>{t('landing.final.title')}</h2>
           <p>{t('landing.final.sub')}</p>
@@ -54,8 +36,8 @@ export default function LandingPage() {
         </section>
       </main>
       <SiteFooter />
-      <Reveal key={variant} />
-      <HeroSwitch value={variant} onChange={choose} />
+      <Reveal key={revision} />
+      <ComparePanel />
     </div>
   );
 }

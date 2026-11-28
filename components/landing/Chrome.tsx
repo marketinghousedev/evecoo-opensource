@@ -83,7 +83,7 @@ export function SiteFooter() {
         <div className="footer-bottom">
           <span>{t('footer.copy')}</span>
           <span className="footer-contact">
-            <a href="mailto:hello@evecoo.app">{t('footer.mail')}</a>
+            <a href="mailto:hello@biome.app">{t('footer.mail')}</a>
             <Link href="/login">{t('footer.login')}</Link>
             <a href="#support">{t('footer.whatsapp')}</a>
           </span>

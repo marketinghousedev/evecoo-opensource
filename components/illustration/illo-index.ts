@@ -28,6 +28,8 @@ export const illos = {
   'backgrounds/hero-field': d.backgroundsHeroField,
   'backgrounds/poster-coffee-hills': d.backgroundsPosterCoffeeHills,
   'backgrounds/pricing-pattern': d.backgroundsPricingPattern,
+  'brands/biome-mark': d.brandsBiomeMark,
+  'brands/biome-wordmark': d.brandsBiomeWordmark,
   'brands/mark-bakehouse': d.brandsMarkBakehouse,
   'brands/mark-barber': d.brandsMarkBarber,
   'brands/mark-bloom': d.brandsMarkBloom,

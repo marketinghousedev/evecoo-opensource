@@ -1,5 +1,6 @@
 'use client';
 
+import { LogoMark } from './Logo';
 import { useT } from '@/components/I18nProvider';
 import { IlloSvg } from '@/components/illustration/IlloSvg';
 import { backgroundsPosterCoffeeHills } from '@/components/illustration/illo-data';
@@ -18,7 +19,7 @@ export type QrPosterProps = {
 };
 
 /** In-store QR poster, portrait 3:4. Sized in container units: it scales with whatever width it is given. */
-export function QrPoster({ brand = 'coffee', photo, url = 'https://evecoo.de/join/', className }: QrPosterProps) {
+export function QrPoster({ brand = 'coffee', photo, url = 'https://biome.app/join/', className }: QrPosterProps) {
   const { t } = useT();
   const biz = PASS_BY_SLUG[brand];
   return (
@@ -45,7 +46,7 @@ export function QrPoster({ brand = 'coffee', photo, url = 'https://evecoo.de/joi
       </div>
       <div className="qrp-foot">
         <div className="qrp-pills"><span>{t('landing.poster.apple')}</span><span>{t('landing.poster.google')}</span></div>
-        <small>{t('landing.poster.powered')}</small>
+        <small><LogoMark size={14} />{t('landing.poster.powered')}</small>
       </div>
     </div>
   );

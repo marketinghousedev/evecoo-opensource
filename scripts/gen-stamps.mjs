@@ -12,7 +12,7 @@ const out = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', 'pu
 
 const C = {
   navy: '#0B1F44', ink: '#071130', white: '#FFFFFF', border: '#D7DDE7', success: '#12B76A',
-  brandSoft: '#E8EFFE', brandMuted: '#B9CCFB',
+  brandSoft: '#F1EBFE', brandMuted: '#CDBDFB',
   espresso: '#8A4B2A', espressoSoft: '#F3E6DC', honey: '#B86E00', honeySoft: '#FCEFD6',
   tomato: '#D4421C', tomatoSoft: '#FCE4DC', salmon: '#E5674A', salmonSoft: '#FDE8E2',
   berry: '#C2366F', berrySoft: '#FAE3EC', herb: '#5E7A1F', herbSoft: '#EAF0DA',

@@ -38,7 +38,7 @@
 .msgr-in i { width: 28px; height: 28px; border-radius: 50%; background: var(--brand); color: #fff; display: grid; place-items: center; flex: none; }
 
 /* dashboard preview: generated area-chart backdrop and glass tiles */
-.dprev { background: url('/illustrations/backgrounds/dash-area.svg') no-repeat center bottom / 100% auto, linear-gradient(160deg, #EAF0FE, #F4F6FB 55%); position: relative; }
+.dprev { background: url('/illustrations/backgrounds/dash-area.svg') no-repeat center bottom / 100% auto, linear-gradient(160deg, #F1EBFE, #F4F6FB 55%); position: relative; }
 .dprev .dp-tile { background: rgba(255,255,255,.58); border: 1px solid rgba(255,255,255,.85); box-shadow: 0 1px 2px rgba(11,31,68,.04), 0 10px 28px rgba(11,31,68,.06), inset 0 1px 0 rgba(255,255,255,.9); -webkit-backdrop-filter: blur(14px) saturate(1.4); backdrop-filter: blur(14px) saturate(1.4); }
 
 /* pricing: tileable stamp pattern at 4% on navy */

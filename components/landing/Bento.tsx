@@ -69,7 +69,7 @@ export function Problem() {
         <article className="pcard" data-reveal>
           <div className="pvis">
             <div className="pm row">
-              <svg width="76" height="76" viewBox="0 0 76 76"><circle cx="38" cy="38" r="30" fill="none" stroke="#D7DDE7" strokeWidth="9" /><circle className="ring65" cx="38" cy="38" r="30" fill="none" stroke="#044DF2" strokeWidth="9" strokeDasharray="122 189" strokeLinecap="round" transform="rotate(-90 38 38)" /><text x="38" y="43" textAnchor="middle" fontSize="15" fontWeight="500" fill="#071130">65 %</text></svg>
+              <svg width="76" height="76" viewBox="0 0 76 76"><circle cx="38" cy="38" r="30" fill="none" stroke="#D7DDE7" strokeWidth="9" /><circle className="ring65" cx="38" cy="38" r="30" fill="none" stroke="#6D3BF5" strokeWidth="9" strokeDasharray="122 189" strokeLinecap="round" transform="rotate(-90 38 38)" /><text x="38" y="43" textAnchor="middle" fontSize="15" fontWeight="500" fill="#071130">65 %</text></svg>
               <span className="legend"><small>{t('landing.prob.c2.mock')}</small>
                 <span><i className="d b" />{t('landing.prob.c2.reg')}</span><b>650€</b>
                 <span><i className="d" />{t('landing.prob.c2.one')}</span><b className="dim">350€</b></span>

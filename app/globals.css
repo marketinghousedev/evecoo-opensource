@@ -5,12 +5,12 @@
   --on-surface: #071130;
   --muted: #3A4160;
   --border: #D7DDE7;
-  --brand: #044DF2;
-  --brand-hover: #0342D6;
-  --brand-light: #2F6BFF;
-  --brand-deep: #0338C9;
-  --brand-soft: #E8EFFE;
-  --brand-muted: #B9CCFB;
+  --brand: #6D3BF5;
+  --brand-hover: #5A2BE0;
+  --brand-light: #8B5CF6;
+  --brand-deep: #4C1D95;
+  --brand-soft: #F1EBFE;
+  --brand-muted: #CDBDFB;
   --accent: #0B1F44;
   --primary: #0B1F44;
   --primary-alt: #0B1F44;
@@ -152,11 +152,11 @@ textarea.input { border-radius: var(--radius-sm); }
 
 /* Hero variant B (docs/HERO-BOWL-SPEC.md): reveal and bowl-glow colours */
 :root {
-  --glow-accent: #3f7cff;
-  --glow-accent-cyan: #8fe6f4;
+  --glow-accent: #7C4DFF;
+  --glow-accent-cyan: #C4B5FD;
   --glow-ghost: #5c6f92;
-  --glow-hl: #5b7cf0;
+  --glow-hl: #7A5AF0;
   --glow-panel: #0e1f3d;
-  --glow-bowl-lilac: #d2daff;
-  --glow-bowl-cyan: #8fd5f1;
+  --glow-bowl-lilac: #E4DAFF;
+  --glow-bowl-cyan: #BFA8FA;
 }

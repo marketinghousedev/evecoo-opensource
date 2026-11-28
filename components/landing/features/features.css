@@ -24,7 +24,7 @@
 /* card B: lock screen push stack */
 .fx-phone-wrap { display: flex; justify-content: center; align-items: flex-start; }
 .fx-phone { position: relative; width: 276px; height: 520px; flex: none; border-radius: 44px 44px 0 0; background: #11141C; padding: 6px; box-shadow: inset 0 0 0 2px #2B2F3D, 0 24px 50px rgba(11, 31, 68, .25); margin-top: 18px; -webkit-mask-image: linear-gradient(#000 84%, transparent); mask-image: linear-gradient(#000 84%, transparent); }
-.fx-screen { position: relative; height: 100%; border-radius: 38px 38px 0 0; overflow: hidden; text-align: center; color: #fff; background: #2F6BFF; }
+.fx-screen { position: relative; height: 100%; border-radius: 38px 38px 0 0; overflow: hidden; text-align: center; color: #fff; background: #8B5CF6; }
 .fx-wall { position: absolute; inset: 0; width: 100%; height: 100%; }
 .fx-screen > :not(.fx-wall) { position: relative; }
 .fx-screen > .fx-island, .fx-screen > .fx-status { position: absolute; }
@@ -36,7 +36,7 @@
 .fx-notifs { position: absolute; left: 50%; top: 208px; width: 252px; margin-left: -126px; height: 0; }
 .fx-notif {
   position: absolute; left: 0; right: 0; top: 0; height: 78px; display: flex; gap: 10px; align-items: flex-start; padding: 11px 12px;
-  background: #EEF3FF; border: 1px solid rgba(255, 255, 255, .7); border-radius: 22px; color: var(--on-surface);
+  background: #F3EEFF; border: 1px solid rgba(255, 255, 255, .7); border-radius: 22px; color: var(--on-surface);
   box-shadow: 0 10px 28px rgba(8, 20, 80, .28); 
   transition: transform .8s var(--ease), opacity .6s var(--ease); will-change: transform, opacity;
 }

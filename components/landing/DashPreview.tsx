@@ -40,11 +40,11 @@ export function DashPreview() {
           <div className="dp-chart">
             <div className="dp-h"><span><b>{t('landing.dash.chart')}</b><small>{t('landing.dash.chartSub')}</small></span><span className="lg"><i />{t('landing.dash.legend')}</span></div>
             <svg viewBox={`0 0 ${W} ${H + 20}`} preserveAspectRatio="none" aria-hidden="true">
-              <defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#044DF2" stopOpacity=".28" /><stop offset="1" stopColor="#044DF2" stopOpacity="0" /></linearGradient></defs>
+              <defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#6D3BF5" stopOpacity=".28" /><stop offset="1" stopColor="#6D3BF5" stopOpacity="0" /></linearGradient></defs>
               {[0, 1, 2, 3].map((i) => <line key={i} x1="0" x2={W} y1={10 + i * 70} y2={10 + i * 70} stroke="#E4E9F5" />)}
               <path d={`${d} L${W},${H} L0,${H}Z`} fill="url(#ag)" />
-              <path d={d} fill="none" stroke="#044DF2" strokeWidth="2.5" vectorEffect="non-scaling-stroke" />
-              <circle cx={last[0] - 4} cy={last[1]} r="5" fill="#044DF2" stroke="#fff" strokeWidth="2" />
+              <path d={d} fill="none" stroke="#6D3BF5" strokeWidth="2.5" vectorEffect="non-scaling-stroke" />
+              <circle cx={last[0] - 4} cy={last[1]} r="5" fill="#6D3BF5" stroke="#fff" strokeWidth="2" />
             </svg>
             <div className="dp-x"><span>{t('landing.dash.w1')}</span><span>{t('landing.dash.w2')}</span><span>{t('landing.dash.w3')}</span><span>{t('landing.dash.w4')}</span></div>
           </div>
@@ -52,7 +52,7 @@ export function DashPreview() {
             <div className="dp-peak">
               <div className="dp-h"><b>{t('landing.dash.peak')}</b><small>{t('landing.dash.peakDay')}</small></div>
               <strong>{t('landing.dash.peakVal')}</strong>
-              <div className="hrs">{hours.map((v, i) => <i key={i} style={{ height: `${v}%`, background: v === 100 ? '#044DF2' : '#DCE5FA' }} />)}</div>
+              <div className="hrs">{hours.map((v, i) => <i key={i} style={{ height: `${v}%`, background: v === 100 ? '#6D3BF5' : '#DDD1FA' }} />)}</div>
               <div className="dp-x"><span>{t('landing.dash.h1')}</span><span>{t('landing.dash.h2')}</span><span>{t('landing.dash.h3')}</span></div>
             </div>
             <div className="dp-peak">

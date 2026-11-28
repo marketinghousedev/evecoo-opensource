@@ -5,6 +5,7 @@ import './globals.css';
 import { availableLocales, getMessages } from '@/lib/i18n-build';
 import { translate } from '@/lib/i18n';
 import { I18nProvider } from '@/components/I18nProvider';
+import { variantScript, variantCss } from '@/components/landing/variant-prepaint';
 import { LocaleSwitcher } from '@/components/LocaleSwitcher';
 
 const hanken = Hanken_Grotesk({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'], variable: '--font-hanken', display: 'swap' });
@@ -21,8 +22,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={hanken.variable} suppressHydrationWarning>
       <head>
-        {/* Hero variant is read before first paint so ?hero=a never flashes variant B (see herob.css). */}
-        <script dangerouslySetInnerHTML={{ __html: "try{var h=new URLSearchParams(location.search).get('hero');if(h==='a'||h==='b')document.documentElement.dataset.hero=h}catch(e){}" }} />
+        {/* Variants (docs/VARIANTS.md): data-<section> is set before first paint so ?how=b or ?all=b never flashes variant A. */}
+        <style dangerouslySetInnerHTML={{ __html: variantCss() }} />
+        <script dangerouslySetInnerHTML={{ __html: variantScript() }} />
       </head>
       <body>
         <I18nProvider locales={locales} messages={en}>

@@ -17,7 +17,7 @@ describe('hero B bowl maths', () => {
   it('is solid cyan by q=1.43 and not at rest', () => {
     const d = new Uint8ClampedArray(GW * GH * 4);
     expect(paintBowl(d, bowlTarget(1.43), 1.6, null)).toBe(true);
-    expect([d[0], d[1], d[2]]).toEqual([0x8f, 0xd5, 0xf1]);
+    expect([d[0], d[1], d[2]]).toEqual([0xbf, 0xa8, 0xfa]);
     expect(paintBowl(d, bowlTarget(0), 1.6, null)).toBe(false);
   });
 });

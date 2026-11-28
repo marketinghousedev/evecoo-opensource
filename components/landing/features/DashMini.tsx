@@ -56,7 +56,7 @@ export function DashMini({ copy }: { copy: DashCopy }) {
           <span className="fx-tag grey">{copy.peak}</span>
           <div className="fx-hb">
             {HOURS.map((l, i) => (
-              <div key={l}><small>{l}</small><i><u style={{ width: `${z(s.h[i])}%`, background: s.h[i] === 100 ? '#0B1F44' : '#4F7AC9' }} /></i></div>
+              <div key={l}><small>{l}</small><i><u style={{ width: `${z(s.h[i])}%`, background: s.h[i] === 100 ? '#0B1F44' : '#8B6BD9' }} /></i></div>
             ))}
           </div>
         </div>

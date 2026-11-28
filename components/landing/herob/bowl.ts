@@ -35,7 +35,7 @@ export function hex(h: string): Rgb {
 const mix = (a: Rgb, b: Rgb, t: number): Rgb => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t];
 
 export type BowlColors = { white: Rgb; lilac: Rgb; cyan: Rgb };
-export const DEFAULT_COLORS: BowlColors = { white: [255, 255, 255], lilac: hex('#d2daff'), cyan: hex('#8fd5f1') };
+export const DEFAULT_COLORS: BowlColors = { white: [255, 255, 255], lilac: hex('#E4DAFF'), cyan: hex('#BFA8FA') };
 
 export function bowlColor(g: number, c: BowlColors): Rgb {
   return g < 0.38 ? mix(c.white, c.lilac, smooth(g / 0.38)) : mix(c.lilac, c.cyan, smooth((g - 0.38) / 0.62));

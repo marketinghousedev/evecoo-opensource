@@ -1,0 +1,15 @@
+/* Floating Compare panel (docs/VARIANTS.md). Bottom-right, safe-area aware, collapsible. */
+.cmp { position: fixed; z-index: 60; right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom)); max-width: calc(100vw - 32px); font-size: .8125rem; color: #fff; }
+.cmp > summary { list-style: none; display: inline-flex; align-items: center; gap: 8px; float: right; min-height: 40px; padding: 0 8px 0 14px; border-radius: 9999px; background: rgba(11,31,68,.92); font-weight: 500; cursor: pointer; box-shadow: 0 8px 24px rgba(11,31,68,.3); user-select: none; }
+.cmp > summary::-webkit-details-marker { display: none; }
+.cmp > summary b { display: inline-grid; place-items: center; min-width: 24px; height: 24px; border-radius: 9999px; background: #fff; color: var(--navy); font-size: .75rem; }
+.cmp > summary:focus-visible, .cmp button:focus-visible { outline: 2px solid var(--glow-accent-cyan); outline-offset: 2px; }
+.cmp-body { clear: both; margin-bottom: 8px; padding: 10px 12px; border-radius: 16px; background: rgba(11,31,68,.94); box-shadow: 0 12px 32px rgba(11,31,68,.35); min-width: 220px; max-height: min(60vh, 420px); overflow: auto; display: grid; gap: 6px; backdrop-filter: blur(8px); }
+.cmp:not([open]) .cmp-body { display: none; }
+.cmp[open] > summary { float: none; display: flex; justify-content: flex-end; margin-left: auto; width: max-content; }
+.cmp[open] { display: flex; flex-direction: column-reverse; align-items: flex-end; }
+.cmp-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.cmp-all { border-top: 1px solid rgba(255,255,255,.18); padding-top: 8px; margin-top: 2px; }
+.cmp-seg { display: inline-flex; gap: 2px; padding: 2px; border-radius: 9999px; background: rgba(255,255,255,.12); }
+.cmp-seg button { font: inherit; font-weight: 600; color: rgba(255,255,255,.75); background: none; border: 0; border-radius: 9999px; min-width: 32px; min-height: 28px; padding: 0 8px; cursor: pointer; }
+.cmp-seg button[aria-pressed='true'] { background: #fff; color: var(--navy); }

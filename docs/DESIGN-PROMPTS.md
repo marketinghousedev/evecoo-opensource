@@ -26,7 +26,7 @@ Goal: define ONE coherent illustration system and asset pipeline that every late
 Deliver:
 1. docs/ILLUSTRATION-SYSTEM.md, at most 2 pages:
    - Palette, derived from the existing CSS tokens in app/globals.css:
-     - brand #044DF2, brand-light #2F6BFF, brand-soft #E8EFFE, navy #0B1F44, ink #071130, muted #3A4160, border #D7DDE7, bg #F8F8FC
+     - brand #6D3BF5, brand-light #8B5CF6, brand-soft #F1EBFE, navy #0B1F44, ink #071130, muted #3A4160, border #D7DDE7, bg #F8F8FC
      - success #12B76A, loss #D6244B
      - plus 6 warm accent hues for food and industries (choose them; each must keep 3:1 contrast against white where it carries meaning)
    - Line weights and rules: e.g. 1.75px stroke at 24px grid, round caps and joins.

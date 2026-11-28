@@ -71,11 +71,11 @@ export function HeroBowl() {
     const rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const cs = getComputedStyle(document.documentElement);
-    const cyan = cssHex(cs, '--glow-bowl-cyan', '#8fd5f1');
-    const colors: BowlColors = { white: [255, 255, 255], lilac: cssHex(cs, '--glow-bowl-lilac', '#d2daff'), cyan };
-    const accent = cssHex(cs, '--glow-accent', '#3f7cff'), hl = cssHex(cs, '--glow-hl', '#5b7cf0');
+    const cyan = cssHex(cs, '--glow-bowl-cyan', '#BFA8FA');
+    const colors: BowlColors = { white: [255, 255, 255], lilac: cssHex(cs, '--glow-bowl-lilac', '#E4DAFF'), cyan };
+    const accent = cssHex(cs, '--glow-accent', '#7C4DFF'), hl = cssHex(cs, '--glow-hl', '#7A5AF0');
     const ink = cssHex(cs, '--on-surface', '#071130');
-    const dark: RevealColors = { final: [255, 255, 255], hl, accent: cssHex(cs, '--glow-accent-cyan', '#8fe6f4'), ghost: cssHex(cs, '--glow-ghost', '#5c6f92') };
+    const dark: RevealColors = { final: [255, 255, 255], hl, accent: cssHex(cs, '--glow-accent-cyan', '#C4B5FD'), ghost: cssHex(cs, '--glow-ghost', '#5c6f92') };
     const light: RevealColors = { final: ink, hl, accent, ghost: [255, 255, 255] };
 
     const cH1 = collectChars($('#h1')!), cSt = collectChars(stmt), cH2 = collectChars(h2);
@@ -266,22 +266,6 @@ export function HeroBowl() {
           </div>
         </div>
       </section>
-    </div>
-  );
-}
-
-/** Floating "Compare: A | B" switch. */
-export function HeroSwitch({ value, onChange }: { value: 'a' | 'b'; onChange: (v: 'a' | 'b') => void }) {
-  const { t } = useT();
-  return (
-    <div className="hb-switch" role="group" aria-label={t('landing.heroB.compareLabel')}>
-      <span>{t('landing.heroB.compare')}</span>
-      {(['a', 'b'] as const).map((v, i) => (
-        <Fragment key={v}>
-          {i > 0 && <i aria-hidden="true" />}
-          <button type="button" aria-pressed={value === v} onClick={() => onChange(v)}>{v.toUpperCase()}</button>
-        </Fragment>
-      ))}
     </div>
   );
 }

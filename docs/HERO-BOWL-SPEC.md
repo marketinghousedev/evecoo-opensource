@@ -28,7 +28,7 @@ Source: the owner supplied a motion spec, written originally for another product
   - The bowl glow, statement and split exist only in variant B.
 - **Reduced motion.** No canvas animation: draw the q=0 bowl once. Every letter reveal shows its final state immediately. There is no pin rise. The statement and split are simply visible.
 - **Performance.**
-  - The canvas is 96×60 and is painted via ImageData each rAF only while the hero/statement region is near the viewport or the intro is running. Stop it when the page is hidden or after the bowl is solid cyan and stable; at that point paint once and set the `.atmo` background to `#8fd5f1`.
+  - The canvas is 96×60 and is painted via ImageData each rAF only while the hero/statement region is near the viewport or the intro is running. Stop it when the page is hidden or after the bowl is solid cyan and stable; at that point paint once and set the `.atmo` background to `#BFA8FA`.
   - Avoid layout thrash: read `scrollY` once per frame.
   - Below the split, `.atmo` must not show through. Later sections keep their own backgrounds, so ensure each following section has an opaque background (the page bg `#F8F8FC`).
 
@@ -49,8 +49,8 @@ Source: the owner supplied a motion spec, written originally for another product
 **Fill.** `g = 1 − smoothstep((sd + soft)/(2·soft))`.
 
 **Colour.**
-- For `g < .38`: mix `#ffffff` → `#d2daff`, eased by smoothstep(g/.38).
-- Otherwise: mix `#d2daff` → `#8fd5f1`, eased by smoothstep((g−.38)/.62).
+- For `g < .38`: mix `#ffffff` → `#E4DAFF`, eased by smoothstep(g/.38).
+- Otherwise: mix `#E4DAFF` → `#BFA8FA`, eased by smoothstep((g−.38)/.62).
 
 **Idle drift.** `tip += sin(t·0.00033+1.3)·0.02` and `half += sin(t·0.0005)·0.015`.
 
@@ -82,16 +82,16 @@ Source: the owner supplied a motion spec, written originally for another product
 | 0 | 0 | ghost | 8px |
 | 0 → .35 | 0 → 1 | ghost | 8 → 1.5px |
 | .35 → .70 | 1 | ghost → accent | 1.5 → 0px |
-| .70 → 1 | 1 | accent → final (flagged characters end at `#5b7cf0`) | 0 |
+| .70 → 1 | 1 | accent → final (flagged characters end at `#7A5AF0`) | 0 |
 
 Colour and blur are set inline.
 
 **Where it is used.**
-- **Hero h1:** time-based, 0 → 1 over 1.25s from load. Spread .35, final `#0b1d3a` (use the site's ink, `#071130`, if closer to the system), accent `#3f7cff`, ghost white.
+- **Hero h1:** time-based, 0 → 1 over 1.25s from load. Spread .35, final `#0b1d3a` (use the site's ink, `#071130`, if closer to the system), accent `#7C4DFF`, ghost white.
 - **Statement:** scroll-based, spread .16, same colours.
-- **Dark h2:** scroll-based, spread .35, final white, accent `#8fe6f4`, ghost `#5c6f92`.
+- **Dark h2:** scroll-based, spread .35, final white, accent `#C4B5FD`, ghost `#5c6f92`.
 
-The reveal accents `#3f7cff`, `#8fe6f4`, `#5c6f92`, `#5b7cf0` and `#0e1f3d` are CSS/JS colours, not SVG. Add them as named tokens in `globals.css` (`--glow-*`), not in `palette.ts`.
+The reveal accents `#7C4DFF`, `#C4B5FD`, `#5c6f92`, `#7A5AF0` and `#0e1f3d` are CSS/JS colours, not SVG. Add them as named tokens in `globals.css` (`--glow-*`), not in `palette.ts`.
 
 ### Hero
 

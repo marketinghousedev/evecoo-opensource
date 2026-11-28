@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const C = {
-  navy: '#0B1F44', white: '#FFFFFF', brand: '#044DF2', brandSoft: '#E8EFFE', brandMuted: '#B9CCFB',
+  navy: '#0B1F44', white: '#FFFFFF', brand: '#6D3BF5', brandSoft: '#F1EBFE', brandMuted: '#CDBDFB',
   esp: '#8A4B2A', espS: '#F3E6DC', honey: '#B86E00', honeyS: '#FCEFD6', tom: '#D4421C', tomS: '#FCE4DC',
   sal: '#E5674A', salS: '#FDE8E2', berry: '#C2366F', berryS: '#FAE3EC', herb: '#5E7A1F', herbS: '#EAF0DA',
   ok: '#12B76A', okS: '#12945A', okSoft: '#E3F7EE', loss: '#D6244B',
